@@ -1,0 +1,21 @@
+*,
+*::after,
+*::before {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+body {
+  position: relative;
+}
+
+button {
+	border: none;
+	cursor: pointer;
+	background-color: inherit;
+}
+
+input {
+	outline: none;
+}

@@ -1,9 +1,8 @@
 import express from "express";
 import cors from "cors";
-import dotenv from "dotenv";
-dotenv.config();
+import "./src/config/dev.config.js";
 
-import { dbService } from "./src/services/db/index.js";
+import { dbService } from "./src/services/db/db.service.js";
 
 const app = express();
 

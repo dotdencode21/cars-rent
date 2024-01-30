@@ -1,0 +1,20 @@
+.base-button {
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: var(--primary-blue-color);
+}
+
+.base-button-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  font-size: 0.875rem;
+  color: var(--primary-white-color);
+}
+
+.base-button:active {
+  filter: brightness(1.25);
+}

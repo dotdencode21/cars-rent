@@ -1,21 +1,4 @@
-*,
-*::after,
-*::before {
-  box-sizing: border-box;
-  padding: 0;
-  margin: 0;
-}
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap');
 
-body {
-  position: relative;
-}
-
-button {
-	border: none;
-	cursor: pointer;
-	background-color: inherit;
-}
-
-input {
-	outline: none;
-}
+@import url("./styles/base.css");
+@import url("./styles/variables/colors.css");

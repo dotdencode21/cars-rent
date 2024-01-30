@@ -1,0 +1,22 @@
+.introduction-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  background: url("@/assets/imgs/bg-img-1.jpeg") no-repeat;
+  padding: 10.0625rem 0 16.6875rem;
+}
+
+.introduction-section-title {
+  font-weight: 600;
+  font-size: 4.5rem;
+  color: var(--primary-white-color);
+}
+
+.introduction-section-subtitle {
+  font-weight: 400;
+  font-size: 1.25rem;
+  color: var(--primary-grey-color);
+}

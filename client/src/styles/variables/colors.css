@@ -1,0 +1,14 @@
+:root {
+  --primary-black-color: #333333;
+  --primary-white-color: #ffffff;
+  --primary-blue-color: #247bdd;
+  --primary-grey-color: #dddddd;
+
+  --secondary-black-color: #363636;
+  --secondary-grey-color: #9b9b9b;
+
+  --neutral-black-color: #151515;
+  --neutral-grey-color: #606060;
+
+  --hover-grey-color: #4B5055;
+}

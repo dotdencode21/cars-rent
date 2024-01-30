@@ -1,0 +1,25 @@
+.first-class-rental-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 3.75rem;
+  background-color: var(--primary-white-color);
+  padding: 5.625rem 7.5rem;
+}
+
+.first-class-rental-section-title {
+  font-weight: 600;
+  font-size: 2.25rem;
+  color: var(--primary-black-color);
+}
+
+.first-class-rental-section-cards {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 25.3125rem);
+  gap: 2rem;
+  align-items: center;
+  justify-content: center;
+}

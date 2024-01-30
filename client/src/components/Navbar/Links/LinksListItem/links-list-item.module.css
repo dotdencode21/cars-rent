@@ -1,0 +1,29 @@
+.links-list-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background-color: inherit;
+  border-bottom: 0.25rem solid var(--secondary-black-color);
+  transition: border-bottom 0.3s ease-in-out;
+}
+
+.links-list-item:hover {
+  border-bottom: 0.25rem solid var(--primary-blue-color);
+}
+
+.links-list-item_active {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1.5rem 1.25rem 1.25rem;
+  background-color: var(--hover-grey-color);
+  border-bottom: 0.25rem solid var(--primary-blue-color);
+}
+
+.links-list-item-title {
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--primary-white-color);
+  text-transform: uppercase;
+}

@@ -1,0 +1,78 @@
+.select {
+  width: 100%;
+  max-width: 14.0625rem;
+  padding: 0.75rem;
+  background-color: var(--primary-white-color);
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  cursor: pointer;
+  border-radius: 0.25rem;
+}
+
+.select-default-value {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.select-default-value-icon,
+.select-list-item-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.select-default-value-title {
+  font-weight: 400;
+  font-size: 1rem;
+  color: var(--primary-black-color);
+}
+
+.select-arrow-icon {
+  width: 1.5rem;
+  height: 1.5rem;
+  color: var(--primary-black-color);
+}
+
+.select-list {
+  width: 100%;
+  position: absolute;
+  top: 2.875rem;
+  left: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.5rem;
+  background-color: var(--primary-white-color);
+  padding: 0 0.75rem 0.5rem;
+  border-radius: 0 0 0.25rem 0.25rem;
+}
+
+.select-list-item {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  gap: 0.5rem;
+  align-items: center;
+  padding: 0.25rem 0.375rem;
+  cursor: pointer;
+  border-radius: 0.25rem;
+  background-color: var(--primary-white-color);
+}
+
+.select-list-item-title {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--primary-black-color);
+}
+
+.select-list-item:hover {
+  background-color: var(--primary-blue-color);
+}
+
+.select-list-item:is(:hover) .select-list-item-title {
+  color: var(--primary-white-color);
+}

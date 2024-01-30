@@ -1,0 +1,26 @@
+.navbar {
+  width: 100%;
+  background-color: var(--secondary-black-color);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 16rem;
+  position: sticky;
+  left: 0;
+  top: 0;
+  z-index: 999 !important;
+}
+
+.navbar-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 5rem;
+}
+
+.navbar-actions-default {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+}

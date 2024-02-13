@@ -6,7 +6,7 @@ import { selectCarOptions } from "@/mock/select.data";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
 import { useTranslation } from "react-i18next";
 
-const IntroductionForm = ({ onClick }) => {
+const IntroductionForm = ({ onClick, preferences }) => {
   const { t } = useTranslation();
 
   return (

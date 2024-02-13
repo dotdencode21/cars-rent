@@ -1,0 +1,116 @@
+.find-car-by-type-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--neutral-white-color);
+  padding: 6.25rem 0;
+  gap: 2.5rem;
+}
+
+.find-car-by-type-section-title {
+  font-weight: 500;
+  font-size: 2.25rem;
+  color: var(--primary-black-color);
+}
+
+.find-car-by-type-section-types {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 16.875rem);
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.find-car-by-type-section-types-type {
+  margin-top: 5.5rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.find-car-by-type-section-types-type-blurb {
+  position: absolute;
+  top: -4.6875rem;
+  width: 7.375rem;
+  height: 7.375rem;
+  background-color: var(--primary-white-color);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 0.625rem;
+  border-radius: 50%;
+  border: 0.0625rem solid var(--primary-grey-color);
+}
+
+.find-car-by-type-section-types-type-blurb-icon {
+  width: 3.75rem;
+  height: 3.75rem;
+  color: var(--primary-black-color);
+}
+
+.find-car-by-type-section-types-type-blurb::before {
+  content: "";
+  position: absolute;
+  top: 4.625rem;
+  left: -4.8125rem;
+  width: 4.25rem;
+  height: 3.25rem;
+  background-color: var(--primary-white-color);
+  border-top: 0.0625rem solid var(--primary-grey-color);
+  border-left: 0.0625rem solid var(--primary-grey-color); 
+}
+
+.find-car-by-type-section-types-type-blurb::after {
+  content: "";
+  position: absolute;
+  top: 4.625rem;
+  right: -4.8125rem;
+  width: 4.25rem;
+  height: 3.25rem;
+  background-color: var(--primary-white-color);
+  border-top: 0.0625rem solid var(--primary-grey-color);
+  border-right: 0.0625rem solid var(--primary-grey-color);
+}
+
+.find-car-by-type-section-types-type-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  background-color: var(--primary-white-color);
+  border-right: 0.0625rem solid var(--primary-grey-color);
+  border-left: 0.0625rem solid var(--primary-grey-color);
+  border-bottom: 0.0625rem solid var(--primary-grey-color);
+  padding: 1.5625rem 1.25rem;
+}
+
+.find-car-by-type-section-types-type-details-title {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--neutral-black-color);
+}
+
+.find-car-by-type-section-types-type-details-amount {
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--primary-blue-color);
+}
+
+.find-car-by-type-section-types-type-details-link {
+  font-size: 0.875rem;
+  font-weight: 500;
+  color: var(--neutral-grey-color);
+  text-decoration: underline;
+  text-transform: uppercase;
+  transition: all 0.3s ease-in-out;
+}
+
+.find-car-by-type-section-types-type-details-link:hover {
+  color: var(--primary-blue-color);
+}

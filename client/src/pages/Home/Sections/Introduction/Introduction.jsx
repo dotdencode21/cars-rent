@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "./introduction.module.css";
 import IntroductionForm from "@/components/Forms/Introduction/Introduction";
 import { useTranslation } from "react-i18next";
@@ -24,7 +24,10 @@ const IntroductionSection = () => {
       <span className={styles["introduction-section-subtitle"]}>
         {t("Introduction section subtitle")}
       </span>
-      <IntroductionForm onClick={handleClick} />
+      <IntroductionForm
+        preferences={preferences}
+        onClick={handleClick} 
+      />
     </div>
   );
 };

@@ -1,0 +1,145 @@
+.our-experience-section {
+  width: 100%;
+  background-color: var(--primary-black-color);
+  padding: 6.25rem 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5rem;
+}
+
+.our-experience-section-wrapper {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  justify-content: center;
+  align-items: center;
+  gap: 0.9375rem;
+  padding: 0 23rem;
+}
+
+.our-experience-section-wrapper-description {
+  height: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.875rem;
+}
+
+.our-experience-section-wrapper-description-img {
+  border-radius: 0.25rem;
+}
+
+.our-experience-section-wrapper-description-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-start;
+  height: inherit;
+}
+
+.our-experience-section-wrapper-description-content-title {
+  padding-left: 1rem;
+  border-left: 0.25rem solid var(--primary-blue-color);
+  font-size: 2.25rem;
+  font-weight: 500;
+  line-height: 3.125rem;
+  color: var(--primary-white-color);
+  text-align: left;
+}
+
+.our-experience-section-wrapper-description-content-subtitle {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--transparent-gray-color);
+  line-height: 1.5rem;
+  text-align: left;
+  max-width: 16.875rem;
+}
+
+.our-experience-section-wrapper-statistics {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.our-experience-section-wrapper-statistics-item {
+  background-color: inherit;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+}
+
+.our-experience-section-wrapper-statistics-item:nth-child(1) {
+  padding-right: 0.625rem;
+  padding-bottom: 1.875rem;
+  border-right: 0.0625rem solid var(--border-gray-color-light);
+}
+
+.our-experience-section-wrapper-statistics-item:nth-child(2) {
+  padding-left: 0.625rem;
+  padding-bottom: 1.875rem;
+}
+
+.our-experience-section-wrapper-statistics-item:nth-child(3) {
+  padding-right: 0.625rem;
+  padding-top: 1.875rem;
+  border-top: 0.0625rem solid var(--border-gray-color-light);
+  border-right: 0.0625rem solid var(--border-gray-color-light);
+}
+
+.our-experience-section-wrapper-statistics-item:nth-child(4) {
+  padding-left: 0.625rem;
+  padding-top: 1.875rem;
+  border-top: 0.0625rem solid var(--border-gray-color-light);
+}
+
+.our-experience-section-wrapper-statistics-item-value {
+  font-size: 3.75rem;
+  line-height: 0.8;
+  font-weight: 400;
+  color: var(--primary-white-color);
+}
+
+.our-experience-section-wrapper-statistics-item-title {
+  font-size: 0.875rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  color: var(--primary-white-color);
+}
+
+.our-experience-section-brands {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 16.75rem);
+  justify-content: center;
+  align-items: center;
+  gap: 1.875rem;
+}
+
+.our-experience-section-brands-brand {
+  background-color: inherit;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 0.0625rem solid var(--neutral-grey-color);
+  border-radius: 0.25rem;
+  transition: all 0.3s ease-in-out;
+  height: 7.5rem;
+}
+
+.our-experience-section-brands-brand:hover {
+  border: 0.0625rem double var(--secondary-grey-color);
+}
+
+.our-experience-section-brands-brand-img {
+  transition: all 0.3s ease-in-out;
+}
+
+.our-experience-section-brands-brand:hover .our-experience-section-brands-brand-img {
+  border: 0.0625rem double var(--secondary-grey-color);
+  transform: scale(0.85);
+  border-radius: 0.25rem;
+}

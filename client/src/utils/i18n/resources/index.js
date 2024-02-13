@@ -1,7 +1,7 @@
 import { enLang } from "./en-lang";
-import { ukLang } from "./uk-lang";
+import { uaLang } from "./ua-lang";
 
 export const resources = {
   ...enLang,
-  ...ukLang
+  ...uaLang
 };

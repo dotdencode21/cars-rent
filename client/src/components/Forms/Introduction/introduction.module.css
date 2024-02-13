@@ -5,3 +5,7 @@
   align-items: center;
   gap: 1rem;
 }
+
+.introduction-form *[data-select-component] {
+  max-width: 14.0625rem;
+}

@@ -1,0 +1,63 @@
+.breadcrumbs {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 0.875rem;
+  padding: 7.5rem 0;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+.breadcrumbs::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.breadcrumbs-current-path {
+  font-weight: 500;
+  color: var(--primary-white-color);
+  font-size: 3rem;
+  letter-spacing: 0.05rem;
+  z-index: 1 !important;
+}
+
+.breadcrumbs-list {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1 !important;
+}
+
+.breadcrumbs-list-link {
+  font-weight: 400;
+  color: var(--primary-white-color);
+  font-size: 1.125rem;
+  letter-spacing: 0.02rem;
+  transition: all 0.3s ease-in-out;
+}
+
+.breadcrumbs-list-link:first-child:hover {
+  color: var(--primary-blue-color);
+}
+
+.breadcrumbs-list-link:not(:first-child) {
+  color: #ffffff87;
+  pointer-events: none;
+}
+
+.breadcrumbs-list-link:not(:last-child)::after {
+  content: "/";
+  font-size: 1.125rem;
+  color: var(--primary-white-color);
+  font-weight: 400;
+  padding: 0 0.5rem;
+} 

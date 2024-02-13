@@ -4,13 +4,32 @@ import { motion } from "framer-motion";
 
 import styles from "./first-class-rental.module.css";
 import { carsData } from "@/mock/cars.data";
-import Card from "@/components/Card/Card";
+import CarCard from "@/components/Cards/Car/CarCard";
 import { useState } from "react";
 
 const FirstClassRentalSection = () => {
   const [cars, setCars] = useState(() => carsData);
 
   const { t } = useTranslation();
+
+  const variants = {
+    hidden: {
+      opacity: 0,
+      y: 125,
+      transition: {
+        duration: 0.75
+      }
+    },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { 
+        type: "spring",
+        bounce: 0.5,
+        duration: 1.25
+      }
+    }
+  }
 
   const handleMarkAsFavorite = (carId) => {
     return setCars(prev => prev.map(car => {
@@ -24,21 +43,18 @@ const FirstClassRentalSection = () => {
         {t("First class rental section title")}
       </span>
       <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.2, once: true }}
+        variants={variants}
         className={styles["first-class-rental-section-cards"]}
       >
         {
           cars.map(car => {
             return (
-              <Card 
+              <CarCard 
                 key={car.id}
-                carId={car.id}
-                imgSrc={car.imgSrc}
-                name={car.name}
-                type={car.type}
-                price={car.price}
-                brand={car.brand}
-                fuel={car.fuel}
-                isFavorite={car.isFavorite}
+                {...car}
                 onClick={handleMarkAsFavorite}
               />
             )

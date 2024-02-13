@@ -9,6 +9,15 @@
 
   --neutral-black-color: #151515;
   --neutral-grey-color: #606060;
+  --neutral-white-color: #f7f7f7;
+
+  --transparent-gray-color: #ffffff4d;
+
+  --border-gray-color: #5c5c5c;
+  --border-gray-color-light: #ffffff1a;
 
   --hover-grey-color: #4B5055;
+
+  --footer-black-color: #2e2e2e;
+  --footer-icons-gray-color: #6f6f6f;
 }

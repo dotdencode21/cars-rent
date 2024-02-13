@@ -1,0 +1,21 @@
+.link-button {
+  padding: 0 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: var(--primary-blue-color);
+  height: 3.0625rem;
+}
+
+.link-button-label {
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  font-size: 0.875rem;
+  color: var(--primary-white-color);
+}
+
+.link-button:active {
+  filter: brightness(1.25);
+}

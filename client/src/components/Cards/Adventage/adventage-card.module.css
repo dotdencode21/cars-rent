@@ -1,0 +1,39 @@
+.adventage-card {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: inherit;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid var(--border-gray-color);
+  padding: 1.875rem 0.875rem;
+  height: 100%;
+}
+
+.adventage-card-icon {
+  width: 4.5rem;
+  height: auto;
+  color: var(--primary-white-color);
+}
+
+.adventage-card-description {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.625rem;
+}
+
+.adventage-card-description-title {
+  font-weight: 600;
+  font-size: 1.5rem;
+  color: var(--primary-white-color);
+  letter-spacing: 0.02rem;
+}
+
+.adventage-card-description-subtitle {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--secondary-grey-color);
+  text-align: center;
+}

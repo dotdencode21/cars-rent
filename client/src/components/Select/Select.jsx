@@ -4,30 +4,36 @@ import styles from "./select.module.css";
 
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { useTranslation } from "react-i18next";
+import { useLocalStorage } from "@/hooks/useLocalStorage";
 
-export const Select = ({ name = "", options, minWidth = 0, hasIcons = false, onClick }) => {
+export const Select = ({ type = "base", name = "", options, hasIcons = false, onClick }) => {
   const [isOpen, setIsOpen] = useState(false);
   const [chosenOption, setChosenOption] = useState(null);
 
+  const [lang, setLang] = useLocalStorage("lang", "en");
+
   const { t } = useTranslation();
 
+  const isChangeLanguageSelect = useMemo(() => type === "lang", [type]);
+
   const defaultSelectValue = useMemo(() => {
-    if (name.length) return options.filter(option => option.default).find(option => option.name === name);
-    return options.filter(option => option.default)[0];
+    if (isChangeLanguageSelect) return options.find(option => option.countryCode === lang);
+    return options.filter(option => option.default).find(option => option.name === name);
   }, [options]);
 
   const handleClick = (option) => {
+    if (isChangeLanguageSelect) setLang(option.countryCode);
     setChosenOption(option);
     return onClick(option);
   }
 
   return (
     <div
-      style={{
-        minWidth: `${minWidth / 16}rem`
-      }}
+      tabIndex={0}
+      data-select-component
       className={styles["select"]}
       onClick={() => setIsOpen(prev => !prev)}
+      onBlur={() => setIsOpen(false)}
     >
       <div className={styles["select-default-value"]}>
         {

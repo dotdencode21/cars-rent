@@ -1,4 +1,4 @@
-.card {
+.car-card {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -10,17 +10,17 @@
   transition: all 0.2s ease-in-out;
 }
 
-.card:hover {
+.car-card:hover {
   transform: scale(1.025);
 }
 
-.card-img {
+.car-card-img {
   width: 100%;
   border-radius: 0.25rem 0.25rem 0 0;
   filter: brightness(1.125);
 }
 
-.card-content {
+.car-card-content {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -30,80 +30,88 @@
   gap: 1.25rem;
 }
 
-.card-content-heading {
+.car-card-content-heading {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
 }
 
-.card-content-heading-name {
+.car-card-content-heading-name {
   font-size: 1.5rem;
   font-weight: 600;
   color: var(--primary-black-color);
 }
 
-.card-content-heading-delimeter {
+.car-card-content-heading-name::after {
+  content: "•";
+  display: inline;
+  font-size: 1.5rem;
+  font-weight: 400;
+  padding-left: 0.5rem;
+}
+
+.car-card-content-heading-delimeter {
   font-size: 1.5rem;
 }
 
-.card-content-heading-type {
+.car-card-content-heading-type {
   font-size: 1.125rem;
   font-weight: 400;
   color: var(--primary-black-color);
 }
 
-.card-content-details {
+.car-card-content-details {
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.card-content-details-icon {
+.car-card-content-details-icon {
   width: 1.75rem;
   height: 1.75rem;
   color: var(--primary-black-color);
 }
 
-.card-content-details-favorite-btn {
+.car-card-content-details-favorite-btn {
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.card-content-details-info {
+.car-card-content-details-info {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.75rem;
 }
 
-.card-content-details-info-price-icon,
-.card-content-details-info-brand-icon {
+.car-card-content-details-info-price-icon,
+.car-card-content-details-info-brand-icon {
   width: 1.5rem;
   height: 1.5rem;
   color: var(--primary-black-color);
 }
 
-.card-content-details-info-brand-icon {
+.car-card-content-details-info-brand-icon {
   width: 1.25rem;
   height: 1.25rem;
   color: var(--primary-black-color);
 }
 
-.card-content-details-info-price,
-.card-content-details-info-brand,
-.card-content-details-info-fuel {
+.car-card-content-details-info-price,
+.car-card-content-details-info-brand,
+.car-card-content-details-info-fuel {
   display: flex;
   justify-content: flex-start;
   align-items: center;
   gap: 0.5rem;
 }
 
-.card-content-details-info-price-title,
-.card-content-details-info-brand-title,
-.card-content-details-info-fuel-title {
+.car-card-content-details-info-price-title,
+.car-card-content-details-info-brand-title,
+.car-card-content-details-info-fuel-title {
   font-size: 1rem;
   font-weight: 400;
   color: var(--primary-black-color);

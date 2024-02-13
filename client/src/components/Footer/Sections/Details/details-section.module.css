@@ -1,0 +1,8 @@
+.details-section {
+  width: 100%;
+  padding: 4.6875rem 0;
+  background-color: var(--footer-black-color);
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 23.125rem);
+  gap: 1.375rem;
+}

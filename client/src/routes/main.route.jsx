@@ -4,6 +4,7 @@ import App from "@/App";
 import AboutPage from "@/pages/About/About";
 import CarsPage from "@/pages/Cars/Cars";
 import ContactPage from "@/pages/Contact/Contact";
+import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
 
 export const router = createBrowserRouter([
   {
@@ -11,19 +12,23 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <HomePage />
+        element: <HomePage />,
       },
       {
         path: "/about",
-        element: <AboutPage />
+        element: <AboutPage />,
       },
       {
         path: "/cars",
-        element: <CarsPage />
+        element: <CarsPage />,
       },
       {
         path: "/contact",
-        element: <ContactPage />
+        element: <ContactPage />,
+      },
+      {
+        path: "/privacy-policy",
+        element: <PrivacyPolicyPage />,
       }
     ]
   }

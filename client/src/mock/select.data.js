@@ -37,16 +37,14 @@ export const selectCarOptions = [
 export const selectCountryOptions = [
   {
     id: uuidv4(),
-    title: "English",
+    title: "ENG",
     countryCode: "en",
-    default: true,
     icon: englandIcon
   },
   {
     id: uuidv4(),
-    title: "Українська",
-    countryCode: "uk",
-    default: false,
+    title: "UA",
+    countryCode: "ua",
     icon: ukraineIcon
   }
 ];

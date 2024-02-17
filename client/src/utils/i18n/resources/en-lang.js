@@ -67,6 +67,28 @@ export const enLang = {
       "Route cars page title": "Cars",
       "Route contact page title": "Contact us",
       "Route privacy policy page title": "Privacy policy",
+
+      "Find car by type section title": "Find Your Vehicle by Type",
+      "Find car by type section link title": "View",
+      "Find car by type section cars amount label": "Cars",
+      "Find car by type section sedan type title": "Sedan",
+      "Find car by type section electric car type title": "Electric Car",
+      "Find car by type section suv type title": "SUV",
+      "Find car by type section bus type title": "Bus & Coach",
+
+      "Our experience section content title": "15+ Years of Experience",
+      "Our experience section content subtitle": "With more than 15 years of experience, our team offers quality car rental services to all US guests and residents.",
+      "Our experience section statistics clients title": "Happy clients",
+      "Our experience section statistics cars title": "Cars",
+      "Our experience section statistics car types title": "Car types",
+      "Our experience section statistics brands title": "Brands",
+
+      "Happy clients section title": "Happy Clients",
+      "Happy clients section status label": "Regular client",
+      "Happy clients section first client": "This is my second time booking with you. Not only are you the best on the coast but you have the best prices and the friendliest staff. I will be renting a car from your company now.",
+      "Happy clients section second client": "I have rented a car quite a few times in LA and cannot fault any of the services. Your staff is wonderful, the process is easy, and prices are very affordable. I’m glad to recommend your services!",
+      "Happy clients section third client": "Cars Rent is one of the best car rental services in our city. I had a fantastic experience with them this year. They provided me with a reliable and affordable car that was just what I asked for.",
+      "Happy clients section fourth client": "I use the services of Cars Rent all the time when I am in town for business and pleasure and I find their solutions and fleet impeccable. I highly recommend them to all my friends.",
     }
   },
 }

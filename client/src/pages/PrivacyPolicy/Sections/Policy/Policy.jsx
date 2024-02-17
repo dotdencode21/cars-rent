@@ -2,7 +2,7 @@ import { privacyPolicyData } from "@/mock/privacyPolicy.data";
 import styles from "./policy.module.css";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
-import { PRIVACY_POLICY_CONTENT, PRIVACY_POLICY_TITLE } from "@/constants/privacy-policy";
+import { PRIVACY_POLICY_CONTENT, PRIVACY_POLICY_TITLE } from "@/constants/privacyPolicy";
 import Breadcrumbs from "@/components/Breadcrumbs/Breadcrumbs";
 import bgPrivacyPolicyImg from "@/assets/imgs/backgrounds/bg-privacy-policy.jpg";
 

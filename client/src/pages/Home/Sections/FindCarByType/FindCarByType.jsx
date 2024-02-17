@@ -8,6 +8,10 @@ import { findCarByTypeData } from "@/mock/findCarByType.data";
 
 import halfRoundedBlockImg from "@/assets/imgs/decor/half-rounded-block.svg";
 import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next";
+import { CARS_TYPES_TITLES } from "@/constants/findCarByType";
+
+import { motion } from "framer-motion";
 
 const carTypeIcon = {
   "Sedan": <IoCarOutline className={styles["find-car-by-type-section-types-type-blurb-icon"]} />,
@@ -17,12 +21,47 @@ const carTypeIcon = {
 };
 
 const FindCarByTypeSection = () => {
+  const { t } = useTranslation();
+
+  const variants = {
+    hidden: isDelay => ({
+      y: 35,
+      opacity: 0,
+      transition: {
+        duration: isDelay ? 1.5 : 1,
+        ease: "easeInOut"
+      }
+    }),
+    visible: isDelay => ({
+      y: 0,
+      opacity: 1,
+      transition: {
+        duration: isDelay ? 1.5 : 1,
+        ease: "easeInOut"
+      }
+    })
+  };
+
   return (
     <div className={styles["find-car-by-type-section"]}>
-      <span className={styles["find-car-by-type-section-title"]}>
-        Find Your Vehicle by Type
-      </span>
-      <div className={styles["find-car-by-type-section-types"]}>
+      <motion.span
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.2, once: true }}
+        variants={variants}
+        custom={false}
+        className={styles["find-car-by-type-section-title"]}
+      >
+        {t("Find car by type section title")}
+      </motion.span>
+      <motion.div
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ amount: 0.25, once: true }}
+        variants={variants}
+        custom={true}
+        className={styles["find-car-by-type-section-types"]}
+      >
         {
           findCarByTypeData.map(type => {
             return (
@@ -36,23 +75,23 @@ const FindCarByTypeSection = () => {
                 <img src={halfRoundedBlockImg} />
                 <div className={styles["find-car-by-type-section-types-type-details"]}>
                   <span className={styles["find-car-by-type-section-types-type-details-title"]}>
-                    {type.title}
+                    {t(CARS_TYPES_TITLES[type.title])}
                   </span>
                   <span className={styles["find-car-by-type-section-types-type-details-amount"]}>
-                    {type.amount} cars
+                    {type.amount} {t("Find car by type section cars amount label")}
                   </span>
                   <Link
                     to="#"
                     className={styles["find-car-by-type-section-types-type-details-link"]}
                   >
-                    {type.linkTitle}
+                    {t("Find car by type section link title")}
                   </Link>
                 </div>
               </div>
             )
           })
         }
-      </div>
+      </motion.div>
     </div>
   );
 };

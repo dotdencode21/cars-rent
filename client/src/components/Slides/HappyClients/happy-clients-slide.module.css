@@ -1,0 +1,66 @@
+.happy-clients-slide {
+  padding: 3.25rem 2.8125rem 2.75rem;
+  background-color: var(--primary-white-color);
+  filter: drop-shadow(0 0 0.125rem rgba(0, 0, 0, 0.15));
+  margin: 0 1.875rem 4rem;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.25rem;
+  border-radius: 0.25rem;
+  height: 100%;
+  max-height: 15.9375rem;
+}
+
+.happy-clients-slide::after {
+  content: "";
+  position: absolute;
+  bottom: -2rem;
+  left: 3.75rem;
+  border-style: solid;
+  border-width: 2.125rem 2.125rem 0 0;
+  border-color: var(--primary-white-color) transparent transparent transparent;
+}
+
+.happy-clients-slide-user {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.happy-clients-slide-user-avatar {
+  width: 4.6875rem;
+  height: 4.6875rem;
+  border-radius: 50%;
+}
+
+.happy-clients-slide-user-details {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.happy-clients-slide-user-details-username {
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: var(--primary-black-color);
+}
+
+.happy-clients-slide-user-details-status {
+  font-size: 0.875rem;
+  font-weight: 400;
+  color: var(--primary-blue-color);
+  letter-spacing: 0.025rem;
+}
+
+.happy-clients-slide-comment {
+  text-align: left;
+  letter-spacing: 0.025rem;
+  color: var(--primary-black-color);
+  font-weight: 400;
+  font-size: 0.875rem;
+}

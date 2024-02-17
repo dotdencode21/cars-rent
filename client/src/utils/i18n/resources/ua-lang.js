@@ -67,6 +67,28 @@ export const uaLang = {
       "Route cars page title": "Авто",
       "Route contact page title": "Наші контакти",
       "Route privacy policy page title": "Політика конфіденційності",
+
+      "Find car by type section title": "Знайдіть свій автомобіль за типом",
+      "Find car by type section link title": "Переглянути",
+      "Find car by type section cars amount label": "Авто",
+      "Find car by type section sedan type title": "Седан",
+      "Find car by type section electric car type title": "Електрична",
+      "Find car by type section suv type title": "СУА",
+      "Find car by type section bus type title": "Автобус",
+
+      "Our experience section content title": "15+ років досвіду",
+      "Our experience section content subtitle": "Маючи більш ніж 15-річний досвід, наша команда пропонує якісні послуги з оренди автомобілів для всіх гостей і жителів США.",
+      "Our experience section statistics clients title": "Задоволенні клієнти",
+      "Our experience section statistics cars title": "Авто",
+      "Our experience section statistics car types title": "Типи авто",
+      "Our experience section statistics brands title": "Бренди",
+
+      "Happy clients section title": "Задоволенні клієнти",
+      "Happy clients section status label": "Постійний клієнт",
+      "Happy clients section first client": "Це моє друге бронювання у вас. Ви не тільки найкращі на узбережжі, але й маєте найкращі ціни та найпривітніший персонал. Зараз я буду орендувати автомобіль у вашій компанії.",
+      "Happy clients section second client": "Я кілька разів орендував машину в Лос-Анджелесі і не можу звинуватити жодну з послуг. Ваш персонал чудовий, процес простий, а ціни дуже доступні. Я радий рекомендувати ваші послуги!",
+      "Happy clients section third client": "Cars Rent є одним з найкращих сервісів прокату авто в нашому місті. У мене був фантастичний досвід спілкування з ними цього року. Вони надали мені надійний і доступний автомобіль, який був саме тим, про що я просив.",
+      "Happy clients section fourth client": "Я користуюся послугами Cars Rent постійно, коли перебуваю в місті у справах і на відпочинок, і вважаю їхні рішення та автопарк бездоганними. Я дуже рекомендую їх усім своїм друзям.",
     }
   },
 }

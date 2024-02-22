@@ -18,8 +18,9 @@ export const Select = ({ type = "base", name = "", options, hasIcons = false, on
 
   const defaultSelectValue = useMemo(() => {
     if (isChangeLanguageSelect) {
-      return options.find(option => option.countryCode === localStorage.getItem("lang") || "en");
+      return options.find(option => option.countryCode === lang);
     }
+    
     return options.filter(option => option.default).find(option => option.name === name);
   }, [type]);
 

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import styles from "./introduction.module.css";
-import IntroductionForm from "@/components/Forms/Introduction/Introduction";
+import IntroductionForm from "@/components/Forms/Introduction/IntroductionForm";
 import { useTranslation } from "react-i18next";
 
 const IntroductionSection = () => {

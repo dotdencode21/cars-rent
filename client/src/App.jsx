@@ -1,26 +1,31 @@
-import MainLayout from "@/layouts/Main/main.layout.jsx";
-import { useEffect, useState } from "react";
+import BaseLayout from "@/layouts/Base/BaseLayout.jsx";
 import ScrollToTopButton from "./components/Buttons/ScrollToTopButton/ScrollToTopButton";
-
-const Y_OFFSET = 125;
+import Navbar from "./components/Navbar/Navbar";
+import { Outlet, useLocation } from "react-router-dom";
+import Footer from "./components/Footer/Footer";
+import { useScroll } from "./hooks/useScroll";
+import AuthLayout from "./layouts/Auth/AuthLayout";
 
 function App() {
-  const [scrollValue, setSrollValue] = useState(0);
+  const { isScrollingStart } = useScroll();
+  const { pathname } = useLocation();
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setSrollValue(window.scrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-
-    return () => window.removeEventListener("scroll", handleScroll)
-  }, [scrollValue]);
+  if (["/sign-in", "/sign-up"].includes(pathname)) {
+    return (
+      <AuthLayout>
+        <Outlet />
+      </AuthLayout>
+    );
+  }
 
   return (
     <>
-      <MainLayout />
-      {scrollValue >= Y_OFFSET && <ScrollToTopButton /> }
+      <BaseLayout>
+        <Navbar />
+        <Outlet />
+        <Footer />
+      </BaseLayout>
+      <ScrollToTopButton show={isScrollingStart} />
     </>
   );
 }

@@ -20,7 +20,7 @@ const Navbar = () => {
       <div className={styles["navbar-actions"]}>
         <LinkButton 
           label={t("Navbar sign in btn label")}
-          to="#"
+          to="sign-in"
         />
         <div className={styles["navbar-actions-default"]}>
           <ChangeLanguageSelect

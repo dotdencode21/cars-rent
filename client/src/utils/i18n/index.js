@@ -7,7 +7,7 @@ i18n
   .use(initReactI18next)
   .init({
     resources,
-    lng: JSON.parse(localStorage.getItem("lang")) || "en",
+    lng: localStorage.getItem("lang") || "en",
     fallbackLng: "en",
     interpolation: {
       escapeValue: false

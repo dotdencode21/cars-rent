@@ -1,6 +1,6 @@
 import { Select } from "@/components/Select/Select";
 
-import styles from "./introduction.module.css";
+import styles from "./introduction-form.module.css";
 
 import { selectCarOptions } from "@/mock/select.data";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";

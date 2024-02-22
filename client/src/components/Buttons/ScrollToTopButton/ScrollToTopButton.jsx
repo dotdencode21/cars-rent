@@ -3,7 +3,7 @@ import styles from "./scroll-to-top-button.module.css";
 
 import { FaArrowUp } from "react-icons/fa6";
 
-const ScrollToTopButton = () => {
+const ScrollToTopButton = ({ show }) => {
   const handleScrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -25,17 +25,23 @@ const ScrollToTopButton = () => {
   };
 
   return (
-    <motion.button
-      initial="initial"
-      animate="visible"
-      variants={variants}
-      className={styles["scroll-to-top-btn"]}
-      onClick={handleScrollToTop}
-    >
-      <FaArrowUp 
-        className={styles["scroll-to-top-btn-icon"]}
-      />
-    </motion.button>
+    <>
+      {
+        show && (
+          <motion.button
+            initial="initial"
+            animate="visible"
+            variants={variants}
+            className={styles["scroll-to-top-btn"]}
+            onClick={handleScrollToTop}
+          >
+            <FaArrowUp 
+              className={styles["scroll-to-top-btn-icon"]}
+            />
+          </motion.button>
+        )
+      }
+    </>
   )
 };
 

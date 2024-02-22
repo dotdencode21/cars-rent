@@ -14,18 +14,20 @@ export const Select = ({ type = "base", name = "", options, hasIcons = false, on
 
   const { t } = useTranslation();
 
-  const isChangeLanguageSelect = useMemo(() => type === "lang", [type]);
+  const isChangeLanguageSelect = type === "lang";
 
   const defaultSelectValue = useMemo(() => {
-    if (isChangeLanguageSelect) return options.find(option => option.countryCode === lang);
+    if (isChangeLanguageSelect) {
+      return options.find(option => option.countryCode === localStorage.getItem("lang") || "en");
+    }
     return options.filter(option => option.default).find(option => option.name === name);
-  }, [options]);
+  }, [type]);
 
   const handleClick = (option) => {
     if (isChangeLanguageSelect) setLang(option.countryCode);
     setChosenOption(option);
     return onClick(option);
-  }
+  };
 
   return (
     <div

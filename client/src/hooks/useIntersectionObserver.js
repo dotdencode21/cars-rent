@@ -15,7 +15,7 @@ export const useIntersectionObserver = ({ rootEl, threshold = 1 }) => {
       
     observer.observe(rootEl.current);
 
-    return () => observer.unobserve(rootEl.current);
+    return () => rootEl?.current ? observer.unobserve(rootEl.current) : null;
   }, []);
 
   return isIntersectingElement;

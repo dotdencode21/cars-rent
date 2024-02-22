@@ -12,9 +12,7 @@ export const useBreadcrumbs = () => {
   useEffect(() => {
     setBreadcrumbs(prev => [...prev, ROUTES_NAMES.find(routeName => routeName.to === pathname)])
 
-    return () => {
-      setBreadcrumbs(prev => prev.slice(0, -1));
-    }
+    return () => setBreadcrumbs(prev => prev.slice(0, -1));
   }, [pathname]);
 
   return breadcrumbs.filter(Boolean);

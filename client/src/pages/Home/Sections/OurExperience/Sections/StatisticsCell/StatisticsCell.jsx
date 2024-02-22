@@ -14,15 +14,15 @@ const StatisticsCell = ({ value, title, isIntersectingElement }) => {
   }, [currentValue]);
 
   useEffect(() => {
-    let timeoutRef = null;
+    let timeoutId = null;
     
     if (isIntersectingElement && currentValue !== value) {   
-      timeoutRef = setTimeout(() => {
+      timeoutId = setTimeout(() => {
         setCurrentValue(prev => prev + 1);
       }, value >= 1000 ? 0.5 : value >= 50 ? 25 : 100);
     };
 
-    return () => clearTimeout(timeoutRef);
+    return () => clearTimeout(timeoutId);
   }, [currentValue, isIntersectingElement]);
 
   return (

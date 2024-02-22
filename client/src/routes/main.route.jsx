@@ -5,6 +5,7 @@ import AboutPage from "@/pages/About/About";
 import CarsPage from "@/pages/Cars/Cars";
 import ContactPage from "@/pages/Contact/Contact";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
+import AuthForm from "@/components/Forms/Auth/AuthForm";
 
 export const router = createBrowserRouter([
   {
@@ -29,6 +30,14 @@ export const router = createBrowserRouter([
       {
         path: "/privacy-policy",
         element: <PrivacyPolicyPage />,
+      },
+      {
+        path: "/sign-in",
+        element: <AuthForm authType="signIn" />
+      },
+      {
+        path: "/sign-up",
+        element: <AuthForm authType="signUp" />
       }
     ]
   }

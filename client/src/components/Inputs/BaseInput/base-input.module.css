@@ -1,0 +1,38 @@
+.base-input-label {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: rgba(51, 51, 51, 0.75);
+  position: relative;
+}
+
+.base-input {
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  border-radius: 0.25rem;
+  border: 0.0625rem solid rgba(96, 96, 96, 0.25);
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(51, 51, 51, 0.75);
+}
+
+.base-input::placeholder {
+  font-size: 1rem;
+  font-weight: 400;
+  color: rgba(96, 96, 96, 0.5);
+}
+
+.base-input:focus {
+  border: 0.0625rem solid var(--primary-blue-color);
+}
+
+.base-input-left-icon {
+  position: absolute;
+  top: 1.625rem;
+  left: 0.5rem;
+}

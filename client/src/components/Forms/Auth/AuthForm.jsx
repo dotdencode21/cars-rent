@@ -1,16 +1,15 @@
 import styles from "./auth-form.module.css";
 
+import LeftSide from "./Sides/Left/LeftSide";
+import RightSide from "./Sides/Right/RightSide";
+
 const AuthForm = ({ authType = "signIn" }) => {
   return (
     <div className={styles["auth-form"]}>
-      <div className={styles["auth-form-left"]}>
-        1
-      </div>
-      <div className={styles["auth-form-right"]}>
-        2
-      </div>
+      <LeftSide authType={authType} />
+      <RightSide authType={authType} />
     </div>
-  )
+  );
 };
 
 export default AuthForm;

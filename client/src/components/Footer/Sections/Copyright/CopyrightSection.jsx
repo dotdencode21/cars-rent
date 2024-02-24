@@ -7,13 +7,6 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 import { useTranslation } from "react-i18next";
 
-const SOCIAL_MEDIA = {
-  facebook: <FaFacebookF className={styles["copyright-social-media-icon"]} />,
-  twitter: <FaTwitter className={styles["copyright-social-media-icon"]} />,
-  google: <FaGooglePlusG className={styles["copyright-social-media-icon"]} />,
-  instagram: <FaInstagram className={styles["copyright-social-media-icon"]} />
-};
-
 const CopyrightSection = () => {
   const { t } = useTranslation();
 
@@ -24,14 +17,19 @@ const CopyrightSection = () => {
       </span>
       <div className={styles["copyright-social-media"]}>
         {
-          ["facebook", "twitter", "google", "instagram"].map((item, itemIndex) => {
+          [
+            <FaFacebookF className={styles["copyright-social-media-icon"]} />,
+            <FaTwitter className={styles["copyright-social-media-icon"]} />,
+            <FaGooglePlusG className={styles["copyright-social-media-icon"]} />,
+            <FaInstagram className={styles["copyright-social-media-icon"]} />
+          ].map((socialMediaIcon, socialMediaIconIndex) => {
             return (
               <Link
-                key={itemIndex}
+                key={socialMediaIconIndex}
                 to="#"
                 className={styles["copyright-social-media-link"]}
               >              
-               {SOCIAL_MEDIA[item]}
+               {socialMediaIcon}
               </Link>
             );
           })

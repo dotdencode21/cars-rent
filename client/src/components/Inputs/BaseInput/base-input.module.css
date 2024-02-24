@@ -6,7 +6,7 @@
   justify-content: flex-start;
   align-items: flex-start;
   font-weight: 400;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   color: rgba(51, 51, 51, 0.75);
   position: relative;
 }
@@ -33,6 +33,18 @@
 
 .base-input-left-icon {
   position: absolute;
-  top: 1.625rem;
+  top: 1.875rem;
   left: 0.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.base-input-right-icon {
+  position: absolute;
+  top: 1.875rem;
+  right: 0.75rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }

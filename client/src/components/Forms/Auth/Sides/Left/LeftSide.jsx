@@ -9,7 +9,7 @@ import { FaInstagram } from "react-icons/fa";
 
 import { FaArrowLeft } from "react-icons/fa6";
 
-const LeftSide = ({ authType }) => {
+const LeftSide = ({ isSignUpForm }) => {
   return (
     <div className={styles["left-side"]}>
       <Link
@@ -22,7 +22,11 @@ const LeftSide = ({ authType }) => {
         Back
       </Link>
       <span className={styles["left-side-label"]}>
-        Still not registered? Hurry up, fill out the form and let's go!
+        {
+          isSignUpForm ? 
+            "Still not registered? Hurry up, fill out the form and let's go!" : 
+            "gggg"
+        }
       </span>
       <div className={styles["left-side-social-media"]}>
         <span className={styles["left-side-social-media-label"]}>

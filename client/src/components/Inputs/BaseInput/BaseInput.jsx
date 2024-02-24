@@ -3,6 +3,7 @@ import { useId } from "react";
 import styles from "./base-input.module.css";
 
 const BaseInput = ({
+  value,
   leftIcon,
   rightIcon,
   type,
@@ -10,7 +11,8 @@ const BaseInput = ({
   placeholder,
   inputId,
   name,
-  onChange
+  onChange,
+  onClick
 }) => {
   const id = useId();
 
@@ -26,16 +28,20 @@ const BaseInput = ({
       <input
         type={type}
         name={name}
-        style={{ padding: leftIcon && "0.5rem 0.75rem 0.5rem 2.5rem" }}
+        value={value}
+        style={{ padding: `0.5rem ${rightIcon ? "2.5rem" : "0.75rem"} 0.5rem ${leftIcon ? "2.5rem" : "0.75rem"}` }}
         className={styles["base-input"]}
         id={id + inputId}
         placeholder={placeholder}
         autoComplete="off"
         onChange={onChange}
       />
-      <div>
+      <button
+        className={styles["base-input-right-icon"]}
+        onClick={onClick}
+      >
         {rightIcon}
-      </div>
+      </button>
     </label>
   );
 };

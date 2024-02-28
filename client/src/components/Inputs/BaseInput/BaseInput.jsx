@@ -14,8 +14,6 @@ const BaseInput = ({
   onChange,
   onClick,
   onBlur,
-  onFocus,
-  showError,
   error
 }) => {
   const id = useId();
@@ -40,7 +38,6 @@ const BaseInput = ({
         autoComplete="off"
         onChange={onChange}
         onBlur={onBlur}
-        onFocus={onFocus}
       />
       <button
         className={`${styles["base-input-icon"]} ${styles["right-icon"]}`}
@@ -49,7 +46,7 @@ const BaseInput = ({
         {rightIcon}
       </button>
       {
-        showError && (
+        error && (
           <span className={styles["base-input-error"]}>
             {error}
           </span>

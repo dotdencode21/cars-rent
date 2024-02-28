@@ -27,7 +27,6 @@ const RightSide = ({ isSignUpForm }) => {
   });
 
   const [showPassword, setShowPassword] = useState(false);
-  const [currentFieldName, setCurrentFieldName] = useState("");
 
   const handleShowPassword = (e) => {
     e.preventDefault();
@@ -50,8 +49,6 @@ const RightSide = ({ isSignUpForm }) => {
           leftIcon={<FaUserLarge size="1rem" color="rgba(51, 51, 51, 0.5)" />}
           onChange={handleChange}
           onBlur={handleBlur}
-          onFocus={(e) => setCurrentFieldName(e.target.name)}
-          showError={currentFieldName === "username" || errors["username"]}
           error={errors["username"]}
         />
         { 
@@ -66,8 +63,6 @@ const RightSide = ({ isSignUpForm }) => {
               leftIcon={<FaEnvelope size="1rem" color="rgba(51, 51, 51, 0.5)" />}
               onChange={handleChange}
               onBlur={handleBlur}
-              onFocus={(e) => setCurrentFieldName(e.target.name)}
-              showError={currentFieldName === "email" || errors["email"]}
               error={errors["email"]}
             />
           ) 
@@ -88,8 +83,6 @@ const RightSide = ({ isSignUpForm }) => {
           onChange={handleChange}
           onClick={handleShowPassword}
           onBlur={handleBlur}
-          onFocus={(e) => setCurrentFieldName(e.target.name)}
-          showError={currentFieldName === "password" || errors["password"]}
           error={errors["password"]}
         />
       </form>

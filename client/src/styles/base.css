@@ -18,6 +18,10 @@ button {
 	background-color: inherit;
 }
 
+button:disabled {
+  cursor: not-allowed;
+}
+
 input {
 	outline: none;
   border: none;

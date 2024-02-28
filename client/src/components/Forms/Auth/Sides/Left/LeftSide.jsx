@@ -21,11 +21,14 @@ const LeftSide = ({ isSignUpForm }) => {
         </div>
         Back
       </Link>
-      <span className={styles["left-side-label"]}>
+      <span 
+        className={styles["left-side-label"]}
+        style={{ maxWidth: isSignUpForm ? "20.0625rem" : "20.6875rem" }}
+      >
         {
-          isSignUpForm ? 
-            "Still not registered? Hurry up, fill out the form and let's go!" : 
-            "gggg"
+          isSignUpForm ?
+            "Still not registered? Hurry up, fill out the form and let's go!✌️" : 
+            "Start your unique journey right now!👏"
         }
       </span>
       <div className={styles["left-side-social-media"]}>

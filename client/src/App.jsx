@@ -5,7 +5,7 @@ import { Outlet, useLocation } from "react-router-dom";
 import Footer from "./components/Footer/Footer";
 import { useScroll } from "./hooks/useScroll";
 import AuthLayout from "./layouts/Auth/AuthLayout";
-import CarAnimation from "./components/Animation/CarAnimation";
+import HighwayWithCars from "./components/Animation/HighwayWithCars/HighwayWithCars";
 
 function App() {
   const { isScrollingStart } = useScroll();
@@ -14,7 +14,7 @@ function App() {
   if (["/sign-in", "/sign-up"].includes(pathname)) {
     return (
       <AuthLayout>
-        <CarAnimation/>
+        <HighwayWithCars />
         <Outlet />
       </AuthLayout>
     );

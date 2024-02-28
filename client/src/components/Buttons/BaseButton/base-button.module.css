@@ -15,6 +15,10 @@
   color: var(--primary-white-color);
 }
 
-.base-button:active {
+.base-button:not(:disabled) .base-button:active {
   filter: brightness(1.25);
+}
+
+.base-button:disabled {
+  background-color: var(--secondary-grey-color);
 }

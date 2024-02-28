@@ -31,20 +31,25 @@
   border: 0.0625rem solid var(--primary-blue-color);
 }
 
-.base-input-left-icon {
+.base-input-icon {
   position: absolute;
-  top: 1.875rem;
-  left: 0.5rem;
+  top: 2rem;
   display: flex;
   justify-content: center;
   align-items: center;
 }
 
-.base-input-right-icon {
-  position: absolute;
-  top: 1.875rem;
+.left-icon {
+  left: 0.5rem;
+}
+
+.right-icon {
+  top: 1.9375rem;
   right: 0.75rem;
-  display: flex;
-  justify-content: center;
-  align-items: center;
+}
+
+.base-input-error {
+  font-weight: 400;
+  font-size: 0.75rem;
+  color: var(--primary-red-color);
 }

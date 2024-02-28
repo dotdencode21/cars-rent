@@ -12,7 +12,11 @@ const BaseInput = ({
   inputId,
   name,
   onChange,
-  onClick
+  onClick,
+  onBlur,
+  onFocus,
+  showError,
+  error
 }) => {
   const id = useId();
 
@@ -22,7 +26,7 @@ const BaseInput = ({
       className={styles["base-input-label"]}
     >
       {labelText}
-      <div className={styles["base-input-left-icon"]}>
+      <div className={`${styles["base-input-icon"]} ${styles["left-icon"]}`}>
         {leftIcon}
       </div>
       <input
@@ -35,13 +39,22 @@ const BaseInput = ({
         placeholder={placeholder}
         autoComplete="off"
         onChange={onChange}
+        onBlur={onBlur}
+        onFocus={onFocus}
       />
       <button
-        className={styles["base-input-right-icon"]}
+        className={`${styles["base-input-icon"]} ${styles["right-icon"]}`}
         onClick={onClick}
       >
         {rightIcon}
       </button>
+      {
+        showError && (
+          <span className={styles["base-input-error"]}>
+            {error}
+          </span>
+        )
+      }
     </label>
   );
 };

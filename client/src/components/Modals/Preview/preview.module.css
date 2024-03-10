@@ -1,0 +1,11 @@
+.preview-modal-content {
+  width: 40.625rem;
+  height: 34.375rem;
+  border-radius: 0.25rem;
+}
+
+.preview-modal-content > img {
+  width: inherit;
+  height: inherit;
+  object-fit: contain;
+}

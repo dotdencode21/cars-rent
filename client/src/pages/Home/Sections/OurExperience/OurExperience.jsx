@@ -5,7 +5,7 @@ import AudiBrand from "@/assets/imgs/brands/audi.png";
 import TeslaBrand from "@/assets/imgs/brands/tesla.png";
 import CitroenBrand from "@/assets/imgs/brands/citroen.png";
 
-import OurExperienceImg from "@/assets/imgs/sections/our-experience/our-experience-img-1.jpg";
+import OurExperienceImg from "@/assets/imgs/sections/ourExperience/our-experience-img-1.jpg";
 import LinkButton from "@/components/Buttons/LinkButton/LinkButton";
 import { useTranslation } from "react-i18next";
 import Brand from "./Sections/Brand/Brand";

@@ -10,13 +10,15 @@ import { useState } from "react";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
 import { useFormik } from "formik";
 import { authSchema } from "@/validation/schemas/auth.schema";
+import { useTranslation } from "react-i18next";
 
 const RightSide = ({ isSignUpForm }) => {
+  const { t } = useTranslation();
+
   const {
     errors,
     values,
     handleChange,
-    handleBlur,
   } = useFormik({
     initialValues: {
       username: "",
@@ -42,13 +44,12 @@ const RightSide = ({ isSignUpForm }) => {
         <BaseInput
           type="text"
           value={values.username}
-          placeholder="Username"
-          labelText="Username"
+          placeholder={t("Auth form username input")}
+          labelText={t("Auth form username input")}
           inputId="username"
           name="username"
           leftIcon={<FaUserLarge size="1rem" color="rgba(51, 51, 51, 0.5)" />}
           onChange={handleChange}
-          onBlur={handleBlur}
           error={errors["username"]}
         />
         { 
@@ -56,13 +57,12 @@ const RightSide = ({ isSignUpForm }) => {
             <BaseInput
               type="text"
               value={values.email}
-              placeholder="Email"
-              labelText="Email"
+              placeholder={t("Auth form email input")}
+              labelText={t("Auth form email input")}
               inputId="email"
               name="email"
               leftIcon={<FaEnvelope size="1rem" color="rgba(51, 51, 51, 0.5)" />}
               onChange={handleChange}
-              onBlur={handleBlur}
               error={errors["email"]}
             />
           ) 
@@ -70,8 +70,8 @@ const RightSide = ({ isSignUpForm }) => {
         <BaseInput
           type={showPassword ? "text" : "password"}
           value={values.password}
-          placeholder="Password"
-          labelText="Password"
+          placeholder={t("Auth form password input")}
+          labelText={t("Auth form password input")}
           inputId="password"
           name="password"
           leftIcon={<FaLock size="1rem" color="rgba(51, 51, 51, 0.5)" />}
@@ -82,16 +82,15 @@ const RightSide = ({ isSignUpForm }) => {
           }
           onChange={handleChange}
           onClick={handleShowPassword}
-          onBlur={handleBlur}
           error={errors["password"]}
         />
       </form>
       <div className={styles["right-side-actions"]}>
         <BaseButton 
           isFullWidth
-          label={isSignUpForm ? "Sign Up" : "Sign In"}
+          label={isSignUpForm ? t("Auth form sign up button label") : t("Auth form sign in button label")}
           onClick={isSignUpForm ? handleSignIn : handleSignUp}
-          disabled={errors && Object.keys(errors).length}
+          disabled={(errors && Object.keys(errors).length) || !Object.values(values).some(Boolean)}
         />
         {
           !isSignUpForm && (
@@ -99,7 +98,7 @@ const RightSide = ({ isSignUpForm }) => {
               to="/sign-up"
               className={styles["right-side-actions-link"]}
             >
-              Don't have an account?
+              {t("Auth form sign up link")}
             </Link>
           )
         }

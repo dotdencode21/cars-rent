@@ -63,9 +63,9 @@ export const enLang = {
       "Privacy policy sharing content": "We share your personal data with your consent or as necessary to complete any transaction or provide any service you have requested or authorized. For example, we share your content with third parties when you tell us to do so. When you provide payment data to make a purchase, we will share payment data with banks and other entities that process payment transactions or provide other financial services, and for fraud prevention and credit risk reduction. In addition, we share personal data among our controlled affiliates and subsidiaries. We also share personal data with vendors or agents working on our behalf for the purposes described in this statement. For example, companies we've hired to provide customer service support or assist in protecting and securing our systems and services may need access to personal data in order to provide those functions. In such cases, these companies must abide by our data privacy and security requirements and are not allowed to use personal data they receive from us for any other purpose. We may also disclose personal data as part of a corporate transaction such as a merger or sale of assets.",
 
       "Route home page title": "Home",
-      "Route about page title": "About us",
+      "Route about page title": "About Us",
       "Route cars page title": "Cars",
-      "Route contact page title": "Contact us",
+      "Route contact page title": "Contact Us",
       "Route privacy policy page title": "Privacy policy",
 
       "Find car by type section title": "Find Your Vehicle by Type",
@@ -89,6 +89,40 @@ export const enLang = {
       "Happy clients section second client": "I have rented a car quite a few times in LA and cannot fault any of the services. Your staff is wonderful, the process is easy, and prices are very affordable. I’m glad to recommend your services!",
       "Happy clients section third client": "Cars Rent is one of the best car rental services in our city. I had a fantastic experience with them this year. They provided me with a reliable and affordable car that was just what I asked for.",
       "Happy clients section fourth client": "I use the services of Cars Rent all the time when I am in town for business and pleasure and I find their solutions and fleet impeccable. I highly recommend them to all my friends.",
+
+      "Auth form back link title": "Back",
+      "Auth form sign in text": "Start your unique journey right now!👏",
+      "Auth form sign up text": "Still not registered? Hurry up, fill out the form and let's go!✌️",
+      "Auth form social networks label": "Our social networks:",
+      "Auth form username input": "Username",
+      "Auth form password input": "Password",
+      "Auth form email input": "Email",
+      "Auth form sign in button label": "Sign in",
+      "Auth form sign up button label": "Sign up",
+      "Auth form sign up link": "Don't have an account?",
+
+      "Our adventages section title": "Our Adventages",
+      "Our adventages section read more link": "Read more",
+      "Our adventages section contact us link": "Contact us",
+      "Our adventages section about us tab": "About Us",
+      "Our adventages section our values tab": "Our Values",
+      "Our adventages section mission tab": "Mission",
+      "Our adventages section about us tab title": "Cars Rent provides a high level of service in the car rental industry. We operate throughout almost all of the US and parts of Europe. Our company offers a wide range of vehicle types for our customers. We also try to provide the most comfortable conditions when booking a car thanks to our team of professionals.",
+      "Our adventages section about us tab sedans types": "Sedans",
+      "Our adventages section about us tab hatchbacks types": "Hatchbacks",
+      "Our adventages section about us tab SUVs types": "SUVs",
+      "Our adventages section about us tab MPVs types": "MPVs",
+      "Our adventages section about us tab buses types": "Buses",
+      "Our adventages section about us tab electric cars types": "Electric Cars",
+      "Our adventages section mission tab title": "Our mission is to ensure the car booking process for our clients is as comfortable and fast as possible.",
+
+      "Circle chart component dedication title": "Dedication",
+      "Circle chart component knowledge title": "Knowledge",
+      "Circle chart component professionalism title": "Professionalism",
+
+      "Progress chart component leadership title": "Leadership",
+      "Progress chart component customer service title": "Customer service",
+      "Progress chart component communication title": "Communication",
     }
   },
 }

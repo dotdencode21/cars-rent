@@ -12,7 +12,7 @@ const Navbar = () => {
 
   const handleChangeLanguage = ({ countryCode }) => {
     i18n.changeLanguage(countryCode);
-  }
+  };
 
   return (
     <div className={styles["navbar"]}>

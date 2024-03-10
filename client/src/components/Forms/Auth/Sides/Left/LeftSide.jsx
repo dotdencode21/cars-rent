@@ -8,8 +8,11 @@ import { FaGooglePlusG } from "react-icons/fa";
 import { FaInstagram } from "react-icons/fa";
 
 import { FaArrowLeft } from "react-icons/fa6";
+import { useTranslation } from "react-i18next";
 
 const LeftSide = ({ isSignUpForm }) => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles["left-side"]}>
       <Link
@@ -19,21 +22,19 @@ const LeftSide = ({ isSignUpForm }) => {
         <div className={styles["back-link-icon-stroke"]}>
           <FaArrowLeft className={styles["back-link-icon-stroke-icon"]}/>
         </div>
-        Back
+        {t("Auth form back link title")}
       </Link>
       <span 
         className={styles["left-side-label"]}
-        style={{ maxWidth: isSignUpForm ? "20.0625rem" : "20.6875rem" }}
+        style={{ maxWidth: isSignUpForm ? "21.0625rem" : "20.6875rem" }}
       >
         {
-          isSignUpForm ?
-            "Still not registered? Hurry up, fill out the form and let's go!✌️" : 
-            "Start your unique journey right now!👏"
+          isSignUpForm ? t("Auth form sign up text") : t("Auth form sign in text")
         }
       </span>
       <div className={styles["left-side-social-media"]}>
         <span className={styles["left-side-social-media-label"]}>
-          Our social networks:
+          {t("Auth form social networks label")}
         </span>
         <div className={styles["left-side-social-media-wrapper"]}>
           {

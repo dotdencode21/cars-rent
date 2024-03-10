@@ -13,7 +13,6 @@ const BaseInput = ({
   name,
   onChange,
   onClick,
-  onBlur,
   error
 }) => {
   const id = useId();
@@ -37,7 +36,6 @@ const BaseInput = ({
         placeholder={placeholder}
         autoComplete="off"
         onChange={onChange}
-        onBlur={onBlur}
       />
       <button
         className={`${styles["base-input-icon"]} ${styles["right-icon"]}`}

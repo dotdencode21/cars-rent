@@ -16,9 +16,7 @@ const Breadcrumbs = ({ imgSrc }) => {
 
   return (
     <div
-      style={{
-        backgroundImage: `url(${imgSrc})`
-      }}
+      style={{ backgroundImage: `url(${imgSrc})` }}
       className={styles["breadcrumbs"]}
     >
       <span className={styles["breadcrumbs-current-path"]}>

@@ -1,0 +1,13 @@
+.our-adventages-section {
+  width: 100%;
+  padding: 6.25rem 31.625rem 3.125rem 0;
+  display: grid;
+  grid-template-columns: auto minmax(auto, 35.125rem);
+  column-gap: 3.5rem;
+  align-items: center;
+}
+
+.our-adventages-section-img {
+  border-radius: 0.25rem;
+  justify-self: flex-end;
+}

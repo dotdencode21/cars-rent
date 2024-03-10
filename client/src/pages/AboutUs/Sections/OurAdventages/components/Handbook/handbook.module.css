@@ -1,0 +1,69 @@
+.handbook,
+.handbook-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2.5rem;
+}
+
+.handbook-title {
+  font-weight: 500;
+  font-size: 2.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.handbook-content-tabs {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 0.1875rem solid var(--border-white-color);
+}
+
+.handbook-content-tabs-item {
+  padding: 0.625rem;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  position: relative;
+}
+
+.handbook-content-tabs-item-title {
+  font-size: 1.25rem;
+  font-weight: 400;
+  letter-spacing: 0.075rem;
+  color: var(--secondary-grey-color);
+  transition: all 0.2s ease-in-out; 
+}
+
+.handbook-content-tabs-item:is(:hover) .handbook-content-tabs-item-title {
+  color: var(--primary-blue-color);
+}
+
+.handbook-content-tabs-item-active .handbook-content-tabs-item-title  {
+  color: var(--primary-blue-color);
+}
+
+.handbook-content-tabs-item-active::after {
+  content: "";
+  position: absolute;
+  bottom: -0.1875rem;
+  left: 0;
+  width: 100%;
+  height: 0.1875rem;
+  background-color: var(--primary-blue-color);
+  animation: underline 0.3s linear;
+}
+
+@keyframes underline {
+  from {
+    width: 0;
+  }
+
+  to {
+    width: 100%;
+  }
+}

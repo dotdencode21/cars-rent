@@ -4,11 +4,12 @@ const BaseButton = ({
   label, 
   isFullWidth = false,
   onClick,
-  disabled
+  disabled,
+  style = {}
 }) => {
   return (
     <button
-      style={{ width: isFullWidth ? "100%" : "none" }}
+      style={{ width: isFullWidth ? "100%" : "none", ...style }}
       className={styles["base-button"]}
       onClick={onClick}
       disabled={disabled}

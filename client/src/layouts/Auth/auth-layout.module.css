@@ -11,6 +11,22 @@
 	overflow: hidden;
 }
 
+.auth-layout-navbar {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	position: absolute;
+	top: 0;
+	left: 0;
+	background-color: transparent;
+	padding: 2rem 5rem;
+}
+
+.auth-layout-navbar *[data-select-component] {
+  max-width: clamp(7.5rem, 3vw, 10.625rem);
+}
+
 @keyframes gradient {
 	0% {
 		background-position: 0% 50%;

@@ -1,0 +1,50 @@
+.circle-chart {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.circle-chart-wrapper {
+  width: 9.375rem;
+  height: 9.375rem;
+  position: relative;
+  border-radius: 50%;
+  background-color: var(--border-white-color);
+}
+
+.circle-chart-wrapper::after {
+  content: "";
+  position: absolute;
+  top: 8.75%;
+  left: 8.25%;
+  background-color: var(--primary-white-color);
+  width: 7.8125rem;
+  height: 7.8125rem;
+  border-radius: 50%;
+}
+
+.circle-chart-wrapper-progress {
+  position: absolute;
+  top: -0.25rem;
+  left: -0.25rem;
+  width: 10rem;
+  height: 10rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.circle-chart-wrapper-progress-percentage {
+  color: var(--primary-black-color);
+  font-size: 2rem;
+}
+
+.circle-chart-title {
+  font-size: 1.125rem;
+  text-transform: uppercase;
+  color: var(--primary-black-color);
+}

@@ -1,11 +1,11 @@
 import { createBrowserRouter } from "react-router-dom";
 import HomePage from "@/pages/Home/Home";
 import App from "@/App";
-import AboutPage from "@/pages/About/About";
 import CarsPage from "@/pages/Cars/Cars";
 import ContactPage from "@/pages/Contact/Contact";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import AuthForm from "@/components/Forms/Auth/AuthForm";
+import AboutUsPage from "@/pages/AboutUs/AboutUs";
 
 export const router = createBrowserRouter([
   {
@@ -17,7 +17,7 @@ export const router = createBrowserRouter([
       },
       {
         path: "/about",
-        element: <AboutPage />,
+        element: <AboutUsPage />,
       },
       {
         path: "/cars",

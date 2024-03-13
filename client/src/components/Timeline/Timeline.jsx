@@ -1,14 +1,17 @@
+import { useTranslation } from "react-i18next";
 import styles from "./timeline.module.css";
 
 const Timeline = () => {
+  const { t } = useTranslation();
+
   return (
     <div className={styles["timeline"]}>
       {
         [
-          { title: "Establishment of Cars Rent", year: 1999 },
-          { title: "Opening offices in Illinois and Florida", year: 2005 },
-          { title: "Attracting new partners", year: 2010 },
-          { title: "Gaining national recognition", year: 2024 },
+          { title: t("Timeline component first title"), year: 1999 },
+          { title: t("Timeline component second title"), year: 2005 },
+          { title: t("Timeline component third title"), year: 2010 },
+          { title: t("Timeline component fourth title"), year: 2024 },
         ].map((timeline, timelineIndex) => {
           return (
             <div

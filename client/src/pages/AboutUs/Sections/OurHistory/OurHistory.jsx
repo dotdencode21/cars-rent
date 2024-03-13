@@ -8,12 +8,15 @@ import IconButton from "@/components/Buttons/IconButton/IconButton";
 
 import { RxZoomIn } from "react-icons/rx";
 import PreviewModal from "@/components/Modals/Preview/Preview";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import Timeline from "@/components/Timeline/Timeline";
+import { useTranslation } from "react-i18next";
 
 const OurHistorySection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [currentImgSrc, setCurrentImgSrc] = useState("");
+
+  const { t } = useTranslation();
 
   const handleOpen = imgSrc => {
     setIsOpen(true);
@@ -28,7 +31,7 @@ const OurHistorySection = () => {
   return (
     <div className={styles["our-history-section"]}>
       <span className={styles["our-history-section-title"]}>
-        Our History
+        {t("Our history section title")}
       </span>
       <div className={styles["our-history-section-content"]}>
         <div className={styles["our-history-section-content-cars"]}>

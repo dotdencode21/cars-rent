@@ -1,0 +1,24 @@
+.popular-brands-section {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 3.125rem 0 4.6875rem;
+  gap: 3.75rem;
+}
+
+.popular-brands-section-title {
+  font-weight: 500;
+  font-size: 2.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.popular-brands-section-grid {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fit, 16.75rem);
+  gap: 1.875rem;
+  justify-content: center;
+}

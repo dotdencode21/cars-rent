@@ -4,6 +4,7 @@ import bgAboutUsImg  from "@/assets/imgs/backgrounds/bg-about-us.jpg";
 
 import OurAdventagesSection from "./Sections/OurAdventages/OurAdventages";
 import OurHistorySection from "./Sections/OurHistory/OurHistory";
+import PopularBrandsSection from "./Sections/PopularBrands/PopularBrands";
 
 const AboutUsPage = () => {
   return (
@@ -13,6 +14,7 @@ const AboutUsPage = () => {
       />
       <OurAdventagesSection />
       <OurHistorySection />
+      <PopularBrandsSection />
     </>
   );
 };

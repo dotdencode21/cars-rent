@@ -1,0 +1,36 @@
+.choose-car-modal-content {
+  width: 100%;
+  max-width: 56.5rem;
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+  background-color: var(--primary-white-color);
+}
+
+.choose-car-modal-content-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  border-bottom: 0.0625rem solid var(--border-white-color);
+}
+
+.choose-car-modal-content-header-title {
+  font-weight: 500;
+  font-size: 1.5rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.choose-car-modal-content-grid {
+  overflow-x: hidden;
+  width: 100%;
+  padding: 1rem 1.5rem;
+  display: grid;
+  grid-template-columns: repeat(2, 26.25rem);
+  gap: 1rem;
+}

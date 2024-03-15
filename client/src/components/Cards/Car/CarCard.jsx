@@ -17,6 +17,7 @@ const CarCard = ({
   brand = "", 
   fuel = "",
   isFavorite = false,
+  hasHover = true,
   onClick
 }) => {
   const { t } = useTranslation();
@@ -27,7 +28,9 @@ const CarCard = ({
   }
 
   return (
-    <div className={styles["car-card"]}>
+    <div className={
+      hasHover ? styles["car-card-hover"] : styles["car-card"]
+    }>
       <img 
         src={imgSrc}
         className={styles["car-card-img"]} 

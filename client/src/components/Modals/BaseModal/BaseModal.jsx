@@ -1,11 +1,15 @@
 import styles from "./base-modal.module.css";
 
-const BaseModal = ({ open, onOutsideClick, children }) => {
+const BaseModal = ({ 
+  open,
+  onOutsideClick, 
+  children 
+}) => {
   return (
     <>
       {
         open && (
-          <div 
+          <div
             className={styles["base-modal"]}
             onClick={onOutsideClick}
           >

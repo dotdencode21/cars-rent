@@ -10,7 +10,7 @@
   transition: all 0.2s ease-in-out;
 }
 
-.car-card:hover {
+.car-card-hover:hover {
   transform: scale(1.025);
 }
 

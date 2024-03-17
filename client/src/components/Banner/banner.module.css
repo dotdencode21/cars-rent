@@ -1,0 +1,30 @@
+.banner {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgba(80, 186, 135, 0.25);
+  border-radius: 0.25rem;
+  padding: 1rem 2rem;
+}
+
+.banner-heading {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.banner-heading-title {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  color: var(--primary-green-color);
+}
+
+.banner-actions {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}

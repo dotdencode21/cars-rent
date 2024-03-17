@@ -1,21 +1,33 @@
-import { DataTypes } from "sequelize"
-import { dbService } from "../services/db/db.service"
+import { DataTypes } from "sequelize";
+import { dbService } from "../services/db/db.service.js";
 
-export const User = dbService.define("User", {
-  id: {
-    type: DataTypes.UUID,
-    defaultValue: DataTypes.UUIDV4,
-    autoIncrement: false,
-    primaryKey: true,
+export const User = dbService.define(
+  "User",
+  {
+    id: {
+      type: DataTypes.UUID,
+      defaultValue: DataTypes.UUIDV4,
+      autoIncrement: false,
+      primaryKey: true,
+    },
+    username: {
+      type: DataTypes.STRING(50),
+      unique: true,
+    },
+    email: {
+      type: DataTypes.STRING(60),
+    },
+    password: {
+      type: DataTypes.TEXT("long"),
+    },
+    role: {
+      type: DataTypes.ENUM("admin", "common"),
+      defaultValue: "common",
+    },
+    isAdmin: {
+      type: DataTypes.BOOLEAN,
+      defaultValue: false,
+    },
   },
-  username: {
-    type: DataTypes.STRING(50),
-  },
-  email: {
-    type: DataTypes.STRING(60),
-    unique: true,
-  },
-  password: {
-    type: DataTypes.TEXT("long"),
-  }
-}, { tableName: "Users" });
+  { tableName: "users", updatedAt: false }
+);

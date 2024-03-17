@@ -6,6 +6,7 @@ import ContactPage from "@/pages/Contact/Contact";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import AuthForm from "@/components/Forms/Auth/AuthForm";
 import AboutUsPage from "@/pages/AboutUs/AboutUs";
+import RulesPage from "@/pages/Rules/Rules";
 
 export const router = createBrowserRouter([
   {
@@ -14,6 +15,10 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
+      },
+      {
+        path: "/rules",
+        element: <RulesPage />,
       },
       {
         path: "/about",
@@ -33,13 +38,12 @@ export const router = createBrowserRouter([
       },
       {
         path: "/sign-in",
-        element: <AuthForm authType="signIn" />
+        element: <AuthForm authType="signIn" />,
       },
       {
         path: "/sign-up",
-        element: <AuthForm authType="signUp" />
-      }
-    ]
-  }
+        element: <AuthForm authType="signUp" />,
+      },
+    ],
+  },
 ]);
-

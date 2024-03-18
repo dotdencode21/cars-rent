@@ -3,13 +3,19 @@ import {
   createHashPassword,
 } from "../helpers/password.helper.js";
 import { createJWTtoken } from "../helpers/token.helper.js";
-import { User } from "../models/auth.model.js";
+import { User } from "../models/user.model.js";
+import { STATUS_CODE } from "../constants/statusCodes.js";
 
 export class AuthController {
   static async signIn(req, res) {
     try {
-      if (!Object.keys(req.body).length) {
-        return res.status(400).json({ message: "No data provided" });
+      if (
+        !Object.keys(req.body).length ||
+        !Object.values(req.body).every(Boolean)
+      ) {
+        return res
+          .status(STATUS_CODE.BAD_REQUEST)
+          .json({ message: "No data provided" });
       }
 
       const { username, email, password } = req.body;
@@ -17,7 +23,7 @@ export class AuthController {
       const candidate = await User.findOne({ where: { username, email } });
 
       if (!candidate) {
-        return res.status(400).json({
+        return res.status(STATUS_CODE.BAD_REQUEST).json({
           message: "A user with given credentials is now exist",
         });
       }
@@ -28,21 +34,28 @@ export class AuthController {
       );
 
       if (!isPasswordCompared) {
-        return res.status(400).json({
+        return res.status(STATUS_CODE.BAD_REQUEST).json({
           message: "Wrong password",
         });
       }
 
-      return res.status(200).json({ user: candidate });
+      return res.status(STATUS_CODE.OK).json({ userId: candidate.id });
     } catch (e) {
-      res.status(500).json({ message: "Internal Server Error", error: e });
+      res
+        .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
+        .json({ message: "Internal Server Error", error: e });
     }
   }
 
   static async signUp(req, res) {
     try {
-      if (!Object.keys(req.body).length) {
-        return res.status(400).json({ message: "No data provided" });
+      if (
+        !Object.keys(req.body).length ||
+        !Object.values(req.body).every(Boolean)
+      ) {
+        return res
+          .status(STATUS_CODE.BAD_REQUEST)
+          .json({ message: "No data provided" });
       }
 
       const { username, email, password } = req.body;
@@ -50,8 +63,8 @@ export class AuthController {
       const isUserExists = await User.findOne({ where: { username } });
 
       if (isUserExists) {
-        return res.status(400).json({
-          message: `A user with the nickname ${username} already exists`,
+        return res.status(STATUS_CODE.BAD_REQUEST).json({
+          message: `A user with the username ${username} already exists`,
         });
       }
 
@@ -68,10 +81,12 @@ export class AuthController {
       });
 
       return res
-        .status(200)
-        .json({ access_token: createJWTtoken({ userId: user.id }) });
+        .status(STATUS_CODE.CREATED)
+        .json({ accessToken: createJWTtoken({ userId: user.id }) });
     } catch (e) {
-      res.status(500).json({ message: "Internal Server Error", error: e });
+      res
+        .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
+        .json({ message: "Internal Server Error", error: e });
     }
   }
 }

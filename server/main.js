@@ -4,6 +4,7 @@ import "./src/config/dev.config.js";
 
 import { dbService } from "./src/services/db/db.service.js";
 import { authRouter } from "./src/routes/auth.route.js";
+import { userRouter } from "./src/routes/user.route.js";
 
 const app = express();
 
@@ -13,8 +14,8 @@ app.use(cors());
 app.use(express.json());
 
 app
-  .use("/api", (req, res, next) => next())
-  .use("/auth", authRouter)
+  .use("/api/auth", authRouter)
+  .use("/api/users", userRouter);
 
 const main = () => {
   try {
@@ -24,7 +25,7 @@ const main = () => {
       try {
         await dbService.authenticate({ logging: false });
         console.log("Connection to database has been established successfully");
-        await dbService.sync({ force: true });
+        await dbService.sync({ logging: false });
         console.log("All models were synchronized successfully");
       } catch (e) {
         console.error(e);
@@ -33,6 +34,5 @@ const main = () => {
   } catch (e) {
     console.error(e);
   }
-}
+};
 main();
-

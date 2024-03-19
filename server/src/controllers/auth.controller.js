@@ -18,9 +18,9 @@ export class AuthController {
           .json({ message: "No data provided" });
       }
 
-      const { username, email, password } = req.body;
+      const { username, password } = req.body;
 
-      const candidate = await User.findOne({ where: { username, email } });
+      const candidate = await User.findOne({ where: { username } });
 
       if (!candidate) {
         return res.status(STATUS_CODE.BAD_REQUEST).json({

@@ -22,7 +22,7 @@ const ExpertSystemModal = ({ open, onClose, cars }) => {
     setCurrentStep((prev) => prev + 1);
   };
 
-  const setOfRules = rules[chosenRule];
+  const setOfRules = rules[chosenRule]; 
 
   const handleClose = () => {
     onClose();

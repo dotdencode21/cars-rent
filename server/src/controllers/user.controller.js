@@ -1,10 +1,14 @@
 import { STATUS_CODE } from "../constants/statusCodes.js";
-import { User } from "../models/user.model.js";
+import { User, Car } from "../models/index.js";
 
 export class UserController {
   static async getUsers(req, res) {
     try {
-      const users = await User.findAll();
+      const users = await User.findAll({ 
+        attributes: { 
+          exclude: ["password", "carId"]
+        }
+      });
       return res.status(STATUS_CODE.OK).json({ users });
     } catch (e) {
       return res
@@ -23,11 +27,16 @@ export class UserController {
           .json({ message: "No user id provided" });
       }
 
-      const user = await User.findOne({ where: { id: userId } });
+      const user = await User.findOne({ 
+        where: { userId },
+        attributes: {
+          exclude: ["password", "carId"]
+        }
+      });
 
       if (!user) {
         return res
-          .status(STATUS_CODE.BAD_REQUEST)
+          .status(STATUS_CODE.NOT_FOUND)
           .json({ message: `User with ${userId} not found` });
       }
 

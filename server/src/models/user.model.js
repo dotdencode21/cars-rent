@@ -1,10 +1,8 @@
 import { DataTypes } from "sequelize";
-import { dbService } from "../services/db/db.service.js";
+import { dbService } from "../services/db.service.js";
 
-export const User = dbService.define(
-  "User",
-  {
-    id: {
+const User = dbService.define("User", {
+    userId: {
       type: DataTypes.UUID,
       defaultValue: DataTypes.UUIDV4,
       autoIncrement: false,
@@ -31,3 +29,5 @@ export const User = dbService.define(
   },
   { tableName: "users", updatedAt: false }
 );
+
+export { User };

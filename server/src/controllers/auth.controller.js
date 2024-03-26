@@ -3,7 +3,7 @@ import {
   createHashPassword,
 } from "../helpers/password.helper.js";
 import { createJWTtoken } from "../helpers/token.helper.js";
-import { User } from "../models/user.model.js";
+import { User } from "../models/index.js";
 import { STATUS_CODE } from "../constants/statusCodes.js";
 
 export class AuthController {
@@ -24,7 +24,7 @@ export class AuthController {
 
       if (!candidate) {
         return res.status(STATUS_CODE.BAD_REQUEST).json({
-          message: "A user with given credentials is now exist",
+          message: "A user with given credentials doesn't exist",
         });
       }
 
@@ -39,7 +39,7 @@ export class AuthController {
         });
       }
 
-      return res.status(STATUS_CODE.OK).json({ userId: candidate.id });
+      return res.status(STATUS_CODE.OK).json({ userId: candidate.userId });
     } catch (e) {
       res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
@@ -82,7 +82,7 @@ export class AuthController {
 
       return res
         .status(STATUS_CODE.CREATED)
-        .json({ accessToken: createJWTtoken({ userId: user.id }) });
+        .json({ accessToken: createJWTtoken({ userId: user.userId }) });
     } catch (e) {
       res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)

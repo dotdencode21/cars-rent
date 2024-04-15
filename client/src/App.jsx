@@ -6,10 +6,19 @@ import Footer from "./components/Footer/Footer";
 import { useScroll } from "./hooks/useScroll";
 import AuthLayout from "./layouts/Auth/AuthLayout";
 import HighwayWithCars from "./components/Animation/HighwayWithCars/HighwayWithCars";
+import { useEffect } from "react";
 
 function App() {
   const { isScrollingStart } = useScroll();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    const preventBodyScroll =
+      pathname.includes("/cars") || pathname.includes("/sign");
+
+    document.body.style.overflowY = preventBodyScroll ? "hidden" : "scroll";
+    preventBodyScroll && window.scrollTo({ top: 0 });
+  }, [pathname]);
 
   if (["/sign-in", "/sign-up"].includes(pathname)) {
     return (

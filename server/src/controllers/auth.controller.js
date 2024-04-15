@@ -18,9 +18,9 @@ export class AuthController {
           .json({ message: "No data provided" });
       }
 
-      const { username, password } = req.body;
+      const { email, password } = req.body;
 
-      const candidate = await User.findOne({ where: { username } });
+      const candidate = await User.findOne({ where: { email } });
 
       if (!candidate) {
         return res.status(STATUS_CODE.BAD_REQUEST).json({
@@ -39,7 +39,7 @@ export class AuthController {
         });
       }
 
-      return res.status(STATUS_CODE.OK).json({ userId: candidate.userId });
+      return res.status(STATUS_CODE.OK).json({ id: candidate.id });
     } catch (e) {
       res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
@@ -58,9 +58,9 @@ export class AuthController {
           .json({ message: "No data provided" });
       }
 
-      const { username, email, password } = req.body;
+      const { email, password } = req.body;
 
-      const isUserExists = await User.findOne({ where: { username } });
+      const isUserExists = await User.findOne({ where: { email } });
 
       if (isUserExists) {
         return res.status(STATUS_CODE.BAD_REQUEST).json({
@@ -70,10 +70,9 @@ export class AuthController {
 
       const hashedPassword = await createHashPassword(password);
 
-      const isAdmin = username === "admin" && password === "admin";
+      const isAdmin = email.includes("admin") && password === "admin";
 
       const user = await User.create({
-        username,
         email,
         password: hashedPassword,
         role: isAdmin ? "admin" : "common",
@@ -82,7 +81,7 @@ export class AuthController {
 
       return res
         .status(STATUS_CODE.CREATED)
-        .json({ accessToken: createJWTtoken({ userId: user.userId }) });
+        .json({ accessToken: createJWTtoken({ id: user.id }) });
     } catch (e) {
       res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)

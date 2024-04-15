@@ -1,24 +1,27 @@
 import styles from "./base-button.module.css";
+import cn from "classnames";
 
-const BaseButton = ({ 
-  label, 
+const BaseButton = ({
+  label,
   isFullWidth = false,
   onClick,
   disabled,
-  style = {}
+  className = "",
+  style = {},
 }) => {
   return (
     <button
       style={{ width: isFullWidth ? "100%" : "none", ...style }}
-      className={styles["base-button"]}
+      className={cn({
+        [styles["base-button"]]: true,
+        [className || ""]: !!className,
+      })}
       onClick={onClick}
       disabled={disabled}
     >
-      <span className={styles["base-button-label"]}>
-        {label}
-      </span>
+      <span className={styles["base-button-label"]}>{label}</span>
     </button>
-  )
+  );
 };
 
 export default BaseButton;

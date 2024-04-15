@@ -1,7 +1,8 @@
 import { GoHeart, GoHeartFill } from "react-icons/go";
-import { FaCar } from "react-icons/fa";
 import { BsFillFuelPumpFill } from "react-icons/bs";
 import { HiCurrencyDollar } from "react-icons/hi2";
+import { FaStar } from "react-icons/fa6";
+import { TbManualGearbox } from "react-icons/tb";
 
 import styles from "./car-card.module.css";
 import { useTranslation } from "react-i18next";
@@ -14,10 +15,8 @@ const CarCard = ({
   name = "", 
   type = "", 
   price = 0, 
-  brand = "", 
   fuel = "",
   isFavorite = false,
-  hasHover = true,
   onClick
 }) => {
   const { t } = useTranslation();
@@ -28,13 +27,16 @@ const CarCard = ({
   }
 
   return (
-    <div className={
-      hasHover ? styles["car-card-hover"] : styles["car-card"]
-    }>
-      <img 
-        src={imgSrc}
+    <div className={styles["car-card"]}>
+      <div 
+        style={{ backgroundImage: `url(${imgSrc})` }}
         className={styles["car-card-img"]} 
-      />
+      >
+        <div className={styles["car-card-img-rating"]}>
+          <span className={styles["car-card-img-rating-value"]}>4.6</span>
+          <FaStar color="var(--primary-black-color)" size="1.5rem"/>
+        </div>
+      </div>
       <div className={styles["car-card-content"]}>
         <div className={styles["car-card-content-heading"]}>
           <span className={styles["car-card-content-heading-name"]}>
@@ -46,21 +48,21 @@ const CarCard = ({
         </div>
         <div className={styles["car-card-content-details"]}>
           <div className={styles["car-card-content-details-info"]}>
-            <div className={styles["car-card-content-details-info-price"]}>
-              <HiCurrencyDollar className={styles["car-card-content-details-info-price-icon"]} />
-              <span className={styles["car-card-content-details-info-price-title"]}>
+            <div className={styles["car-card-content-details-info-item"]}>
+              <HiCurrencyDollar color="var(--primary-black-color)" size="1.5rem" />
+              <span className={styles["car-card-content-details-info-item-title"]}>
                 {price}/{t("Card cars price postfix")}
               </span>
             </div>
-            <div className={styles["car-card-content-details-info-brand"]}>
-              <FaCar className={styles["car-card-content-details-info-brand-icon"]} />
-              <span className={styles["car-card-content-details-info-brand-title"]}>
-                {brand}
+            <div className={styles["car-card-content-details-info-item"]}>
+              <TbManualGearbox color="var(--primary-black-color)" size="1.5rem" />
+              <span className={styles["car-card-content-details-info-item-title"]}>
+                Automatic
               </span>
             </div>
-            <div className={styles["car-card-content-details-info-fuel"]}>
-              <BsFillFuelPumpFill className={styles["car-card-content-details-info-fuel-icon"]} />
-              <span className={styles["car-card-content-details-info-fuel-title"]}>
+            <div className={styles["car-card-content-details-info-item"]}>
+              <BsFillFuelPumpFill color="var(--primary-black-color)" size="1.25rem" />
+              <span className={styles["car-card-content-details-info-item-title"]}>
                 {t(CAR_FUEL_TYPE[fuel])}
               </span>
             </div>

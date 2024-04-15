@@ -3,9 +3,15 @@ import cors from "cors";
 import "./src/config/dev.config.js";
 
 import { dbService } from "./src/services/db.service.js";
-import { authRouter } from "./src/routes/auth.route.js";
-import { userRouter } from "./src/routes/user.route.js";
-import { carRoute } from "./src/routes/car.route.js";
+import {
+  authRouter,
+  userRouter,
+  carRoute,
+  bookRouter,
+  ratingRouter,
+  favoriteRouter,
+  oauthRouter,
+} from "./src/routes/index.js";
 
 const app = express();
 
@@ -16,8 +22,12 @@ app.use(express.json());
 
 app
   .use("/api/auth", authRouter)
+  .use("/api/oauth", oauthRouter)
   .use("/api/users", userRouter)
-  .use("/api/cars", carRoute);
+  .use("/api/cars", carRoute)
+  .use("/api/book", bookRouter)
+  .use("/api/rating", ratingRouter)
+  .use("/api/favorite", favoriteRouter);
 
 const main = () => {
   try {

@@ -1,0 +1,79 @@
+.user-details-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+}
+
+.user-details-form-name,
+.user-details-form-age-and-gender {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1rem;
+}
+
+.user-details-form-age-and-gender-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 1rem;
+}
+
+.user-details-form-age-label {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: rgba(51, 51, 51, 0.75);
+}
+
+.user-details-form-age-wrapper {
+  width: 100%;
+  position: relative;
+  padding-top: 0.375rem;
+}
+
+.user-details-form-age-input {
+  width: 100%;
+  cursor: pointer;
+}
+
+.user-details-form-age-tip {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary-black-color);
+  position: absolute;
+  bottom: 1.5rem;
+}
+
+.user-details-form-gender-and-location-wrapper {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.user-details-form-gender-and-location-wrapper-title {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: rgba(51, 51, 51, 0.75);
+  align-self: center;
+}
+
+.user-details-form-location {
+  width: 100%;
+}
+
+.user-details-form-age-and-gender-wrapper *[data-select-component] {
+  border: 0.0625rem solid var(--border-secondary-gray-color);
+}
+
+.user-details-form-age-and-gender-wrapper
+  *[data-select-component]
+  *[data-select-list-component] {
+  border: 0.0625rem solid var(--border-secondary-gray-color);
+  border-top: 0;
+  width: 11.5rem;
+  left: -0.0625rem;
+}

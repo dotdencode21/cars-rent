@@ -7,6 +7,67 @@
   position: fixed;
   top: 0;
   left: 0;
-  background-color: rgba(0, 0, 0, 0.75);
+  background-color: rgba(0, 0, 0, 0.6);
   z-index: 10;
+}
+
+.base-modal-body {
+  width: 100%;
+  border-radius: 0.25rem;
+  background-color: var(--primary-white-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+}
+
+.base-modal-body-header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 1rem;
+  border-bottom: 0.0625rem solid var(--border-secondary-gray-color);
+}
+
+.base-modal-body-header-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.base-modal-body-footer {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.75rem 1rem;
+  border-top: 0.0625rem solid var(--border-secondary-gray-color);
+}
+
+.base-modal-body-footer-btn {
+  width: 6.25rem;
+}
+
+.base-modal-body-footer-btn span {
+  text-transform: none;
+}
+
+.cancel-btn {
+  background-color: transparent;
+}
+
+.cancel-btn:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.cancel-btn span {
+  color: var(--primary-black-color);
+  font-size: 1rem;
+}
+
+.submit-btn span {
+  font-size: 1rem;
 }

@@ -9,6 +9,5 @@ carRoute
   .post("/create", CarController.createCar)
   .put("/:carId", CarController.updateCarById)
   .delete("/:carId", CarController.deleteCarById)
-  .put("/:userId/book/:carId", CarController.bookCarById);
 
 export { carRoute };

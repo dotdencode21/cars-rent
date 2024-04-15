@@ -1,22 +1,67 @@
+import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
 import styles from "./base-modal.module.css";
+import { IoClose } from "react-icons/io5";
+import cn from "classnames";
 
-const BaseModal = ({ 
+const BaseModal = ({
   open,
-  onOutsideClick, 
-  children 
+  title = "",
+  submitBtnText = "",
+  cancelBtnText = "",
+  withHeader = true,
+  withActions = true,
+  maxWidth = 0,
+  onOutsideClick = () => {},
+  onClose = () => {},
+  onSubmit = () => {},
+  onCancel = () => {},
+  children,
 }) => {
   return (
     <>
-      {
-        open && (
+      {open && (
+        <div className={styles["base-modal"]} onClick={onOutsideClick}>
           <div
-            className={styles["base-modal"]}
-            onClick={onOutsideClick}
+            style={{ maxWidth: `${maxWidth / 16}rem` }}
+            className={styles["base-modal-body"]}
           >
+            {withHeader && (
+              <div className={styles["base-modal-body-header"]}>
+                <span className={styles["base-modal-body-header-title"]}>
+                  {title}
+                </span>
+                <IoClose
+                  onClick={onClose}
+                  color="var(--primary-black-color)"
+                  size="1.75rem"
+                  style={{ cursor: "pointer" }}
+                />
+              </div>
+            )}
             {children}
+            {withActions && (
+              <div className={styles["base-modal-body-footer"]}>
+                <BaseButton
+                  onClick={onCancel}
+                  label={cancelBtnText}
+                  className={cn(
+                    styles["base-modal-body-footer-btn"],
+                    styles["cancel-btn"]
+                  )}
+                />
+                <BaseButton
+                  onClick={onSubmit}
+                  label={submitBtnText}
+                  className={cn(
+                    styles["base-modal-body-footer-btn"],
+                    styles["submit-btn"]
+                  )}
+                />
+              </div>
+            )}
           </div>
-        )
-      }
+        </div>
+      )}
     </>
   );
 };

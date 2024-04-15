@@ -1,0 +1,161 @@
+.filters {
+  background-color: var(--neutral-white-color);
+  border-radius: 0.25rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.5rem;
+  padding: 1rem;
+  max-height: 44.875rem;
+}
+
+.filters-heading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.filters-heading-title {
+  font-weight: 600;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+  font-size: 1.25rem;
+}
+
+.filters-item,
+.filters-item-price-heading {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.filters-item-title {
+  font-weight: 500;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+  font-size: 1rem;
+}
+
+.filters-item *[data-select-component] {
+  max-width: 11.25rem;
+}
+
+.filters-item-price {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.filters-item-price-heading-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+}
+
+.filters-item-price-heading-actions-min,
+.filters-item-price-heading-actions-max {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.filters-item-price-heading-actions-min-label,
+.filters-item-price-heading-actions-max-label {
+  font-weight: 500;
+  font-size: 0.75rem;
+  color: var(--primary-black-color);
+}
+
+.filters-item-price-heading-actions-min-input,
+.filters-item-price-heading-actions-max-input {
+  text-align: center;
+  max-width: 5rem;
+}
+
+.filters-item-gearboxes {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filters-item-gearboxes-item {
+  cursor: pointer;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--primary-black-color);
+}
+
+.filters-item-gearboxes-item input,
+.filters-item-booking-actions-item input {
+  accent-color: var(--primary-blue-color);
+  width: 1rem;
+  height: 1rem;
+}
+
+.filters-item-rating {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.filters-item-booked-input {
+  cursor: pointer;
+  accent-color: var(--primary-blue-color);
+  width: 1.25rem;
+  height: 1.25rem;
+}
+
+.filters-item-booking-actions {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+  align-items: flex-end;
+  gap: 1rem;
+}
+
+.filters-item-booking-actions-item {
+  cursor: pointer;
+  width: 3.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: var(--primary-black-color);
+}
+
+.filters-item-actions {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.filters-item-actions-reset-btn {
+  background-color: var(--primary-red-color);
+}
+
+.filters-item-actions-apply-btn {
+  background-color: var(--primary-green-color);
+}
+
+.filters-item-actions-reset-btn span,
+.filters-item-actions-apply-btn span {
+  text-transform: none;
+  font-size: 1rem;
+}

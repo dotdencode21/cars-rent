@@ -5,6 +5,7 @@ const userRouter = new Router();
 
 userRouter
   .get("/", UserController.getUsers)
-  .get("/:userId", UserController.getUserById);
+  .get("/:userId", UserController.getUserById)
+  .put("/:userId", UserController.updateUserById);
 
 export { userRouter };

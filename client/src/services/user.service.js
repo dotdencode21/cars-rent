@@ -5,7 +5,7 @@ export class UserService {
     try {
       const {
         data: { users },
-      } = await axiosInstance.get("users");
+      } = await axiosInstance.get("/users");
 
       return users;
     } catch (e) {
@@ -17,7 +17,19 @@ export class UserService {
     try {
       const {
         data: { user },
-      } = await axiosInstance.get(`users/${userId}`);
+      } = await axiosInstance.get(`/users/${userId}`);
+
+      return user;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async updateUserById(userId, payload) {
+    try {
+      const {
+        data: { user },
+      } = await axiosInstance.put(`/users/${userId}`, payload);
 
       return user;
     } catch (e) {

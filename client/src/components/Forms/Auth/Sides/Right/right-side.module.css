@@ -35,3 +35,28 @@
   color: var(--primary-blue-color);
   text-decoration: underline;
 }
+
+.right-side-actions-facebook-link-icon {
+  width: 2rem;
+  height: 2rem;
+}
+
+.right-side-actions-facebook-link {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.5rem;
+  border-radius: 0.25rem;
+  background-color: #445bb0;
+}
+
+.right-side-actions-facebook-link-label {
+  padding-top: 0.25rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  font-size: 0.875rem;
+  color: var(--primary-white-color);
+}

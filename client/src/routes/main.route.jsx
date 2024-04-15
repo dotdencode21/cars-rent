@@ -6,7 +6,6 @@ import ContactPage from "@/pages/Contact/Contact";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import AuthForm from "@/components/Forms/Auth/AuthForm";
 import AboutUsPage from "@/pages/AboutUs/AboutUs";
-import RulesPage from "@/pages/Rules/Rules";
 
 export const router = createBrowserRouter([
   {
@@ -15,10 +14,6 @@ export const router = createBrowserRouter([
       {
         path: "/",
         element: <HomePage />,
-      },
-      {
-        path: "/rules",
-        element: <RulesPage />,
       },
       {
         path: "/about",

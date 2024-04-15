@@ -1,55 +1,63 @@
 import { useId } from "react";
+import cn from "classnames";
 
 import styles from "./base-input.module.css";
 
 const BaseInput = ({
   value,
+  hasIcons = false,
+  hasButtons = false,
   leftIcon,
   rightIcon,
-  type,
-  labelText,
+  type = "text",
+  labelText = "",
   placeholder,
   inputId,
   name,
   onChange,
   onClick,
-  error
+  onKeyDown = null,
+  className = "",
+  error,
 }) => {
   const id = useId();
 
   return (
-    <label 
-      htmlFor={id + inputId}
-      className={styles["base-input-label"]}
-    >
+    <label htmlFor={id + inputId} className={styles["base-input-label"]}>
       {labelText}
-      <div className={`${styles["base-input-icon"]} ${styles["left-icon"]}`}>
-        {leftIcon}
-      </div>
+      {hasIcons && (
+        <div className={`${styles["base-input-icon"]} ${styles["left-icon"]}`}>
+          {leftIcon}
+        </div>
+      )}
       <input
         type={type}
         name={name}
         value={value}
-        style={{ padding: `0.5rem ${rightIcon ? "2.5rem" : "0.75rem"} 0.5rem ${leftIcon ? "2.5rem" : "0.75rem"}` }}
-        className={styles["base-input"]}
+        style={{
+          padding: `0.5rem ${
+            hasIcons && rightIcon ? "2.5rem" : "0.75rem"
+          } 0.5rem ${hasIcons && leftIcon ? "2.5rem" : "0.75rem"}`,
+        }}
+        className={cn({
+          [styles["base-input"]]: true,
+          [className || ""]: !!className,
+        })}
         id={id + inputId}
         placeholder={placeholder}
         autoComplete="off"
         onChange={onChange}
+        onKeyDown={onKeyDown}
       />
-      <button
-        className={`${styles["base-input-icon"]} ${styles["right-icon"]}`}
-        onClick={onClick}
-      >
-        {rightIcon}
-      </button>
-      {
-        error && (
-          <span className={styles["base-input-error"]}>
-            {error}
-          </span>
-        )
-      }
+      {hasButtons && (
+        <button
+          className={`${styles["base-input-icon"]} ${styles["right-icon"]}`}
+          onClick={onClick}
+        >
+          {rightIcon}
+        </button>
+      )}
+      {error && <span className={styles["base-input-error"]}>{error}</span>}
     </label>
   );
 };

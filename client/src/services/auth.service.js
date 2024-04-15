@@ -4,8 +4,8 @@ export class AuthService {
   static async signIn(signInData) {
     try {
       const {
-        data: { userId },
-      } = await axiosInstance.post("auth/sign-in", signInData);
+        data: { id: userId },
+      } = await axiosInstance.post("/auth/sign-in", signInData);
 
       return userId;
     } catch (e) {
@@ -17,7 +17,7 @@ export class AuthService {
     try {
       const {
         data: { accessToken },
-      } = await axiosInstance.post("auth/sign-up", signUpData);
+      } = await axiosInstance.post("/auth/sign-up", signUpData);
 
       return accessToken;
     } catch (e) {

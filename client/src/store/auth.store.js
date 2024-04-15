@@ -5,10 +5,10 @@ export const useAuthStore = create((set) => ({
   error: null,
 
   async signIn(data) {
-    const { username, password } = data;
+    const { email, password } = data;
 
     try {
-      const userId = await AuthService.signIn({ username, password });
+      const userId = await AuthService.signIn({ email, password });
 
       return userId;
     } catch (e) {

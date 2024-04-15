@@ -1,15 +1,12 @@
 import BaseInput from "@/components/Inputs/BaseInput/BaseInput";
 import styles from "./right-side.module.css";
 
-import {
-  FaUserLarge,
-  FaRegEyeSlash,
-  FaRegEye,
-  FaEnvelope,
-} from "react-icons/fa6";
+import { FaRegEyeSlash, FaRegEye, FaEnvelope } from "react-icons/fa6";
 import { FaLock } from "react-icons/fa";
 
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate, useSearchParams } from "react-router-dom";
+
+import FacebookLogo from "@/assets/icons/socialMedias/facebook.svg";
 
 import { useEffect, useState } from "react";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
@@ -19,25 +16,34 @@ import { useTranslation } from "react-i18next";
 import { useAuthStore } from "@/store/auth.store";
 import { useUserStore } from "@/store/user.store";
 import { useLocalStorage } from "@/hooks/useLocalStorage";
+import UserDetailsModal from "@/components/Modals/UserDetails/UserDetails";
 
 const RightSide = ({ isSignUpForm }) => {
   const { t } = useTranslation();
 
   const { signIn, signUp } = useAuthStore();
-  const { getUserById } = useUserStore();
+  const { getUserById, getUserViaFacebook } = useUserStore();
 
   const navigate = useNavigate();
+  const [query, setQuery] = useSearchParams();
 
-  const [accessToken, setAccessToken] = useLocalStorage("access_token", "");
+  const [_, setAccessToken] = useLocalStorage("access_token", "");
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
-      username: "",
       password: "",
       email: "",
     },
-    validationSchema: authSchema.omit(!isSignUpForm ? ["email"] : ""),
+    validationSchema: authSchema,
   });
+
+  const [isOpen, setIsOpen] = useState(false);
+
+  useEffect(() => {
+    if (query.get("code")) {
+      getUserViaFacebook(query.get("code"));
+    }
+  }, [query]);
 
   useEffect(() => {
     resetForm();
@@ -52,9 +58,11 @@ const RightSide = ({ isSignUpForm }) => {
 
   const handleSignIn = () => {
     signIn(values).then((userId) => {
-      getUserById(userId).then(() => {
-        navigate("/");
-      });
+      getUserById(userId)
+        .then(() => {
+          setIsOpen(true);
+        })
+        .catch(() => setIsOpen(false));
     });
   };
 
@@ -71,28 +79,15 @@ const RightSide = ({ isSignUpForm }) => {
       <form className={styles["right-side-form"]}>
         <BaseInput
           type="text"
-          value={values.username}
-          placeholder={t("Auth form username input")}
-          labelText={t("Auth form username input")}
-          inputId="username"
-          name="username"
-          leftIcon={<FaUserLarge size="1rem" color="rgba(51, 51, 51, 0.5)" />}
+          value={values.email}
+          placeholder={t("Auth form email input")}
+          labelText={t("Auth form email input")}
+          inputId="email"
+          name="email"
+          leftIcon={<FaEnvelope size="1rem" color="rgba(51, 51, 51, 0.5)" />}
           onChange={handleChange}
-          error={errors["username"]}
+          error={errors["email"]}
         />
-        {isSignUpForm && (
-          <BaseInput
-            type="text"
-            value={values.email}
-            placeholder={t("Auth form email input")}
-            labelText={t("Auth form email input")}
-            inputId="email"
-            name="email"
-            leftIcon={<FaEnvelope size="1rem" color="rgba(51, 51, 51, 0.5)" />}
-            onChange={handleChange}
-            error={errors["email"]}
-          />
-        )}
         <BaseInput
           type={showPassword ? "text" : "password"}
           value={values.password}
@@ -127,12 +122,28 @@ const RightSide = ({ isSignUpForm }) => {
             !Object.values(values).some(Boolean)
           }
         />
+        <Link
+          to={`https://www.facebook.com/v19.0/dialog/oauth?client_id=828489919109940&redirect_uri=http://localhost:5173/sign-in&state=st=state123abc,ds=123456789&scope=${encodeURIComponent(
+            "email,user_location,user_gender,user_birthday"
+          )}`}
+          className={styles["right-side-actions-facebook-link"]}
+          target="_self"
+        >
+          <img
+            src={FacebookLogo}
+            className={styles["right-side-actions-facebook-link-icon"]}
+          />
+          <span className={styles["right-side-actions-facebook-link-label"]}>
+            {isSignUpForm ? "sign up" : "sign in"} via Facebook
+          </span>
+        </Link>
         {!isSignUpForm && (
           <Link to="/sign-up" className={styles["right-side-actions-link"]}>
             {t("Auth form sign up link")}
           </Link>
         )}
       </div>
+      <UserDetailsModal open={isOpen} onClose={() => setIsOpen(false)} />
     </div>
   );
 };

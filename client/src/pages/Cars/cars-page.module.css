@@ -1,0 +1,15 @@
+.cars-page {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 400px 1fr;
+  column-gap: 2rem;
+  padding: 5rem 10rem;
+}
+
+.cars-page-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.125rem;
+  overflow-y: scroll;
+  max-height: 38.625rem;
+}

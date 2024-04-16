@@ -37,24 +37,19 @@ export class OAuthService {
         `https://graph.facebook.com/${userId}?fields=name,email,gender,birthday&access_token=${accessToken}`
       );
 
-      console.log(data);
-
       return data;
     } catch (e) {
       throw e;
     }
   }
 
-  static oauthViaFacebook(code) {
+  static async oauthViaFacebook(code) {
     try {
-      this.#getAccessToken(code).then((accessToken) => {
-        this.#getUserId(accessToken).then((userId) => {
-          this.#getUserDetails(userId, accessToken).then((data) => {
-            console.log(data);
-            return data;
-          });
-        });
-      });
+      const accessToken = await this.#getAccessToken(code);
+      const userId = await this.#getUserId(accessToken);
+      const user = await this.#getUserDetails(userId, accessToken);
+
+      return user;
     } catch (e) {
       throw e;
     }

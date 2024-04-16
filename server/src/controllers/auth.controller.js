@@ -6,6 +6,12 @@ import { createJWTtoken } from "../helpers/token.helper.js";
 import { User } from "../models/index.js";
 import { STATUS_CODE } from "../constants/statusCodes.js";
 
+const getRandomHex = () => {
+  return `#${Math.floor(Math.random() * 0xffffff)
+    .toString(16)
+    .padEnd(6, "0")}`;
+};
+
 export class AuthController {
   static async signIn(req, res) {
     try {
@@ -18,7 +24,7 @@ export class AuthController {
           .json({ message: "No data provided" });
       }
 
-      const { email, password } = req.body;
+      const { email, type } = req.body;
 
       const candidate = await User.findOne({ where: { email } });
 
@@ -27,6 +33,12 @@ export class AuthController {
           message: "A user with given credentials doesn't exist",
         });
       }
+
+      if (type === "facebook") {
+        return res.status(STATUS_CODE.OK).json({ id: candidate.id });
+      }
+
+      const { password } = req.body;
 
       const isPasswordCompared = await comparePasswords(
         password,
@@ -58,14 +70,26 @@ export class AuthController {
           .json({ message: "No data provided" });
       }
 
-      const { email, password } = req.body;
+      const { email, password, type, ...rest } = req.body;
 
       const isUserExists = await User.findOne({ where: { email } });
 
       if (isUserExists) {
         return res.status(STATUS_CODE.BAD_REQUEST).json({
-          message: `A user with the username ${username} already exists`,
+          message: `A user with the email ${email} already exists`,
         });
+      }
+
+      if (type === "facebook") {
+        const user = await User.create({
+          email,
+          color: getRandomHex(),
+          ...rest,
+        });
+
+        return res
+          .status(STATUS_CODE.CREATED)
+          .json({ accessToken: createJWTtoken({ id: user.id }) });
       }
 
       const hashedPassword = await createHashPassword(password);
@@ -77,6 +101,8 @@ export class AuthController {
         password: hashedPassword,
         role: isAdmin ? "admin" : "common",
         isAdmin,
+        color: getRandomHex(),
+        ...rest,
       });
 
       return res

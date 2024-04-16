@@ -9,3 +9,8 @@
   height: inherit;
   object-fit: contain;
 }
+
+.preview-modal-body {
+  justify-content: center;
+  align-items: center;
+}

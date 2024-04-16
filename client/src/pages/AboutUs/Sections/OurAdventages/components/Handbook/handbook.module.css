@@ -36,14 +36,14 @@
   font-weight: 400;
   letter-spacing: 0.075rem;
   color: var(--secondary-grey-color);
-  transition: all 0.2s ease-in-out; 
+  transition: all 0.2s ease-in-out;
 }
 
 .handbook-content-tabs-item:is(:hover) .handbook-content-tabs-item-title {
   color: var(--primary-blue-color);
 }
 
-.handbook-content-tabs-item-active .handbook-content-tabs-item-title  {
+.handbook-content-tabs-item-active .handbook-content-tabs-item-title {
   color: var(--primary-blue-color);
 }
 

@@ -11,6 +11,7 @@ const BaseModal = ({
   withHeader = true,
   withActions = true,
   maxWidth = 0,
+  className = "",
   onOutsideClick = () => {},
   onClose = () => {},
   onSubmit = () => {},
@@ -23,7 +24,10 @@ const BaseModal = ({
         <div className={styles["base-modal"]} onClick={onOutsideClick}>
           <div
             style={{ maxWidth: `${maxWidth / 16}rem` }}
-            className={styles["base-modal-body"]}
+            className={cn({
+              [styles["base-modal-body"]]: true,
+              [className || ""]: !!className,
+            })}
           >
             {withHeader && (
               <div className={styles["base-modal-body-header"]}>

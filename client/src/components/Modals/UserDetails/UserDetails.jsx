@@ -15,7 +15,7 @@ const UserDetailsModal = ({ open, onClose }) => {
   const navigate = useNavigate();
 
   const { cities, getCities } = useCityStore();
-  const { currentUser, updateUserById } = useUserStore();
+  const { updateUserById } = useUserStore();
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
@@ -32,7 +32,7 @@ const UserDetailsModal = ({ open, onClose }) => {
   }, []);
 
   const handleSendData = () => {
-    updateUserById(currentUser?.id, {
+    updateUserById(JSON.parse(localStorage.getItem("currentUserId")), {
       ...values,
       gender,
     }).then(() => {

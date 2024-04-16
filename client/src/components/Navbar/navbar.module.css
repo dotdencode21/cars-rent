@@ -15,10 +15,15 @@
   display: flex;
   justify-content: flex-end;
   align-items: center;
-  gap: 5rem;
+  gap: 1.5rem;
 }
 
-.navbar-actions-default {
+.navbar-actions *[data-select-component] {
+  min-width: clamp(7.5rem, 3vw, 10.625rem);
+  max-width: 7.5rem;
+}
+
+/* .navbar-actions-default {
   display: flex;
   justify-content: flex-end;
   align-items: center;
@@ -28,3 +33,10 @@
 .navbar-actions-default *[data-select-component] {
   min-width: clamp(7.5rem, 3vw, 10.625rem);
 }
+
+.navbar-actions-details {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 1.5rem;
+} */

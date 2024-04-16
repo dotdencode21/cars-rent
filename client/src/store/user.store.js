@@ -23,7 +23,7 @@ export const useUserStore = create((set) => ({
 
       set({
         currentUser: user ? user : null,
-        isLogged: user && Object.keys(user).length,
+        isLogged: JSON.parse(localStorage.getItem("currentUserId")),
       });
     } catch (e) {
       set({ error: e });
@@ -33,20 +33,18 @@ export const useUserStore = create((set) => ({
     try {
       const user = await UserService.updateUserById(userId, payload);
 
-      set({ currentUser: user ? user : null });
+      set({ currentUser: user[0] ? user[0] : null });
     } catch (e) {
       set({ error: e });
     }
   },
-  getUserViaFacebook(code) {
+  async getUserViaFacebook(code) {
     try {
-      OAuthService.oauthViaFacebook(code).then((user) => {
-        console.log(user);
-        set({
-          currentUser: user ? user : null,
-          isLogged: user && Object.keys(user).length,
-        });
-      });
+      const user = await OAuthService.oauthViaFacebook(code);
+
+      set({ currentUser: user ? user : null });
+
+      return user;
     } catch (e) {
       set({ error: e });
     }

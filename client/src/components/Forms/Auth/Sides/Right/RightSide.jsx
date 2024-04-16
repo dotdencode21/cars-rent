@@ -8,6 +8,8 @@ import { Link, useNavigate, useSearchParams } from "react-router-dom";
 
 import FacebookLogo from "@/assets/icons/socialMedias/facebook.svg";
 
+import dayjs from "dayjs";
+
 import { useEffect, useState } from "react";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
 import { useFormik } from "formik";
@@ -22,12 +24,16 @@ const RightSide = ({ isSignUpForm }) => {
   const { t } = useTranslation();
 
   const { signIn, signUp } = useAuthStore();
-  const { getUserById, getUserViaFacebook } = useUserStore();
+  const { getUserViaFacebook } = useUserStore();
 
   const navigate = useNavigate();
   const [query, setQuery] = useSearchParams();
 
-  const [_, setAccessToken] = useLocalStorage("access_token", "");
+  const [, setAccessToken] = useLocalStorage("access_token", "");
+  const [currentUserId, setCurrentUserId] = useLocalStorage(
+    "currentUserId",
+    ""
+  );
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
@@ -41,9 +47,30 @@ const RightSide = ({ isSignUpForm }) => {
 
   useEffect(() => {
     if (query.get("code")) {
-      getUserViaFacebook(query.get("code"));
+      getUserViaFacebook(query.get("code")).then((user) => {
+        const data = {
+          email: user?.email,
+          gender: user?.gender,
+          firstName: user?.name.split(" ")[0],
+          lastName: user?.name.split(" ")[1],
+          age: dayjs().year() - Number(user?.birthday.split("/").at(-1)),
+          type: "facebook",
+        };
+
+        signUp(data).then(() => {
+          const { email, type } = data;
+
+          signIn({ email, type }).then((userId) => {
+            setCurrentUserId(userId);
+          });
+        });
+      });
     }
   }, [query]);
+
+  useEffect(() => {
+    if (currentUserId) navigate("/");
+  }, [currentUserId]);
 
   useEffect(() => {
     resetForm();
@@ -57,17 +84,14 @@ const RightSide = ({ isSignUpForm }) => {
   };
 
   const handleSignIn = () => {
-    signIn(values).then((userId) => {
-      getUserById(userId)
-        .then(() => {
-          setIsOpen(true);
-        })
-        .catch(() => setIsOpen(false));
+    signIn({ ...values, type: "basic" }).then((userId) => {
+      setCurrentUserId(userId);
+      setIsOpen(true);
     });
   };
 
   const handleSignUp = () => {
-    signUp(values).then((accessToken) => {
+    signUp({ ...values, type: "basic" }).then((accessToken) => {
       setAccessToken(accessToken);
 
       if (accessToken) navigate("/sign-in");
@@ -124,7 +148,7 @@ const RightSide = ({ isSignUpForm }) => {
         />
         <Link
           to={`https://www.facebook.com/v19.0/dialog/oauth?client_id=828489919109940&redirect_uri=http://localhost:5173/sign-in&state=st=state123abc,ds=123456789&scope=${encodeURIComponent(
-            "email,user_location,user_gender,user_birthday"
+            "email,user_location,user_gender,user_birthday,user_hometown,user_age_range"
           )}`}
           className={styles["right-side-actions-facebook-link"]}
           target="_self"

@@ -21,6 +21,8 @@ export const useUserStore = create((set) => ({
     try {
       const user = await UserService.getUserById(userId);
 
+      console.log(user);
+
       set({
         currentUser: user ? user : null,
         isLogged: JSON.parse(localStorage.getItem("currentUserId")),

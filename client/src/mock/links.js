@@ -6,3 +6,24 @@ export const links = [
   { id: uuidv4(), title: "Navbar cars page label", to: "/cars" },
   { id: uuidv4(), title: "Navbar contact page label", to: "/contact" },
 ];
+
+export const sidebarLinks = [
+  {
+    id: uuidv4(),
+    title: "User details",
+    name: "userDetails",
+    to: "/profile/user-details",
+  },
+  {
+    id: uuidv4(),
+    title: "Booked cars",
+    name: "bookedCars",
+    to: "/profile/booked-cars",
+  },
+  {
+    id: uuidv4(),
+    title: "Recommendations",
+    name: "recommendations",
+    to: "/profile/recommendations",
+  },
+];

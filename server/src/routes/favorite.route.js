@@ -3,6 +3,9 @@ import { FavoriteController } from "../controllers/favorite.controller.js";
 
 const favoriteRouter = new Router();
 
-favoriteRouter.post("/:carId", FavoriteController.updateFavoriteStatusByCarId);
+favoriteRouter.post(
+  "/:userId/:carId",
+  FavoriteController.updateFavoriteStatusByUserIdAndCarId
+);
 
 export { favoriteRouter };

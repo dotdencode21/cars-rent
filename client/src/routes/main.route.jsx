@@ -1,4 +1,4 @@
-import { createBrowserRouter } from "react-router-dom";
+import { Navigate, createBrowserRouter } from "react-router-dom";
 import HomePage from "@/pages/Home/Home";
 import App from "@/App";
 import CarsPage from "@/pages/Cars/Cars";
@@ -6,6 +6,10 @@ import ContactPage from "@/pages/Contact/Contact";
 import PrivacyPolicyPage from "@/pages/PrivacyPolicy/PrivacyPolicy";
 import AuthForm from "@/components/Forms/Auth/AuthForm";
 import AboutUsPage from "@/pages/AboutUs/AboutUs";
+import ProfilePage from "@/pages/Profile/Profile";
+import UserDetailsSection from "@/pages/Profile/Sections/UserDetails/UserDetails";
+import BookedCarsSection from "@/pages/Profile/Sections/BookedCars/BookedCars";
+import RecommendationsSection from "@/pages/Profile/Sections/Recommendations/Recommendations";
 
 export const router = createBrowserRouter([
   {
@@ -38,6 +42,24 @@ export const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <AuthForm authType="signUp" />,
+      },
+      {
+        path: "/profile",
+        element: <ProfilePage />,
+        children: [
+          {
+            path: "/profile/user-details",
+            element: <UserDetailsSection />,
+          },
+          {
+            path: "/profile/booked-cars",
+            element: <BookedCarsSection />,
+          },
+          {
+            path: "/profile/recommendations",
+            element: <RecommendationsSection />,
+          },
+        ],
       },
     ],
   },

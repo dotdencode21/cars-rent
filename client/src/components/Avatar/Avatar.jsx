@@ -5,7 +5,7 @@ import styles from "./avatar.module.css";
 const Avatar = ({ currentUser }) => {
   return (
     <Link
-      to="/"
+      to="/profile/user-details"
       className={styles["avatar"]}
       style={{ backgroundColor: currentUser?.color }}
     >

@@ -1,7 +1,16 @@
-import { Tenant } from "./tenant.model.js";
-import { BookedCar } from "./bookedCar.model.js";
+import { Associations } from "./associations.model.js";
 import { User } from "./user.model.js";
 import { Car } from "./car.model.js";
-import { Associations } from "./associations.model.js";
+import { FavoriteCar } from "./favoriteCar.model.js";
+import { BookedCar } from "./bookedCar.model.js";
 
-export { User, Car, Tenant, BookedCar, Associations };
+BookedCar.hasOne(User, { foreignKey: "bookedCarId", as: "bookedCar" });
+User.belongsTo(BookedCar, { foreignKey: "bookedCarId", as: "bookedCar" });
+
+FavoriteCar.hasMany(User, { foreignKey: "favoriteCarId", as: "favoriteCars" });
+User.belongsTo(FavoriteCar, {
+  foreignKey: "favoriteCarId",
+  as: "favoriteCars",
+});
+
+export { Car, User, BookedCar, Associations, FavoriteCar };

@@ -1,6 +1,9 @@
 import { STATUS_CODE } from "../constants/statusCodes.js";
-import { Car } from "../models/index.js";
-import { Op } from "sequelize";
+import { BookedCar, Car, FavoriteCar } from "../models/index.js";
+
+const a = (c, b) => {
+  return c + b;
+};
 
 export class CarController {
   static async getCars(req, res) {
@@ -8,48 +11,49 @@ export class CarController {
 
     try {
       const cars = await Car.findAll({
-        raw: true,
-        where: {
-          brand: isFilters && req.query.brand,
-          fuel: isFilters && req.query.fuel,
-          gearboxType: isFilters && req.query.gearboxType,
-          type: isFilters && req.query.bodyType,
-          isBooked: isFilters && !!req.query.isBooked,
-          price: {
-            [Op.between]: isFilters &&
-              !!req.query.minPrice &&
-              !!req.query.maxPrice && [
-                +req.query.minPrice,
-                +req.query.maxPrice,
-              ],
-          },
-          amountOfBooking: {
-            [isFilters && req.query.amountOfBooking === "moreThanTen"
-              ? Op.gt
-              : Op.between]:
-              req.query.amountOfBooking === "moreThanTen"
-                ? 10
-                : (req.query.amountOfBooking === "oneToFive" && [1, 5]) ||
-                  (req.query.amountOfBooking === "fiveToTen" && [5, 10]),
-          },
-        },
+        include: [{ model: BookedCar, as: "bookedCar" }],
+        // where: {
+        //   brand: isFilters && req.query.brand,
+        //   fuel: isFilters && req.query.fuel,
+        //   gearboxType: isFilters && req.query.gearboxType,
+        //   type: isFilters && req.query.bodyType,
+        //   isBooked: isFilters && !!req.query.isBooked,
+        //   price: {
+        //     [Op.between]: isFilters &&
+        //       !!req.query.minPrice &&
+        //       !!req.query.maxPrice && [
+        //         +req.query.minPrice,
+        //         +req.query.maxPrice,
+        //       ],
+        //   },
+        //   amountOfBooking: {
+        //     [isFilters && req.query.amountOfBooking === "moreThanTen"
+        //       ? Op.gt
+        //       : Op.between]:
+        //       req.query.amountOfBooking === "moreThanTen"
+        //         ? 10
+        //         : (req.query.amountOfBooking === "oneToFive" && [1, 5]) ||
+        //           (req.query.amountOfBooking === "fiveToTen" && [5, 10]),
+        //   },
+        // },
       });
 
       return res.status(STATUS_CODE.OK).json({
-        cars: cars
-          .map((car) => ({
-            ...car,
-            rating: Math.round(
-              car.rating.reduce((accum, item) => accum + item, 0) /
-                car.rating.length
-            ),
-          }))
-          .filter((car) => {
-            return isFilters && req.query.rating
-              ? car.rating <= +(req.query.rating + 0.99) &&
-                  car.rating >= +req.query.rating
-              : car;
-          }),
+        cars,
+        // cars: cars
+        //   .map((car) => ({
+        //     ...car,
+        //     rating: Math.round(
+        //       car.rating.reduce((accum, item) => accum + item, 0) /
+        //         car.rating.length
+        //     ),
+        //   }))
+        //   .filter((car) => {
+        //     return isFilters && req.query.rating
+        //       ? car.rating <= +(req.query.rating + 0.99) &&
+        //           car.rating >= +req.query.rating
+        //       : car;
+        //   }),
       });
     } catch (e) {
       return res

@@ -32,13 +32,15 @@ const UserDetailsModal = ({ open, onClose }) => {
   }, []);
 
   const handleSendData = () => {
-    updateUserById(JSON.parse(localStorage.getItem("currentUserId")), {
-      ...values,
-      gender,
-    }).then(() => {
-      resetForm();
-      navigate("/");
-    });
+    if (JSON.parse(localStorage.getItem("currentUserId"))) {
+      updateUserById(JSON.parse(localStorage.getItem("currentUserId")), {
+        ...values,
+        gender,
+      }).then(() => {
+        resetForm();
+        navigate("/");
+      });
+    }
   };
 
   const handleGender = ({ value }) => setGender(value);

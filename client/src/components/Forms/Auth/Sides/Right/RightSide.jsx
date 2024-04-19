@@ -62,15 +62,16 @@ const RightSide = ({ isSignUpForm }) => {
 
           signIn({ email, type }).then((userId) => {
             setCurrentUserId(userId);
+            navigate("/");
           });
         });
       });
     }
   }, [query]);
 
-  useEffect(() => {
-    if (currentUserId) navigate("/");
-  }, [currentUserId]);
+  // useEffect(() => {
+  //   if (currentUserId && currentUserId.length) navigate("/");
+  // }, [currentUserId.length]);
 
   useEffect(() => {
     resetForm();

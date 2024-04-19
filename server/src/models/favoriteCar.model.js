@@ -1,10 +1,9 @@
 import { DataTypes } from "sequelize";
 import { dbService } from "../services/db.service.js";
-import { User } from "./user.model.js";
-import { BookedCar } from "./bookedCar.model.js";
+import { Car } from "./car.model.js";
 
-const Tenant = dbService.define(
-  "Tenant",
+const FavoriteCar = dbService.define(
+  "FavoriteCar",
   {
     id: {
       type: DataTypes.UUID,
@@ -12,26 +11,26 @@ const Tenant = dbService.define(
       defaultValue: DataTypes.UUIDV4,
       autoIncrement: false,
     },
+    carId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      references: {
+        model: Car,
+        key: "id",
+      },
+      field: "car_id",
+    },
     userId: {
       type: DataTypes.UUID,
       allowNull: true,
       references: {
-        model: User,
+        model: "users",
         key: "id",
       },
       field: "user_id",
     },
-    bookedCarId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: BookedCar,
-        key: "id",
-      },
-      field: "booked_car_id",
-    },
   },
-  { tableName: "tenants", updatedAt: false }
+  { tableName: "favorite_cars", updatedAt: false }
 );
 
-export { Tenant };
+export { FavoriteCar };

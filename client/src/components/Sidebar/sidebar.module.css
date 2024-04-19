@@ -1,0 +1,27 @@
+.sidebar {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.sidebar-link {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  gap: 1rem;
+  border-radius: 0.25rem;
+  padding: 1rem 1.5rem;
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  text-decoration: none;
+  background-color: #ededed;
+}
+
+.sidebar-link_active {
+  color: var(--primary-white-color);
+  background-color: var(--primary-blue-color);
+}

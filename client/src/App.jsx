@@ -7,6 +7,7 @@ import { useScroll } from "./hooks/useScroll";
 import AuthLayout from "./layouts/Auth/AuthLayout";
 import HighwayWithCars from "./components/Animation/HighwayWithCars/HighwayWithCars";
 import { useEffect } from "react";
+import ProfileLayout from "./layouts/Profile/ProfileLayout";
 
 function App() {
   const { isScrollingStart } = useScroll();
@@ -16,7 +17,7 @@ function App() {
     const preventBodyScroll =
       pathname.includes("/cars") || pathname.includes("/sign");
 
-    document.body.style.overflowY = preventBodyScroll ? "hidden" : "scroll";
+    document.body.style.overflowY = preventBodyScroll ? "hidden" : "auto";
     preventBodyScroll && window.scrollTo({ top: 0 });
   }, [pathname]);
 
@@ -26,6 +27,14 @@ function App() {
         <HighwayWithCars />
         <Outlet />
       </AuthLayout>
+    );
+  }
+
+  if (pathname.startsWith("/profile")) {
+    return (
+      <ProfileLayout>
+        <Outlet />
+      </ProfileLayout>
     );
   }
 

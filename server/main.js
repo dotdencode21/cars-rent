@@ -37,7 +37,7 @@ const main = () => {
       try {
         await dbService.authenticate({ logging: false });
         console.log("Connection to database has been established successfully");
-        await dbService.sync({ logging: false, force: true });
+        await dbService.sync({ logging: false, force: false });
         console.log("All models were synchronized successfully");
       } catch (e) {
         console.error(e);

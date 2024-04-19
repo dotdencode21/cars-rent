@@ -1,11 +1,10 @@
 import { STATUS_CODE } from "../constants/statusCodes.js";
-import { BookedCar, User } from "../models/index.js";
+import { BookedCar, FavoriteCar, User } from "../models/index.js";
 
 export class UserController {
   static async getUsers(req, res) {
     try {
       const users = await User.findAll({
-        // include: BookedCar,
         attributes: {
           exclude: ["password"],
         },
@@ -29,10 +28,20 @@ export class UserController {
           .json({ message: "No user id provided" });
       }
 
-      const user = await User.findOne({
-        where: { id: userId },
+      const user = await User.findByPk(userId, {
+        include: [
+          {
+            model: BookedCar,
+            as: "bookedCar",
+            attributes: { exclude: ["carId"] },
+          },
+          {
+            model: FavoriteCar,
+            as: "favoriteCars",
+          },
+        ],
         attributes: {
-          exclude: ["password"],
+          exclude: ["password", "bookedCarId", "favoriteCarId"],
         },
       });
 

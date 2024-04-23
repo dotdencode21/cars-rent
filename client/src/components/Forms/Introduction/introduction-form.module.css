@@ -9,3 +9,18 @@
 .introduction-form *[data-select-component] {
   max-width: 14.0625rem;
 }
+
+.introduction-form-link {
+  padding: 0.875rem 1.5rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 0.25rem;
+  background-color: var(--primary-blue-color);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.02rem;
+  font-size: 0.875rem;
+  color: var(--primary-white-color);
+  display: flex;
+}

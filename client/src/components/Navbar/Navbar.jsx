@@ -17,6 +17,8 @@ const Navbar = () => {
 
   const { isLogged, getUserById, currentUser } = useUserStore();
 
+  const isAuth = isLogged && JSON.parse(localStorage.getItem("currentUserId"));
+
   const handleChangeLanguage = ({ countryCode }) => {
     i18n.changeLanguage(countryCode);
   };
@@ -24,7 +26,9 @@ const Navbar = () => {
   useEffect(() => {
     const userId = JSON.parse(localStorage.getItem("currentUserId"));
 
-    getUserById(userId);
+    if (userId) {
+      getUserById(userId);
+    }
   }, []);
 
   return (
@@ -45,7 +49,7 @@ const Navbar = () => {
             style={{ marginRight: "2rem" }}
           />
         </Link>
-        {isLogged ? (
+        {isAuth ? (
           <Avatar currentUser={currentUser} />
         ) : (
           <LinkButton

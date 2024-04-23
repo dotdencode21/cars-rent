@@ -7,53 +7,41 @@ export class FavoriteController {
       const { userId, carId } = req.params;
       const { isFavorite } = req.body;
 
-      if (!carId)
-        return res
-          .status(STATUS_CODE.BAD_REQUEST)
-          .json({ message: "No car id provided" });
+      const [car, user] = await Promise.all([
+        Car.findByPk(carId),
+        User.findByPk(userId),
+      ]);
 
-      const car = await Car.findByPk(carId);
-
-      if (!car)
+      if (!user || !car) {
         return res
-          .status(STATUS_CODE.NOT_FOUND)
-          .json({ message: "Car not found" });
+          .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
+          .json({ message: "Internal Server Error" });
+      }
+
+      car.isFavorite = isFavorite;
+
+      await car.save();
 
       if (isFavorite) {
-        console.log({ userId, carId });
-
         const favoriteCar = await FavoriteCar.create({ userId, carId });
 
-        console.log(favoriteCar);
-
-        if (!favoriteCar) {
-          return res
-            .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
-            .json({ message: "Internal Server Error" });
-        }
-
-        await User.update(
-          { favoriteCarId: favoriteCar.id },
-          { where: { id: userId } }
-        );
+        await user.addFavoriteCars([favoriteCar]);
 
         return res
           .status(STATUS_CODE.OK)
-          .json({ message: "Favorite status updated successfully" });
+          .json({ message: "Car successfully added to favorites" });
       }
 
-      await Promise.all([
-        FavoriteCar.destroy({ where: { carId } }),
-        User.update({ favoriteCarId: null }, { where: { id: userId } }),
-      ]);
+      await FavoriteCar.destroy({ where: { userId, carId } });
 
       return res
         .status(STATUS_CODE.OK)
-        .json({ message: "Favorite status updated successfully" });
-    } catch (e) {
+        .json({ message: "Car successfully removed from favorites" });
+    } catch (error) {
+      console.error("Error adding favorite car:", error);
       return res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
-        .json({ message: "Internal Server Error", error: e });
+        .json({ message: "Internal Server Error" });
     }
   }
 }

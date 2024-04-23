@@ -6,14 +6,17 @@ export class BookController {
     try {
       const { userId, carId } = req.params;
 
-      if (!(carId && userId))
+      if (!carId || !userId)
         return res
           .status(STATUS_CODE.BAD_REQUEST)
           .json({ message: "No car id or user id provided" });
 
-      const car = await Car.findOne({ where: { id: carId } });
+      const [car, user] = await Promise.all([
+        Car.findByPk(carId),
+        User.findByPk(userId),
+      ]);
 
-      if (!car) {
+      if (!car || !user) {
         return res
           .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
           .json({ message: "Internal Server Error" });
@@ -23,18 +26,7 @@ export class BookController {
 
       await car.save();
 
-      const bookedCar = await BookedCar.create({ carId });
-
-      if (!bookedCar) {
-        return res
-          .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
-          .json({ message: "Internal Server Error" });
-      }
-
-      await User.update(
-        { bookedCarId: bookedCar.id },
-        { where: { id: userId } }
-      );
+      await user.createBookedCar({ carId });
 
       return res
         .status(STATUS_CODE.OK)

@@ -1,0 +1,20 @@
+.booked-cars {
+  width: 100%;
+  padding: 0 4.5rem;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.booked-cars-without-content {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+}
+
+.booked-cars-without-content-title {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}

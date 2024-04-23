@@ -14,8 +14,7 @@ function App() {
   const { pathname } = useLocation();
 
   useEffect(() => {
-    const preventBodyScroll =
-      pathname.includes("/cars") || pathname.includes("/sign");
+    const preventBodyScroll = pathname.includes("/sign");
 
     document.body.style.overflowY = preventBodyScroll ? "hidden" : "auto";
     preventBodyScroll && window.scrollTo({ top: 0 });

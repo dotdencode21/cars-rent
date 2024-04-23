@@ -1,5 +1,5 @@
 export const getUserInitials = (username) => {
-  if (!username.length) return "";
+  if (!username?.length) return "";
 
   const [firstName, lastName] = username?.split(" ");
 

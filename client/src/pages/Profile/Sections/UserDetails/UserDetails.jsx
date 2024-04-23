@@ -20,7 +20,10 @@ const UserDetailsSection = () => {
       </div>
       <div className={styles["user-details-section-item"]}>
         <IoMail color="var(--primary-green-color)" size="1.25rem" />
-        <span className={styles["user-details-section-item-label"]}>
+        <span
+          className={styles["user-details-section-item-label"]}
+          data-email-field
+        >
           {currentUser?.email || "Not specified"}
         </span>
       </div>

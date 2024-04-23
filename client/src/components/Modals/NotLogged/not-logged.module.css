@@ -1,0 +1,16 @@
+.not-logged {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.5rem;
+  padding: 2rem 0;
+}
+
+.not-logged-title {
+  font-weight: 500;
+  font-size: 1.125rem;
+  text-align: center;
+  color: var(--primary-black-color);
+}

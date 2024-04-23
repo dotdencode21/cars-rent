@@ -15,19 +15,11 @@ const Associations = dbService.define(
     userId: {
       type: DataTypes.UUID,
       allowNull: true,
-      references: {
-        model: User,
-        key: "id",
-      },
       field: "user_id",
     },
     carId: {
       type: DataTypes.UUID,
       allowNull: true,
-      references: {
-        model: Car,
-        key: "id",
-      },
       field: "car_id",
     },
   },

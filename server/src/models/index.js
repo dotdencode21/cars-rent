@@ -4,13 +4,25 @@ import { Car } from "./car.model.js";
 import { FavoriteCar } from "./favoriteCar.model.js";
 import { BookedCar } from "./bookedCar.model.js";
 
-BookedCar.hasOne(User, { foreignKey: "bookedCarId", as: "bookedCar" });
-User.belongsTo(BookedCar, { foreignKey: "bookedCarId", as: "bookedCar" });
-
-FavoriteCar.hasMany(User, { foreignKey: "favoriteCarId", as: "favoriteCars" });
-User.belongsTo(FavoriteCar, {
+User.hasMany(FavoriteCar, { foreignKey: "favoriteCarId", as: "favoriteCars" });
+FavoriteCar.belongsTo(User, {
   foreignKey: "favoriteCarId",
   as: "favoriteCars",
+});
+
+User.belongsTo(BookedCar, {
+  foreignKey: "bookedCarId",
+  as: "bookedCar",
+});
+
+Associations.hasMany(User, { foreignKey: "userId" });
+User.belongsTo(Associations, {
+  foreignKey: "userId",
+});
+
+Associations.hasMany(Car, { foreignKey: "carId" });
+Car.belongsTo(Associations, {
+  foreignKey: "carId",
 });
 
 export { Car, User, BookedCar, Associations, FavoriteCar };

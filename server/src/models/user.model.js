@@ -1,7 +1,5 @@
 import { DataTypes } from "sequelize";
 import { dbService } from "../services/db.service.js";
-import { BookedCar } from "./bookedCar.model.js";
-import { FavoriteCar } from "./favoriteCar.model.js";
 
 const User = dbService.define(
   "User",
@@ -71,24 +69,6 @@ const User = dbService.define(
       type: DataTypes.BOOLEAN,
       defaultValue: false,
       field: "is_admin",
-    },
-    bookedCarId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: BookedCar,
-        key: "id",
-      },
-      field: "booked_car_id",
-    },
-    favoriteCarId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: FavoriteCar,
-        key: "id",
-      },
-      field: "favorite_car_id",
     },
   },
   { tableName: "users", updatedAt: false }

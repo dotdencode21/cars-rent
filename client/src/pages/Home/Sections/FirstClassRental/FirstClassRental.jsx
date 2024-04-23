@@ -6,6 +6,7 @@ import styles from "./first-class-rental.module.css";
 import { carsData } from "@/mock/cars.data";
 import CarCard from "@/components/Cards/Car/CarCard";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 const FirstClassRentalSection = () => {
   const [cars, setCars] = useState(() => carsData);
@@ -17,24 +18,26 @@ const FirstClassRentalSection = () => {
       opacity: 0,
       y: 125,
       transition: {
-        duration: 0.75
-      }
+        duration: 0.75,
+      },
     },
     visible: {
       opacity: 1,
       y: 0,
-      transition: { 
+      transition: {
         type: "spring",
         bounce: 0.5,
-        duration: 1.25
-      }
-    }
-  }
+        duration: 1.25,
+      },
+    },
+  };
 
   const handleMarkAsFavorite = (carId) => {
-    return setCars(prev => prev.map(car => {
-      return car.id === carId ? { ...car, isFavorite: !car.isFavorite } : car;
-    }));
+    return setCars((prev) =>
+      prev.map((car) => {
+        return car.id === carId ? { ...car, isFavorite: !car.isFavorite } : car;
+      })
+    );
   };
 
   return (
@@ -49,20 +52,22 @@ const FirstClassRentalSection = () => {
         variants={variants}
         className={styles["first-class-rental-section-cards"]}
       >
-        {
-          cars.map(car => {
-            return (
-              <CarCard 
-                key={car.id}
-                {...car}
-                onClick={handleMarkAsFavorite}
-              />
-            )
-          })
-        }
+        {cars.map((car) => {
+          return (
+            <CarCard key={car.id} {...car} onClick={handleMarkAsFavorite} />
+          );
+        })}
+        <div className={styles["first-class-rental-section-cards-mask"]}>
+          <Link
+            to="/cars"
+            className={styles["first-class-rental-section-cards-mask-link"]}
+          >
+            Overview cars
+          </Link>
+        </div>
       </motion.div>
     </div>
-  )
+  );
 };
 
 export default FirstClassRentalSection;

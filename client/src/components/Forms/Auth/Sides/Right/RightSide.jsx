@@ -27,13 +27,10 @@ const RightSide = ({ isSignUpForm }) => {
   const { getUserViaFacebook } = useUserStore();
 
   const navigate = useNavigate();
-  const [query, setQuery] = useSearchParams();
+  const [query] = useSearchParams();
 
-  const [, setAccessToken] = useLocalStorage("access_token", "");
-  const [currentUserId, setCurrentUserId] = useLocalStorage(
-    "currentUserId",
-    ""
-  );
+  const [, setAccessToken] = useLocalStorage("access_token");
+  const [, setCurrentUserId] = useLocalStorage("currentUserId");
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
@@ -58,26 +55,34 @@ const RightSide = ({ isSignUpForm }) => {
         };
 
         signUp(data).then(() => {
-          const { email, type } = data;
+          const { email } = data;
 
-          signIn({ email, type }).then((userId) => {
-            setCurrentUserId(userId);
-            navigate("/");
+          signIn({ email, type: "facebook" }).then((userId) => {
+            localStorage.setItem("currentUserId", JSON.stringify(userId));
+            if (userId) navigate("/");
           });
         });
       });
     }
   }, [query]);
 
-  // useEffect(() => {
-  //   if (currentUserId && currentUserId.length) navigate("/");
-  // }, [currentUserId.length]);
-
   useEffect(() => {
     resetForm();
   }, [navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
+
+  const facebookOAuthLink = (() => {
+    const baseFacebookUrl = "https://www.facebook.com/v19.0/dialog/oauth";
+    const clientId = import.meta.env.VITE_FACEBOOK_CLIENT_ID;
+    const redirectUri = "http://localhost:5173/sign-in";
+    const state = "st=state123abc,ds=123456789";
+    const scope = encodeURIComponent(
+      "email,user_location,user_gender,user_birthday,user_hometown,user_age_range"
+    );
+
+    return `${baseFacebookUrl}?client_id=${clientId}&redirect_uri=${redirectUri}&state=${state}&scope=${scope}`;
+  })();
 
   const handleShowPassword = (e) => {
     e.preventDefault();
@@ -92,7 +97,7 @@ const RightSide = ({ isSignUpForm }) => {
   };
 
   const handleSignUp = () => {
-    signUp({ ...values, type: "basic" }).then((accessToken) => {
+    signUp({ ...values }).then((accessToken) => {
       setAccessToken(accessToken);
 
       if (accessToken) navigate("/sign-in");
@@ -148,9 +153,7 @@ const RightSide = ({ isSignUpForm }) => {
           }
         />
         <Link
-          to={`https://www.facebook.com/v19.0/dialog/oauth?client_id=828489919109940&redirect_uri=http://localhost:5173/sign-in&state=st=state123abc,ds=123456789&scope=${encodeURIComponent(
-            "email,user_location,user_gender,user_birthday,user_hometown,user_age_range"
-          )}`}
+          to={facebookOAuthLink}
           className={styles["right-side-actions-facebook-link"]}
           target="_self"
         >

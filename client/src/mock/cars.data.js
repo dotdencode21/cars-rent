@@ -10,62 +10,62 @@ import mgImg from "@/assets/imgs/cars/mg.jpg";
 export const carsData = [
   {
     id: uuidv4(),
-    imgSrc: audiImg,
+    img: audiImg,
     name: "Audi",
     type: "Sedan",
-    price: 125,
+    pricePerHour: 125,
     brand: "Audi",
     fuel: "Gasoline",
-    isFavorite: false
+    isFavorite: false,
   },
   {
     id: uuidv4(),
-    imgSrc: porscheImg,
+    img: porscheImg,
     name: "Porsche",
     type: "Sportcar",
-    price: 150,
+    pricePerHour: 150,
     brand: "Porsche",
     fuel: "Diesel",
-    isFavorite: false
+    isFavorite: false,
   },
   {
     id: uuidv4(),
-    imgSrc: teslaImg,
+    img: teslaImg,
     name: "Tesla",
     type: "Sedan",
-    price: 130,
+    pricePerHour: 130,
     brand: "Tesla",
     fuel: "Electric",
-    isFavorite: false
+    isFavorite: false,
   },
   {
     id: uuidv4(),
-    imgSrc: mercedesImg,
+    img: mercedesImg,
     name: "Mercedes-Benz",
     type: "Crossover",
-    price: 170,
+    pricePerHour: 170,
     brand: "Mercedes",
     fuel: "Gasoline",
-    isFavorite: false
+    isFavorite: false,
   },
   {
     id: uuidv4(),
-    imgSrc: miniImg,
+    img: miniImg,
     name: "Mini",
     type: "Hatchback",
-    price: 110,
+    pricePerHour: 110,
     brand: "Mini",
     fuel: "Diesel",
-    isFavorite: false
+    isFavorite: false,
   },
   {
     id: uuidv4(),
-    imgSrc: mgImg,
+    img: mgImg,
     name: "MG",
     type: "MPV",
-    price: 160,
+    pricePerHour: 160,
     brand: "MG",
     fuel: "Gasoline",
-    isFavorite: false
-  }
+    isFavorite: false,
+  },
 ];

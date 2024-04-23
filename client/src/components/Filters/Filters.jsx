@@ -39,6 +39,22 @@ const Filters = () => {
     }
   };
 
+  const handleResetFilters = () => {
+    setFilters({
+      brand: "",
+      bodyType: "",
+      fuel: "Gazoline",
+      gearboxType: "Automatic",
+      amountOfBooking: "oneToFive",
+      isBooked: false,
+    });
+    setRating({
+      onClickValue: null,
+      onHoverValue: null,
+    });
+    setPrice([100, 8500]);
+  };
+
   const handleApplyFilters = () => {
     const extendedFilters = {
       ...filters,
@@ -359,12 +375,14 @@ const Filters = () => {
           onChange={(e) =>
             setFilters((prev) => ({ ...prev, isBooked: e.target.checked }))
           }
+          checked={filters.isBooked}
           className={styles["filters-item-booked-input"]}
         />
       </div>
       <div className={styles["filters-item-actions"]}>
         <BaseButton
           className={styles["filters-item-actions-reset-btn"]}
+          onClick={handleResetFilters}
           label="Reset filters"
         />
         <BaseButton

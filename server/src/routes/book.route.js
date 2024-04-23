@@ -3,7 +3,6 @@ import { BookController } from "../controllers/book.controller.js";
 
 const bookRouter = new Router();
 
-bookRouter
-  .post("/:userId/:carId", BookController.bookCarByUserIdAndCarId);
+bookRouter.post("/:userId/:carId", BookController.bookCarByUserIdAndCarId);
 
 export { bookRouter };

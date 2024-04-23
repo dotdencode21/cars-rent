@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { dbService } from "../services/db.service.js";
-import { Car } from "./car.model.js";
 import dayjs from "dayjs";
 
 const BookedCar = dbService.define(
@@ -37,10 +36,6 @@ const BookedCar = dbService.define(
     carId: {
       type: DataTypes.UUID,
       allowNull: true,
-      references: {
-        model: Car,
-        key: "id",
-      },
       field: "car_id",
     },
   },

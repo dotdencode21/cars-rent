@@ -1,7 +1,19 @@
 import { getUserInitials } from "@/utils/user";
 import styles from "./account.module.css";
 
+import { FiLogOut } from "react-icons/fi";
+import { useNavigate } from "react-router-dom";
+
 const AccountSection = ({ currentUser }) => {
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("access_token");
+    localStorage.removeItem("currentUserId");
+
+    navigate("/");
+  };
+
   return (
     <div className={styles["account"]}>
       <div className={styles["account-user"]}>
@@ -22,7 +34,10 @@ const AccountSection = ({ currentUser }) => {
           </span>
         </div>
       </div>
-      buttons
+      <button className={styles["account-logout-btn"]} onClick={handleLogout}>
+        <FiLogOut color="var(--primary-white-color)" size="1.25rem" />
+        Log Out
+      </button>
     </div>
   );
 };

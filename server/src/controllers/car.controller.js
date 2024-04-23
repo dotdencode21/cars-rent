@@ -1,9 +1,5 @@
 import { STATUS_CODE } from "../constants/statusCodes.js";
-import { BookedCar, Car, FavoriteCar } from "../models/index.js";
-
-const a = (c, b) => {
-  return c + b;
-};
+import { Car } from "../models/index.js";
 
 export class CarController {
   static async getCars(req, res) {
@@ -11,7 +7,7 @@ export class CarController {
 
     try {
       const cars = await Car.findAll({
-        include: [{ model: BookedCar, as: "bookedCar" }],
+        // include: [{ model: BookedCar, as: "bookedCar" }],
         // where: {
         //   brand: isFilters && req.query.brand,
         //   fuel: isFilters && req.query.fuel,
@@ -101,7 +97,9 @@ export class CarController {
 
       const car = await Car.create({ ...req.body });
 
-      return res.status(STATUS_CODE.CREATED).json({ car });
+      const { carId, ...rest } = car.dataValues;
+
+      return res.status(STATUS_CODE.CREATED).json({ car: rest });
     } catch (e) {
       return res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)

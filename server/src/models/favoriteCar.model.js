@@ -1,6 +1,5 @@
 import { DataTypes } from "sequelize";
 import { dbService } from "../services/db.service.js";
-import { Car } from "./car.model.js";
 
 const FavoriteCar = dbService.define(
   "FavoriteCar",
@@ -11,23 +10,15 @@ const FavoriteCar = dbService.define(
       defaultValue: DataTypes.UUIDV4,
       autoIncrement: false,
     },
-    carId: {
-      type: DataTypes.UUID,
-      allowNull: true,
-      references: {
-        model: Car,
-        key: "id",
-      },
-      field: "car_id",
-    },
     userId: {
       type: DataTypes.UUID,
       allowNull: true,
-      references: {
-        model: "users",
-        key: "id",
-      },
       field: "user_id",
+    },
+    carId: {
+      type: DataTypes.UUID,
+      allowNull: true,
+      field: "car_id",
     },
   },
   { tableName: "favorite_cars", updatedAt: false }

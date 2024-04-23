@@ -33,15 +33,15 @@ export class UserController {
           {
             model: BookedCar,
             as: "bookedCar",
-            attributes: { exclude: ["carId"] },
           },
           {
             model: FavoriteCar,
             as: "favoriteCars",
+            attributes: { exclude: ["favoriteCarId"] },
           },
         ],
         attributes: {
-          exclude: ["password", "bookedCarId", "favoriteCarId"],
+          exclude: ["password", "bookedCarId", "userId"],
         },
       });
 
@@ -55,7 +55,7 @@ export class UserController {
     } catch (e) {
       return res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
-        .json({ message: "User not found" });
+        .json({ message: "Internal Server Error" });
     }
   }
 

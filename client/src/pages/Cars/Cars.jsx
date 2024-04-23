@@ -1,121 +1,24 @@
 import Filters from "@/components/Filters/Filters";
 import styles from "./cars-page.module.css";
+import { useEffect } from "react";
+import { useCarStore } from "@/store/car.store";
+import CarCard from "@/components/Cards/Car/CarCard";
 
 const CarsPage = () => {
+  const { getCars, cars } = useCarStore();
+
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+    getCars();
+  }, []);
+
   return (
     <div className={styles["cars-page"]}>
       <Filters />
       <div className={styles["cars-page-grid"]}>
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>{" "}
-        <div
-          style={{ width: "100%", height: "300px", border: "1px solid red" }}
-        >
-          ssss
-        </div>
+        {cars.map((car) => {
+          return <CarCard key={car.id} {...car} />;
+        })}
       </div>
     </div>
   );

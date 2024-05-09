@@ -27,7 +27,7 @@ export const uaLang = {
       "Card cars crossover type": "Кросовер",
       "Card cars hatchback type": "Хечбек",
       "Card cars mpv type": "БТЗ",
-      "Card cars price postfix": "день",
+      "Card cars price postfix": "год.",
       "Card cars electric fuel": "Електрика",
       "Card cars diesel fuel": "Дізель",
       "Card cars gasoline fuel": "Бензин",
@@ -146,11 +146,13 @@ export const uaLang = {
       "Circle chart component professionalism title": "Професіоналізм",
 
       "Progress chart component leadership title": "Лідерство",
-      "Progress chart component customer service title": "Обслуговування клієнтів",
+      "Progress chart component customer service title":
+        "Обслуговування клієнтів",
       "Progress chart component communication title": "Спілкування",
 
       "Timeline component first title": "Створення Cars Rent",
-      "Timeline component second title": "Відкриття офісів в Іллінойсі та Флориді",
+      "Timeline component second title":
+        "Відкриття офісів в Іллінойсі та Флориді",
       "Timeline component third title": "Залучення нових партнерів",
       "Timeline component fourth title": "Здобуття національного визнання",
     },

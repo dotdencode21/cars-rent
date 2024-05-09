@@ -1,0 +1,39 @@
+.actions {
+  width: 100%;
+  padding: 0 10rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.25rem;
+}
+
+.actions-btn {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  gap: 1.25rem;
+  border-radius: 0.25rem;
+  color: var(--primary-white-color);
+  font-weight: 600;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+}
+
+.actions-btn span {
+  padding-top: 0.125rem;
+}
+
+.actions-btn_create {
+  background-color: #3e31ae;
+}
+
+.actions-btn_update {
+  background-color: var(--primary-orange-color);
+}
+
+.actions-btn_delete {
+  background-color: var(--primary-red-color);
+}

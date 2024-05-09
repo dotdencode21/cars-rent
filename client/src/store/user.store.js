@@ -6,6 +6,7 @@ export const useUserStore = create((set) => ({
   users: [],
   currentUser: null,
   isLogged: false,
+  isAdmin: false,
   error: null,
 
   async getUsers() {
@@ -26,6 +27,7 @@ export const useUserStore = create((set) => ({
       set({
         currentUser: isUser ? user : null,
         isLogged: isUser,
+        isAdmin: isUser && user.isAdmin,
       });
     } catch (e) {
       set({ error: e });

@@ -27,7 +27,7 @@ export const enLang = {
       "Card cars crossover type": "Crossover",
       "Card cars hatchback type": "Hatchback",
       "Card cars mpv type": "MPV",
-      "Card cars price postfix": "day",
+      "Card cars price postfix": "hour",
       "Card cars electric fuel": "Electric",
       "Card cars diesel fuel": "Diesel",
       "Card cars gasoline fuel": "Gasoline",

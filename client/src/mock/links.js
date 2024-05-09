@@ -26,4 +26,10 @@ export const sidebarLinks = [
     name: "recommendations",
     to: "/profile/recommendations",
   },
+  {
+    id: uuidv4(),
+    title: "Actions",
+    name: "actions",
+    to: "/profile/actions",
+  },
 ];

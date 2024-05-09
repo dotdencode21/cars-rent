@@ -34,7 +34,13 @@ const CarCard = ({
   return (
     <div className={styles["car-card"]} onClick={onClick}>
       <div
-        style={{ backgroundImage: `url(${img})` }}
+        style={{
+          backgroundImage: `url(${
+            img
+              ? img
+              : "https://archive.org/download/placeholder-image/placeholder-image.jpg"
+          })`,
+        }}
         className={styles["car-card-img"]}
       >
         <div className={styles["car-card-img-rating"]}>
@@ -50,7 +56,7 @@ const CarCard = ({
             {name}
           </span>
           <span className={styles["car-card-content-heading-type"]}>
-            {t(CAR_TYPE[type])}
+            {t(CAR_TYPE[type]) ? t(CAR_TYPE[type]) : type}
           </span>
         </div>
         <div className={styles["car-card-content-details"]}>

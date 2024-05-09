@@ -10,6 +10,7 @@ import ProfilePage from "@/pages/Profile/Profile";
 import UserDetailsSection from "@/pages/Profile/Sections/UserDetails/UserDetails";
 import BookedCarsSection from "@/pages/Profile/Sections/BookedCars/BookedCars";
 import RecommendationsSection from "@/pages/Profile/Sections/Recommendations/Recommendations";
+import ActionsSection from "@/pages/Profile/Sections/Actions/Actions";
 
 export const router = createBrowserRouter([
   {
@@ -58,6 +59,10 @@ export const router = createBrowserRouter([
           {
             path: "/profile/recommendations",
             element: <RecommendationsSection />,
+          },
+          {
+            path: "/profile/actions",
+            element: <ActionsSection />,
           },
         ],
       },

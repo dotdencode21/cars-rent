@@ -19,6 +19,8 @@ export class CarService {
         data: { car },
       } = await axiosInstance.post("/cars/create", payload);
 
+      console.log(car);
+
       return car;
     } catch (e) {
       throw e;

@@ -1,0 +1,127 @@
+.create-car-form {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 1.125rem;
+  padding: 1rem 2rem;
+}
+
+.create-car-form_done {
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+  padding: 5rem 2rem;
+}
+
+.create-car-form_done-wrapper {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 1.125rem;
+}
+
+.create-car-form_done-wrapper-label {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.create-car-form-img {
+  width: 100%;
+  height: 17.1875rem;
+  object-fit: cover;
+  border-radius: 0.25rem;
+  cursor: pointer;
+}
+
+.create-car-form-input-file {
+  width: 100%;
+  height: 17.1875rem;
+  border-radius: 0.25rem;
+  padding: 2rem 0;
+  background-color: rgba(92, 151, 217, 0.5);
+  border: 0.125rem dotted var(--primary-blue-color);
+  position: relative;
+  cursor: pointer;
+}
+
+.create-car-form-input-file-content {
+  position: absolute;
+  top: 50%;
+  left: 0;
+  transform: translateY(-50%);
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+}
+
+.create-car-form-input-file-content-label {
+  font-weight: 600;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.create-car-form-name-and-type,
+.create-car-form-brand-and-price {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  column-gap: 1.5rem;
+}
+
+.create-car-form-brand-and-price-wrapper {
+  display: flex;
+  justify-content: space-between;
+  gap: 1rem;
+}
+
+.create-car-form-brand-and-price-wrapper-tip {
+  font-weight: 500;
+  font-size: 0.875rem;
+  align-self: flex-end;
+  color: var(--secondary-grey-color);
+}
+
+.create-car-form-fuel {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.create-car-form-fuel-title {
+  font-weight: 400;
+  font-size: 0.875rem;
+  color: rgba(51, 51, 51, 0.75);
+}
+
+.create-car-form-fuel-inputs {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.create-car-form-fuel-inputs-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 1rem;
+  font-weight: 400;
+  color: var(--primary-black-color);
+  cursor: pointer;
+}
+
+.create-car-form-fuel-inputs-item-radio {
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--primary-blue-color);
+}

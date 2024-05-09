@@ -2,7 +2,7 @@
   width: 100%;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
-  grid-template-rows: repeat(2, 4.5rem);
+  grid-template-rows: repeat(3, 4.5rem);
   gap: 1rem;
   padding: 0 4.5rem;
 }

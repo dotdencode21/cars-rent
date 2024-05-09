@@ -12,6 +12,7 @@ const BaseModal = ({
   withActions = true,
   maxWidth = 0,
   className = "",
+  disabled = false,
   onOutsideClick = () => {},
   onClose = () => {},
   onSubmit = () => {},
@@ -56,6 +57,7 @@ const BaseModal = ({
                 <BaseButton
                   onClick={onSubmit}
                   label={submitBtnText}
+                  disabled={disabled}
                   className={cn(
                     styles["base-modal-body-footer-btn"],
                     styles["submit-btn"]

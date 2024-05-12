@@ -1,67 +1,76 @@
 import { create } from "zustand";
-import axios from "axios";
+import { CityService } from "@/services/city.service";
 
 export const useCityStore = create((set) => ({
   cities: [],
 
   getCities: async () => {
     try {
-      // const {
-      //   data: { data: countries },
-      // } = await axios.get("https://countriesnow.space/api/v0.1/countries");
+      const { data } = await CityService.getCitites();
 
-      // const [allStates, allCities] = await Promise.all([
-      //   axios.post("https://countriesnow.space/api/v0.1/countries/cities", {
-      //     country: "Ukraine",
-      //   }),
-      //   axios.post(
-      //     "https://countriesnow.space/api/v0.1/countries/population/cities/filter",
-      //     { country: "Ukraine" }
-      //   ),
-      // ]);
-
-      // const { data } = await axios.get(
-        // "https://restcountries.com/v3.1/name/ukraine?fullText=true"
-        // {
-        //   country: "Nigeria",
-        //   state: "Edo",
-        // }
-        // {
-        //   params: {
-        //     country: "Ukraine",
-        //     state: "Kyiv",
-        //   },
-        // }
-      // );
-
-      // console.log(data);
-
-      // const {
-      //   data: { data: states },
-      // } = allStates;
-      // const {
-      //   data: { data: cities },
-      // } = allCities;
-
-      // console.log(states);
-      // console.log(cities);
-
-      // const a = states.map((state) => ({
-      //   name: state,
-      //   type: cities.map(({ city }) => city).includes(state)
-      //     ? "city"
-      //     : "village",
-      // }));
-
-      // console.log(a);
-
-      // console.log(countries);
-
-      // set({
-      //   cities: countries
-      //     ? countries.filter((item) => item.country === "Ukraine")[0].cities
-      //     : [],
-      // });
+      set({
+        cities: data
+          .filter(
+            (city) =>
+              !city.includes("Raion") &&
+              !city.includes("Mis'ka Rada") &&
+              !city.includes("Mis’krada") &&
+              !city.includes("Mis’ka Rada")
+          )
+          .map((city) => {
+            return {
+              name: city,
+              type: [
+                "Kyiv",
+                "Kharkiv",
+                "Odessa",
+                "Dnipro",
+                "Donetsk",
+                "Lviv",
+                "Zaporozhe",
+                "Sevastopol",
+                "Mariupol",
+                "Lugansk",
+                "Vinnytsya",
+                "Makiyivka",
+                "Simferopol",
+                "Chernihiv",
+                "Poltava",
+                "Kherson",
+                "Khmelnytskyi",
+                "Cherkasy",
+                "Chernivtsi",
+                "Zhytomyr",
+                "Sumy",
+                "Rivne",
+                "Gorlovka",
+                "Ivano-Frankivsk",
+                "Ternopil",
+                "Kropyvnytskyi",
+                "Lutsk",
+                "Kremenchuk",
+                "Bila Tserkva",
+                "Kerch",
+                "Melitopol",
+                "Kramatorsk",
+                "Uzhgorod",
+                "Brovary",
+                "Yevpatoriya",
+                "Berdyansk",
+                "Alchevs’k",
+                "Nikopol",
+                "Slavyansk",
+                "Pavlograd",
+                "Lisichansk",
+                "Yenakiyeve",
+                "Aleksandriya",
+                "Konstantinovka",
+              ].includes(city)
+                ? "city"
+                : "village",
+            };
+          }),
+      });
     } catch (e) {
       throw e;
     }

@@ -17,7 +17,7 @@ const UserDetailsModal = ({ open, onClose }) => {
   const { cities, getCities } = useCityStore();
   const { updateUserById } = useUserStore();
 
-  const { errors, values, handleChange, resetForm } = useFormik({
+  const { errors, values, handleChange, resetForm, setFieldValue } = useFormik({
     initialValues: {
       firstName: "",
       lastName: "",
@@ -27,8 +27,16 @@ const UserDetailsModal = ({ open, onClose }) => {
     validationSchema: userSchema,
   });
 
+  const disableSubmit = [
+    values.firstName,
+    values.lastName,
+    values.location,
+  ].some((value) => !value.length);
+
   useEffect(() => {
     getCities();
+
+    return () => resetForm();
   }, []);
 
   const handleSendData = () => {
@@ -43,6 +51,8 @@ const UserDetailsModal = ({ open, onClose }) => {
     }
   };
 
+  const handleCitySelect = (city) => setFieldValue("location", city);
+
   const handleGender = ({ value }) => setGender(value);
 
   return (
@@ -55,6 +65,7 @@ const UserDetailsModal = ({ open, onClose }) => {
       cancelBtnText="Cancel"
       onCancel={onClose}
       onSubmit={handleSendData}
+      disabled={disableSubmit}
     >
       <div className={styles["user-details"]}>
         <UserDetailsForm
@@ -63,6 +74,7 @@ const UserDetailsModal = ({ open, onClose }) => {
           handleChange={handleChange}
           onClick={handleGender}
           cities={cities}
+          onCitySelect={handleCitySelect}
         />
       </div>
     </BaseModal>

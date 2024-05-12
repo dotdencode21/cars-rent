@@ -8,6 +8,7 @@ const UserDetailsForm = ({
   values = null,
   handleChange = () => {},
   onClick = () => {},
+  onCitySelect,
   cities = [],
 }) => {
   const [leftGap, setLeftGap] = useState(0);
@@ -100,6 +101,35 @@ const UserDetailsForm = ({
           error={errors["location"]}
           labelText="Location"
         />
+        {!!values.location.length &&
+          !cities.filter(
+            (city) => city.name.toLowerCase() === values.location.toLowerCase()
+          ).length &&
+          !!cities.filter((city) =>
+            city.name.toLowerCase().includes(values.location.toLowerCase())
+          ).length && (
+            <div className={styles["user-details-form-location-cities"]}>
+              {cities
+                .filter((city) =>
+                  city.name
+                    .toLowerCase()
+                    .includes(values.location.toLowerCase())
+                )
+                .map((city, cityIndex) => {
+                  return (
+                    <button
+                      className={
+                        styles["user-details-form-location-cities-item"]
+                      }
+                      key={cityIndex}
+                      onClick={() => onCitySelect(city.name)}
+                    >
+                      {city.name}
+                    </button>
+                  );
+                })}
+            </div>
+          )}
       </div>
     </div>
   );

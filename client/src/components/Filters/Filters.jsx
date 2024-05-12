@@ -22,7 +22,6 @@ const Filters = () => {
     fuel: "Gazoline",
     gearboxType: "Automatic",
     amountOfBooking: "oneToFive",
-    isBooked: false,
   });
 
   const handleChange = (values) => setPrice(values);
@@ -366,18 +365,6 @@ const Filters = () => {
             10+
           </label>
         </div>
-      </div>
-      <div className={styles["filters-item"]}>
-        <span className={styles["filters-item-title"]}>Show booked?</span>
-        <input
-          type="checkbox"
-          value={filters.isBooked}
-          onChange={(e) =>
-            setFilters((prev) => ({ ...prev, isBooked: e.target.checked }))
-          }
-          checked={filters.isBooked}
-          className={styles["filters-item-booked-input"]}
-        />
       </div>
       <div className={styles["filters-item-actions"]}>
         <BaseButton

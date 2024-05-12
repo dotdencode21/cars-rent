@@ -1,0 +1,48 @@
+.favorite-cars-page {
+  width: 100%;
+  height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  padding: 3.125rem 4.6875rem;
+}
+
+.favorite-cars-page-amount {
+  width: 100%;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 1.25rem;
+  border-bottom: 0.0625rem solid var(--border-secondary-gray-color);
+}
+
+.favorite-cars-page-amount-label {
+  font-weight: 500;
+  font-size: 1rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.favorite-cars-page-empty {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.favorite-cars-page-empty {
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
+.favorite-cars-page-list {
+  padding-top: 1.25rem;
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 1rem;
+}

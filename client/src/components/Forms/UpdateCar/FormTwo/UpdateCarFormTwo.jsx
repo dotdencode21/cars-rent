@@ -1,24 +1,24 @@
 import { useFormik } from "formik";
-import styles from "./create-car-form.module.css";
+import styles from "./update-car-form-two.module.css";
 import { createCarSchema } from "@/validation/schemas/createCar.schema";
 import { useEffect, useState } from "react";
 import { convertToBase64 } from "@/utils/file";
 import { MdOutlineFileUpload } from "react-icons/md";
 import BaseInput from "@/components/Inputs/BaseInput/BaseInput";
 
-const CreateCarForm = ({ onChangeValues }) => {
-  const [carImage, setCarImage] = useState("");
+const UpdateCarFormTwo = ({ onChangeValues, currentCar }) => {
+  const [carImage, setCarImage] = useState(currentCar.img);
   const [carFuelAndGearboxValues, setCarFuelAndGearboxValues] = useState({
-    fuel: "Gasoline",
-    gearboxType: "Mechanics",
+    fuel: currentCar.fuel,
+    gearboxType: currentCar.gearboxType,
   });
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
-      name: "",
-      type: "",
-      brand: "",
-      pricePerHour: "",
+      name: currentCar.name,
+      type: currentCar.type,
+      brand: currentCar.brand,
+      pricePerHour: currentCar.pricePerHour,
     },
     validationSchema: createCarSchema,
   });
@@ -46,25 +46,25 @@ const CreateCarForm = ({ onChangeValues }) => {
   };
 
   return (
-    <form className={styles["create-car-form"]}>
+    <form className={styles["update-car-form-two"]}>
       {carImage ? (
         <img
           src={carImage}
-          className={styles["create-car-form-img"]}
+          className={styles["update-car-form-two-img"]}
           onDoubleClick={() => setCarImage("")}
         />
       ) : (
         <label
           htmlFor="inputFile"
-          className={styles["create-car-form-input-file"]}
+          className={styles["update-car-form-two-input-file"]}
         >
-          <div className={styles["create-car-form-input-file-content"]}>
+          <div className={styles["update-car-form-two-input-file-content"]}>
             <MdOutlineFileUpload
               size="1.75rem"
               color="var(--primary-black-color)"
             />
             <span
-              className={styles["create-car-form-input-file-content-label"]}
+              className={styles["update-car-form-two-input-file-content-label"]}
             >
               Choose a file
             </span>
@@ -77,7 +77,7 @@ const CreateCarForm = ({ onChangeValues }) => {
           />
         </label>
       )}
-      <div className={styles["create-car-form-name-and-type"]}>
+      <div className={styles["update-car-form-two-name-and-type"]}>
         <BaseInput
           value={values.name}
           onChange={handleChange}
@@ -97,7 +97,7 @@ const CreateCarForm = ({ onChangeValues }) => {
           labelText="Type"
         />
       </div>
-      <div className={styles["create-car-form-brand-and-price"]}>
+      <div className={styles["update-car-form-two-brand-and-price"]}>
         <BaseInput
           value={values.brand}
           onChange={handleChange}
@@ -107,7 +107,7 @@ const CreateCarForm = ({ onChangeValues }) => {
           error={errors["brand"]}
           labelText="Brand"
         />
-        <div className={styles["create-car-form-brand-and-price-wrapper"]}>
+        <div className={styles["update-car-form-two-brand-and-price-wrapper"]}>
           <BaseInput
             value={values.pricePerHour}
             onChange={handleChange}
@@ -119,7 +119,9 @@ const CreateCarForm = ({ onChangeValues }) => {
             labelText="Price"
           />
           <span
-            className={styles["create-car-form-brand-and-price-wrapper-tip"]}
+            className={
+              styles["update-car-form-two-brand-and-price-wrapper-tip"]
+            }
             style={{
               paddingBottom:
                 errors && Object.keys(errors).length ? "1.75rem" : "0.5rem",
@@ -129,9 +131,9 @@ const CreateCarForm = ({ onChangeValues }) => {
           </span>
         </div>
       </div>
-      <div className={styles["create-car-form-fuel"]}>
-        <span className={styles["create-car-form-fuel-title"]}>Fuel</span>
-        <div className={styles["create-car-form-fuel-inputs"]}>
+      <div className={styles["update-car-form-two-fuel"]}>
+        <span className={styles["update-car-form-two-fuel-title"]}>Fuel</span>
+        <div className={styles["update-car-form-two-fuel-inputs"]}>
           {[
             {
               label: "Gasoline",
@@ -153,7 +155,7 @@ const CreateCarForm = ({ onChangeValues }) => {
             return (
               <label
                 key={itemIndex}
-                className={styles["create-car-form-fuel-inputs-item"]}
+                className={styles["update-car-form-two-fuel-inputs-item"]}
               >
                 <input
                   type="radio"
@@ -165,7 +167,9 @@ const CreateCarForm = ({ onChangeValues }) => {
                     }))
                   }
                   checked={carFuelAndGearboxValues.fuel === item.value}
-                  className={styles["create-car-form-fuel-inputs-item-radio"]}
+                  className={
+                    styles["update-car-form-two-fuel-inputs-item-radio"]
+                  }
                 />
                 {item.label}
               </label>
@@ -173,11 +177,11 @@ const CreateCarForm = ({ onChangeValues }) => {
           })}
         </div>
       </div>
-      <div className={styles["create-car-form-fuel"]}>
-        <span className={styles["create-car-form-fuel-title"]}>
+      <div className={styles["update-car-form-two-fuel"]}>
+        <span className={styles["update-car-form-two-fuel-title"]}>
           Gearbox type
         </span>
-        <div className={styles["create-car-form-fuel-inputs"]}>
+        <div className={styles["update-car-form-two-fuel-inputs"]}>
           {[
             {
               label: "Mechanics",
@@ -191,7 +195,7 @@ const CreateCarForm = ({ onChangeValues }) => {
             return (
               <label
                 key={itemIndex}
-                className={styles["create-car-form-fuel-inputs-item"]}
+                className={styles["update-car-form-two-fuel-inputs-item"]}
               >
                 <input
                   type="radio"
@@ -203,7 +207,9 @@ const CreateCarForm = ({ onChangeValues }) => {
                     }))
                   }
                   checked={carFuelAndGearboxValues.gearboxType === item.value}
-                  className={styles["create-car-form-fuel-inputs-item-radio"]}
+                  className={
+                    styles["update-car-form-two-fuel-inputs-item-radio"]
+                  }
                 />
                 {item.label}
               </label>
@@ -215,4 +221,4 @@ const CreateCarForm = ({ onChangeValues }) => {
   );
 };
 
-export default CreateCarForm;
+export default UpdateCarFormTwo;

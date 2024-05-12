@@ -36,7 +36,7 @@ const Navbar = () => {
       <LinksList links={links} />
       <div className={styles["navbar-actions"]}>
         <Link
-          to="/"
+          to="/favorite-cars"
           style={{
             display: "flex",
             justifyContent: "center",

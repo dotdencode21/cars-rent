@@ -8,15 +8,24 @@ import { LuMousePointerClick } from "react-icons/lu";
 
 import { CAR_TYPE } from "@/constants/cars";
 import { useUserStore } from "@/store/user.store";
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import NotLoggedModal from "@/components/Modals/NotLogged/NotLogged";
 
+import cn from "classnames";
+
 const CarCard = ({
+  id,
   img = "",
   name = "",
   type = "",
+  selected = false,
   pricePerHour = 0,
   isFavorite = false,
+  showFavoriteBtn = true,
+  showDetailsBtn = true,
+  rating = [1],
+  onDoubleClick = () => {},
+  onMarkAsFavorite = ({ carId, isFavorite }) => {},
   onClick,
 }) => {
   const { t } = useTranslation();
@@ -24,15 +33,34 @@ const CarCard = ({
   const { isLogged } = useUserStore();
 
   const [isOpen, setIsOpen] = useState(false);
+  const [markAsFavorite, setMarkAsFavorite] = useState(isFavorite);
 
   const isAuth = isLogged && localStorage.getItem("currentUserId");
 
-  const handleMarkAsFavorite = () => {
+  const handleMarkAsFavorite = (e) => {
+    e.stopPropagation();
+
     if (!isAuth) return setIsOpen(true);
+
+    setMarkAsFavorite((prev) => {
+      onMarkAsFavorite({ carId: id, isFavorite: !prev });
+      return !prev;
+    });
   };
 
+  const carRating = useMemo(() => {
+    return rating.reduce((accum, value) => accum + value, 0) / rating.length;
+  }, [rating]);
+
   return (
-    <div className={styles["car-card"]} onClick={onClick}>
+    <div
+      className={cn({
+        [styles["car-card"]]: true,
+        [styles["car-card_selected"]]: selected,
+      })}
+      onClick={() => onClick(id)}
+      onDoubleClick={onDoubleClick}
+    >
       <div
         style={{
           backgroundImage: `url(${
@@ -45,7 +73,7 @@ const CarCard = ({
       >
         <div className={styles["car-card-img-rating"]}>
           <span className={styles["car-card-img-rating-value"]}>
-            {(1 + Math.random() * 4).toFixed(1)}
+            {carRating}
           </span>
           <FaStar color="var(--primary-black-color)" size="1.5rem" />
         </div>
@@ -72,28 +100,36 @@ const CarCard = ({
                 {pricePerHour}/{t("Card cars price postfix")}
               </span>
             </div>
-            <div className={styles["car-card-content-details-info-item"]}>
-              <LuMousePointerClick
-                color="var(--primary-black-color)"
-                size="1.5rem"
-              />
-              <span
-                className={styles["car-card-content-details-info-item-title"]}
-              >
-                Show details
-              </span>
-            </div>
+            {showDetailsBtn && (
+              <div className={styles["car-card-content-details-info-item"]}>
+                <LuMousePointerClick
+                  color="var(--primary-black-color)"
+                  size="1.5rem"
+                />
+                <span
+                  className={styles["car-card-content-details-info-item-title"]}
+                >
+                  Show details
+                </span>
+              </div>
+            )}
           </div>
           <button
             onClick={handleMarkAsFavorite}
             className={styles["car-card-content-details-favorite-btn"]}
           >
-            {isFavorite ? (
-              <GoHeartFill
-                className={styles["car-card-content-details-icon"]}
-              />
-            ) : (
-              <GoHeart className={styles["car-card-content-details-icon"]} />
+            {showFavoriteBtn && (
+              <>
+                {markAsFavorite ? (
+                  <GoHeartFill
+                    className={styles["car-card-content-details-icon"]}
+                  />
+                ) : (
+                  <GoHeart
+                    className={styles["car-card-content-details-icon"]}
+                  />
+                )}
+              </>
             )}
           </button>
         </div>

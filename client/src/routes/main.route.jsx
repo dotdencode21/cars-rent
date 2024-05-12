@@ -11,6 +11,7 @@ import UserDetailsSection from "@/pages/Profile/Sections/UserDetails/UserDetails
 import BookedCarsSection from "@/pages/Profile/Sections/BookedCars/BookedCars";
 import RecommendationsSection from "@/pages/Profile/Sections/Recommendations/Recommendations";
 import ActionsSection from "@/pages/Profile/Sections/Actions/Actions";
+import FavoriteCarsPage from "@/pages/FavoriteCars/FavoriteCars";
 
 export const router = createBrowserRouter([
   {
@@ -43,6 +44,10 @@ export const router = createBrowserRouter([
       {
         path: "/sign-up",
         element: <AuthForm authType="signUp" />,
+      },
+      {
+        path: "/favorite-cars",
+        element: <FavoriteCarsPage />,
       },
       {
         path: "/profile",

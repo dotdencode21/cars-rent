@@ -15,14 +15,29 @@ const ActionsSection = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [type, setType] = useState("");
   const [values, setValues] = useState(null);
+  const [carId, setCarId] = useState("");
 
   const navigate = useNavigate();
 
-  const { createCar, isSuccessful } = useCarStore();
+  const {
+    createCar,
+    deleteCarById,
+    getCarById,
+    isSuccessful,
+    currentCar,
+    updateCarById,
+    getCars,
+  } = useCarStore();
 
   const handleOpenActionModal = (type) => {
     setIsOpen(true);
     setType(type);
+  };
+
+  const handleDelete = (carId) => setCarId(carId);
+  const handleChooseCar = (carId) => {
+    setCarId(carId);
+    getCarById(carId);
   };
 
   const handleChangeValues = (values) => setValues(values);
@@ -31,13 +46,27 @@ const ActionsSection = () => {
     if (type === "create") {
       await createCar(values);
     }
+
+    if (type === "delete") {
+      await deleteCarById(carId);
+    }
+
+    if (type === "update") {
+      await updateCarById(carId, values);
+    }
   };
+
+  const handleDoubleClick = () => setCarId("");
+
+  useEffect(() => {
+    getCars();
+  }, []);
 
   useEffect(() => {
     let timeoutId = null;
 
     if (isSuccessful) {
-      if (type === "create") {
+      if (type === "create" || type === "delete" || type === "update") {
         timeoutId = setTimeout(() => {
           navigate("/cars");
         }, 3000);
@@ -86,7 +115,12 @@ const ActionsSection = () => {
           onClose={() => setIsOpen(false)}
           onCancel={() => setIsOpen(false)}
           onChangeValues={handleChangeValues}
+          currentCar={currentCar}
+          carId={carId}
+          onDelete={handleDelete}
           onSubmit={handleSubmit}
+          onChooseCar={handleChooseCar}
+          onDoubleClick={handleDoubleClick}
         />
       )}
     </div>

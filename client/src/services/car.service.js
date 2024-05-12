@@ -13,13 +13,11 @@ export class CarService {
     }
   }
 
-  static async createCar(payload) {
+  static async getCarById(carId) {
     try {
       const {
         data: { car },
-      } = await axiosInstance.post("/cars/create", payload);
-
-      console.log(car);
+      } = await axiosInstance.get(`/cars/${carId}`);
 
       return car;
     } catch (e) {
@@ -27,16 +25,53 @@ export class CarService {
     }
   }
 
-  static async updateCar(payload) {
+  static async createCar(payload) {
     try {
-      const { carId, ...rest } = payload;
+      const {
+        data: { car },
+      } = await axiosInstance.post("/cars/create", payload);
+
+      return car;
     } catch (e) {
       throw e;
     }
   }
 
-  static async deleteCar(carId) {
+  static async updateCarById(carId, payload) {
     try {
+      const {
+        data: { car },
+      } = await axiosInstance.put(`/cars/${carId}`, payload);
+
+      return car;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async deleteCarById(carId) {
+    try {
+      const {
+        data: { message },
+      } = await axiosInstance.delete(`/cars/${carId}`);
+
+      return message;
+    } catch (e) {
+      throw e;
+    }
+  }
+
+  static async markCarAsFavorite(payload) {
+    const { userId, carId, isFavorite } = payload;
+
+    try {
+      const {
+        data: { message },
+      } = await axiosInstance.post(`/favorite/${userId}/${carId}`, {
+        isFavorite,
+      });
+
+      return message;
     } catch (e) {
       throw e;
     }

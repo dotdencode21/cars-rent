@@ -38,7 +38,6 @@ export class FavoriteController {
         .status(STATUS_CODE.OK)
         .json({ message: "Car successfully removed from favorites" });
     } catch (error) {
-      console.error("Error adding favorite car:", error);
       return res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
         .json({ message: "Internal Server Error" });

@@ -8,6 +8,6 @@ carRoute
   .get("/:carId", CarController.getCarById)
   .post("/create", CarController.createCar)
   .put("/:carId", CarController.updateCarById)
-  .delete("/:carId", CarController.deleteCarById)
+  .delete("/:carId", CarController.deleteCarById);
 
 export { carRoute };

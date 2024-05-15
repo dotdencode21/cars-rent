@@ -29,17 +29,23 @@ const CarsPage = () => {
   return (
     <div className={styles["cars-page"]}>
       <Filters />
-      <div className={styles["cars-page-grid"]}>
-        {sortedCarsByIsFavoriteField.map((car) => {
-          return (
-            <CarCard
-              key={car.id}
-              {...car}
-              onMarkAsFavorite={handleMarkAsFavorite}
-            />
-          );
-        })}
-      </div>
+      {!cars.length ? (
+        <span className={styles["cars-page-empty"]}>
+          We don't have any cars now!
+        </span>
+      ) : (
+        <div className={styles["cars-page-grid"]}>
+          {sortedCarsByIsFavoriteField.map((car) => {
+            return (
+              <CarCard
+                key={car.id}
+                {...car}
+                onMarkAsFavorite={handleMarkAsFavorite}
+              />
+            );
+          })}
+        </div>
+      )}
     </div>
   );
 };

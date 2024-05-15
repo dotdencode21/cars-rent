@@ -8,7 +8,7 @@ import { LuMousePointerClick } from "react-icons/lu";
 
 import { CAR_TYPE } from "@/constants/cars";
 import { useUserStore } from "@/store/user.store";
-import { useMemo, useState } from "react";
+import { useState } from "react";
 import NotLoggedModal from "@/components/Modals/NotLogged/NotLogged";
 
 import cn from "classnames";
@@ -23,7 +23,7 @@ const CarCard = ({
   isFavorite = false,
   showFavoriteBtn = true,
   showDetailsBtn = true,
-  rating = [1],
+  maxRating = 1,
   onDoubleClick = () => {},
   onMarkAsFavorite = ({ carId, isFavorite }) => {},
   onClick,
@@ -48,10 +48,6 @@ const CarCard = ({
     });
   };
 
-  const carRating = useMemo(() => {
-    return rating.reduce((accum, value) => accum + value, 0) / rating.length;
-  }, [rating]);
-
   return (
     <div
       className={cn({
@@ -73,7 +69,7 @@ const CarCard = ({
       >
         <div className={styles["car-card-img-rating"]}>
           <span className={styles["car-card-img-rating-value"]}>
-            {carRating}
+            {maxRating}
           </span>
           <FaStar color="var(--primary-black-color)" size="1.5rem" />
         </div>

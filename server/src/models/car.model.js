@@ -39,7 +39,7 @@ const Car = dbService.define(
     },
     amountOfBooking: {
       type: DataTypes.INTEGER,
-      defaultValue: 0,
+      defaultValue: 1,
       field: "amount_of_booking",
     },
     gearboxType: {

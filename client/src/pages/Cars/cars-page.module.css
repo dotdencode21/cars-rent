@@ -7,8 +7,20 @@
   position: relative;
 }
 
+.cars-page-empty {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-weight: 500;
+  font-size: 1.125rem;
+  color: var(--primary-black-color);
+  letter-spacing: 0.02rem;
+}
+
 .cars-page-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 27.4375rem;
   gap: 1.5rem;
 }

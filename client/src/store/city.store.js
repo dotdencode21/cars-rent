@@ -5,74 +5,70 @@ export const useCityStore = create((set) => ({
   cities: [],
 
   getCities: async () => {
-    try {
-      const { data } = await CityService.getCitites();
+    const { data } = await CityService.getCitites();
 
-      set({
-        cities: data
-          .filter(
-            (city) =>
-              !city.includes("Raion") &&
-              !city.includes("Mis'ka Rada") &&
-              !city.includes("Mis’krada") &&
-              !city.includes("Mis’ka Rada")
-          )
-          .map((city) => {
-            return {
-              name: city,
-              type: [
-                "Kyiv",
-                "Kharkiv",
-                "Odessa",
-                "Dnipro",
-                "Donetsk",
-                "Lviv",
-                "Zaporozhe",
-                "Sevastopol",
-                "Mariupol",
-                "Lugansk",
-                "Vinnytsya",
-                "Makiyivka",
-                "Simferopol",
-                "Chernihiv",
-                "Poltava",
-                "Kherson",
-                "Khmelnytskyi",
-                "Cherkasy",
-                "Chernivtsi",
-                "Zhytomyr",
-                "Sumy",
-                "Rivne",
-                "Gorlovka",
-                "Ivano-Frankivsk",
-                "Ternopil",
-                "Kropyvnytskyi",
-                "Lutsk",
-                "Kremenchuk",
-                "Bila Tserkva",
-                "Kerch",
-                "Melitopol",
-                "Kramatorsk",
-                "Uzhgorod",
-                "Brovary",
-                "Yevpatoriya",
-                "Berdyansk",
-                "Alchevs’k",
-                "Nikopol",
-                "Slavyansk",
-                "Pavlograd",
-                "Lisichansk",
-                "Yenakiyeve",
-                "Aleksandriya",
-                "Konstantinovka",
-              ].includes(city)
-                ? "city"
-                : "village",
-            };
-          }),
-      });
-    } catch (e) {
-      throw e;
-    }
+    set({
+      cities: data
+        .filter(
+          (city) =>
+            !city.includes("Raion") &&
+            !city.includes("Mis'ka Rada") &&
+            !city.includes("Mis’krada") &&
+            !city.includes("Mis’ka Rada")
+        )
+        .map((city) => {
+          return {
+            name: city,
+            type: [
+              "Kyiv",
+              "Kharkiv",
+              "Odessa",
+              "Dnipro",
+              "Donetsk",
+              "Lviv",
+              "Zaporozhe",
+              "Sevastopol",
+              "Mariupol",
+              "Lugansk",
+              "Vinnytsya",
+              "Makiyivka",
+              "Simferopol",
+              "Chernihiv",
+              "Poltava",
+              "Kherson",
+              "Khmelnytskyi",
+              "Cherkasy",
+              "Chernivtsi",
+              "Zhytomyr",
+              "Sumy",
+              "Rivne",
+              "Gorlovka",
+              "Ivano-Frankivsk",
+              "Ternopil",
+              "Kropyvnytskyi",
+              "Lutsk",
+              "Kremenchuk",
+              "Bila Tserkva",
+              "Kerch",
+              "Melitopol",
+              "Kramatorsk",
+              "Uzhgorod",
+              "Brovary",
+              "Yevpatoriya",
+              "Berdyansk",
+              "Alchevs’k",
+              "Nikopol",
+              "Slavyansk",
+              "Pavlograd",
+              "Lisichansk",
+              "Yenakiyeve",
+              "Aleksandriya",
+              "Konstantinovka",
+            ].includes(city)
+              ? "city"
+              : "village",
+          };
+        }),
+    });
   },
 }));

@@ -8,10 +8,23 @@ import AuthLayout from "./layouts/Auth/AuthLayout";
 import HighwayWithCars from "./components/Animation/HighwayWithCars/HighwayWithCars";
 import { useEffect } from "react";
 import ProfileLayout from "./layouts/Profile/ProfileLayout";
+import { useCarStore } from "./store/car.store";
+import { carsDataToLoad } from "./mock/cars.data";
 
 function App() {
+  const { createCar, getCars } = useCarStore();
   const { isScrollingStart } = useScroll();
   const { pathname } = useLocation();
+
+  useEffect(() => {
+    getCars().then((cars) => {
+      if (!cars.length) {
+        carsDataToLoad.forEach((carData) => {
+          createCar(carData);
+        });
+      }
+    });
+  }, []);
 
   useEffect(() => {
     const preventBodyScroll = pathname.includes("/sign");

@@ -27,6 +27,14 @@
   font-size: 1.25rem;
 }
 
+.filters-loading {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: var(--primary-black-color);
+}
+
 .filters-item,
 .filters-item-price-heading {
   width: 100%;

@@ -1,16 +1,21 @@
 import { useUserStore } from "@/store/user.store";
 import styles from "./booked-cars.module.css";
 import cn from "classnames";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useCarStore } from "@/store/car.store";
 import dayjs from "dayjs";
 import BaseButton from "@/components/Buttons/BaseButton/BaseButton";
 import { useBookStore } from "@/store/book.store";
+import RatingModal from "@/components/Modals/Rating/Rating";
+import { useRatingStore } from "@/store/rating.store";
 
 const BookedCarsSection = () => {
   const { currentUser, getUserById } = useUserStore();
   const { currentCar, getCarById } = useCarStore();
   const { bookCarByUserIdAndCarId } = useBookStore();
+  const { updateRatingByCarId } = useRatingStore();
+
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     if (currentUser?.bookedCar && Object.keys(currentUser?.bookedCar).length)
@@ -29,7 +34,20 @@ const BookedCarsSection = () => {
       }
     ).then(() => {
       getUserById(currentUser?.id);
+      setIsOpen(false);
     });
+  };
+
+  const handleRate = (rating) => {
+    updateRatingByCarId(currentUser?.bookedCar?.carId || currentCar?.id, {
+      rating,
+    }).then(() => {
+      handleEndRental();
+    });
+  };
+
+  const handleClose = () => {
+    handleEndRental();
   };
 
   return (
@@ -138,7 +156,7 @@ const BookedCarsSection = () => {
           <div className={styles["booked-cars-content-actions"]}>
             <BaseButton
               className={styles["booked-cars-content-actions-end-btn"]}
-              onClick={handleEndRental}
+              onClick={() => setIsOpen(true)}
               label="End rental"
             />
           </div>
@@ -148,6 +166,7 @@ const BookedCarsSection = () => {
           You don't have any booked cars now!
         </span>
       )}
+      <RatingModal open={isOpen} onClose={handleClose} onRate={handleRate} />
     </div>
   );
 };

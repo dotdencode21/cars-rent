@@ -35,6 +35,12 @@ const CarsPage = () => {
     return [...cars].sort((a) => (a.isFavorite ? -1 : 1));
   }, [cars]);
 
+  const filteredCars = useMemo(() => {
+    return sortedCarsByIsFavoriteField.filter(
+      (car) => car.id !== currentUser?.bookedCar?.carId
+    );
+  }, [cars.currentUser?.bookedCar]);
+
   return (
     <div className={styles["cars-page"]}>
       <Filters />
@@ -44,7 +50,7 @@ const CarsPage = () => {
         </span>
       ) : (
         <div className={styles["cars-page-grid"]}>
-          {sortedCarsByIsFavoriteField.map((car) => {
+          {filteredCars.map((car) => {
             return (
               <CarCard
                 key={car.id}

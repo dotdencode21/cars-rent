@@ -14,11 +14,13 @@ import BaseInput from "@/components/Inputs/BaseInput/BaseInput";
 import { useBookStore } from "@/store/book.store";
 import { convertToISO8601UTC } from "@/utils/date";
 import dayjs from "dayjs";
+import { useNavigate } from "react-router-dom";
 
 const CarDetailsModal = ({ carId, open, onClose }) => {
   const { isLogged, currentUser } = useUserStore();
   const { getCarById, currentCar } = useCarStore();
   const { bookCarByUserIdAndCarId } = useBookStore();
+  const navigate = useNavigate();
 
   const [values, setValues] = useState({
     rentStartDate: dayjs().format("DD/MM/YYYY"),
@@ -43,7 +45,10 @@ const CarDetailsModal = ({ carId, open, onClose }) => {
       rentEndDate: convertToISO8601UTC(values.rentEndDate),
       pricePerHour: +currentCar.pricePerHour,
       isBooking: true,
-    }).then(() => onClose());
+    }).then(() => {
+      navigate("/profile/booked-cars");
+      onClose();
+    });
   };
 
   const hasBookedCar =

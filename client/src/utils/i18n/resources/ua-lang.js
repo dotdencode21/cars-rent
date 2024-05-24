@@ -27,7 +27,7 @@ export const uaLang = {
       "Card cars crossover type": "Кросовер",
       "Card cars hatchback type": "Хечбек",
       "Card cars mpv type": "БТЗ",
-      "Card cars price postfix": "год.",
+      "Card cars price postfix": "день",
       "Card cars electric fuel": "Електрика",
       "Card cars diesel fuel": "Дізель",
       "Card cars gasoline fuel": "Бензин",

@@ -3,7 +3,7 @@
   padding: 0 4.5rem;
   display: flex;
   justify-content: flex-start;
-  align-items: center;
+  align-items: flex-start;
 }
 
 .booked-cars-without-content {
@@ -17,4 +17,60 @@
   font-size: 1.25rem;
   color: var(--primary-black-color);
   letter-spacing: 0.02rem;
+}
+
+.booked-cars-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 2rem;
+}
+
+.booked-cars-content-img {
+  width: 40%;
+  object-fit: cover;
+  border-radius: 0.25rem;
+}
+
+.booked-cars-content-info {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2rem 5rem;
+}
+
+.booked-cars-content-item {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: flex-start;
+  gap: 0.25rem;
+}
+
+.booked-cars-content-item-label {
+  font-weight: 400;
+  font-size: 0.875rem;
+  letter-spacing: 0.02rem;
+  color: var(--footer-icons-gray-color);
+}
+
+.booked-cars-content-item-value {
+  font-weight: 500;
+  font-size: 1rem;
+  letter-spacing: 0.02rem;
+  color: var(--primary-black-color);
+}
+
+.booked-cars-content-actions {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.booked-cars-content-actions-end-btn span {
+  font-size: 1rem;
+  text-transform: none;
 }

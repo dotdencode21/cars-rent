@@ -1,9 +1,12 @@
 import styles from "./introduction.module.css";
 import IntroductionForm from "@/components/Forms/Introduction/IntroductionForm";
+import { useCarStore } from "@/store/car.store";
 import { useTranslation } from "react-i18next";
 
 const IntroductionSection = () => {
   const { t } = useTranslation();
+
+  const { cars } = useCarStore();
 
   return (
     <div className={styles["introduction-section"]}>
@@ -13,7 +16,7 @@ const IntroductionSection = () => {
       <span className={styles["introduction-section-subtitle"]}>
         {t("Introduction section subtitle")}
       </span>
-      <IntroductionForm />
+      <IntroductionForm cars={cars} />
     </div>
   );
 };

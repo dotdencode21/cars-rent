@@ -21,6 +21,12 @@ const BookedCar = dbService.define(
       allowNull: true,
       field: "rent_end_date",
     },
+    pricePerHour: {
+      type: DataTypes.INTEGER,
+      validate: {
+        isInt: true,
+      },
+    },
     totalPrice: {
       type: DataTypes.INTEGER,
       allowNull: true,
@@ -29,7 +35,7 @@ const BookedCar = dbService.define(
         const rentStartDate = dayjs(this.getDataValue("rentStartDate"));
         const rentEndDate = dayjs(this.getDataValue("rentEndDate"));
 
-        return rentEndDate.subtract(rentStartDate, "day") * pricePerHour;
+        return rentEndDate.diff(rentStartDate, "day") * pricePerHour;
       },
       field: "total_price",
     },

@@ -1,13 +1,17 @@
 import Filters from "@/components/Filters/Filters";
 import styles from "./cars-page.module.css";
-import { useEffect, useMemo } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { useCarStore } from "@/store/car.store";
 import CarCard from "@/components/Cards/Car/CarCard";
 import { useUserStore } from "@/store/user.store";
+import CarDetailsModal from "@/components/Modals/CarDetails/CarDetails";
 
 const CarsPage = () => {
   const { currentUser } = useUserStore();
   const { getCars, cars, markCarAsFavorite } = useCarStore();
+
+  const [carId, setCarId] = useState("");
+  const [isOpen, setIsOpen] = useState(false);
 
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: "smooth" });
@@ -20,6 +24,11 @@ const CarsPage = () => {
       carId,
       isFavorite,
     }).then(() => getCars());
+  };
+
+  const handleGetCarId = (carId) => {
+    setCarId(carId);
+    setIsOpen(true);
   };
 
   const sortedCarsByIsFavoriteField = useMemo(() => {
@@ -41,11 +50,17 @@ const CarsPage = () => {
                 key={car.id}
                 {...car}
                 onMarkAsFavorite={handleMarkAsFavorite}
+                onClick={handleGetCarId}
               />
             );
           })}
         </div>
       )}
+      <CarDetailsModal
+        carId={carId}
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+      />
     </div>
   );
 };

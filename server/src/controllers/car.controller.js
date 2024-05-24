@@ -139,7 +139,15 @@ export class CarController {
           .json({ message: `Car with ${carId} not found` });
       }
 
-      return res.status(STATUS_CODE.OK).json({ car });
+      return res.status(STATUS_CODE.OK).json({
+        car: {
+          ...car.dataValues,
+          maxRating: Math.round(
+            car.rating.reduce((accum, item) => accum + item, 0) /
+              car.rating.length
+          ),
+        },
+      });
     } catch (e) {
       return res
         .status(STATUS_CODE.INTERNAL_SERVER_ERROR)

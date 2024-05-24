@@ -13,13 +13,17 @@ import { HiCurrencyDollar } from "react-icons/hi2";
 import BaseInput from "@/components/Inputs/BaseInput/BaseInput";
 import { useBookStore } from "@/store/book.store";
 import { convertToISO8601UTC } from "@/utils/date";
+import dayjs from "dayjs";
 
 const CarDetailsModal = ({ carId, open, onClose }) => {
   const { isLogged, currentUser } = useUserStore();
   const { getCarById, currentCar } = useCarStore();
   const { bookCarByUserIdAndCarId } = useBookStore();
 
-  const [values, setValues] = useState({ rentStartDate: "", rentEndDate: "" });
+  const [values, setValues] = useState({
+    rentStartDate: dayjs().format("DD/MM/YYYY"),
+    rentEndDate: "",
+  });
 
   const isAuth = isLogged && localStorage.getItem("currentUserId");
 
@@ -42,6 +46,9 @@ const CarDetailsModal = ({ carId, open, onClose }) => {
     }).then(() => onClose());
   };
 
+  const hasBookedCar =
+    currentUser?.bookedCar && Object.keys(currentUser?.bookedCar).length;
+
   const disabledSubmitBtn = !(
     values.rentStartDate.length && values.rentEndDate.length
   );
@@ -51,12 +58,12 @@ const CarDetailsModal = ({ carId, open, onClose }) => {
       open={open}
       onClose={onClose}
       title="Car Details"
-      maxWidth={650}
+      maxWidth={700}
       submitBtnText="Book"
       cancelBtnText="Cancel"
       onCancel={onClose}
       onSubmit={handleBook}
-      disabled={!isAuth || disabledSubmitBtn}
+      disabled={!isAuth || disabledSubmitBtn || hasBookedCar}
     >
       {isLoading ? (
         <span>Loading...</span>
@@ -147,34 +154,40 @@ const CarDetailsModal = ({ carId, open, onClose }) => {
                 <span
                   className={styles["car-details-content-form-heading-title"]}
                 >
-                  Ready for booking?
+                  {hasBookedCar
+                    ? "You already have booked car!"
+                    : "Ready for booking?"}
                 </span>
                 <span
                   className={
                     styles["car-details-content-form-heading-subtitle"]
                   }
                 >
-                  Fill out the form below and enjoy driving!
+                  {hasBookedCar
+                    ? "You must wait until the end of the lease or end the lease early"
+                    : "Fill out the form below and enjoy driving!"}
                 </span>
               </div>
-              <div className={styles["car-details-content-form-inputs"]}>
-                <BaseInput
-                  value={values.rentStartDate}
-                  onChange={handleChange}
-                  placeholder="Format: (DD/MM/YYYY)"
-                  inputId="rentStartDate"
-                  name="rentStartDate"
-                  labelText="Rent start date"
-                />
-                <BaseInput
-                  value={values.rentEndDate}
-                  onChange={handleChange}
-                  placeholder="Format: (DD/MM/YYYY)"
-                  inputId="rentEndDate"
-                  name="rentEndDate"
-                  labelText="Rent end date"
-                />
-              </div>
+              {!hasBookedCar && (
+                <div className={styles["car-details-content-form-inputs"]}>
+                  <BaseInput
+                    value={values.rentStartDate}
+                    onChange={handleChange}
+                    placeholder="Format: (DD/MM/YYYY)"
+                    inputId="rentStartDate"
+                    name="rentStartDate"
+                    labelText="Rent start date"
+                  />
+                  <BaseInput
+                    value={values.rentEndDate}
+                    onChange={handleChange}
+                    placeholder="Format: (DD/MM/YYYY)"
+                    inputId="rentEndDate"
+                    name="rentEndDate"
+                    labelText="Rent end date"
+                  />
+                </div>
+              )}
             </div>
           </div>
         </div>

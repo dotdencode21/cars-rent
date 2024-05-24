@@ -65,6 +65,7 @@
 }
 
 .car-details-content-form-heading-title {
+  text-align: center;
   font-weight: 500;
   font-size: 2rem;
   letter-spacing: 0.02rem;
@@ -72,6 +73,7 @@
 }
 
 .car-details-content-form-heading-subtitle {
+  text-align: center;
   font-weight: 400;
   font-size: 0.875rem;
   letter-spacing: 0.02rem;

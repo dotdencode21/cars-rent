@@ -35,7 +35,9 @@ const BookedCar = dbService.define(
         const rentStartDate = dayjs(this.getDataValue("rentStartDate"));
         const rentEndDate = dayjs(this.getDataValue("rentEndDate"));
 
-        return rentEndDate.diff(rentStartDate, "day") * pricePerHour;
+        const result = rentEndDate.diff(rentStartDate, "day") * pricePerHour;
+
+        return !!result ? result : pricePerHour;
       },
       field: "total_price",
     },

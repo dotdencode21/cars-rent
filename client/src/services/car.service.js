@@ -1,11 +1,11 @@
 import { axiosInstance } from "@/config/axios.config";
 
 export class CarService {
-  static async getCars(params = "") {
+  static async getCars() {
     try {
       const {
         data: { cars },
-      } = await axiosInstance.get(`/cars${params.length ? `?${params}` : ""}`);
+      } = await axiosInstance.get("/cars");
 
       return cars;
     } catch (e) {

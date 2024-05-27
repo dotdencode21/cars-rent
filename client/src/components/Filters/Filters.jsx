@@ -9,7 +9,7 @@ import BaseButton from "../Buttons/BaseButton/BaseButton";
 import { useCarStore } from "@/store/car.store";
 import { useSearchParams } from "react-router-dom";
 
-const Filters = () => {
+const Filters = ({ onFiltersChange }) => {
   const { getCars, cars } = useCarStore();
 
   const [query] = useSearchParams();
@@ -27,7 +27,7 @@ const Filters = () => {
   const [filters, setFilters] = useState({
     brand: query.get("brand") ? query.get("brand") : "any_brand",
     bodyType: query.get("type") ? query.get("type") : "any_type",
-    fuel: "Gasoline",
+    fuel: "any_fuel",
     gearboxType: "Automatic",
     amountOfBooking: "oneToFive",
   });
@@ -69,15 +69,24 @@ const Filters = () => {
               default: false,
             })),
           ],
-          fuels: [...new Set(data.map((car) => car.fuel))].map(
-            (fuel, fuelIndex) => ({
+          fuels: [
+            {
               id: Date.now() * Math.random(),
               name: "fuel",
-              title: fuel,
-              value: fuel,
-              default: fuelIndex === 0,
-            })
-          ),
+              title: "Any fuel",
+              value: "any_fuel",
+              default: true,
+            },
+            ...[...new Set(data.map((car) => car.fuel))].map(
+              (fuel, fuelIndex) => ({
+                id: Date.now() * Math.random(),
+                name: "fuel",
+                title: fuel,
+                value: fuel,
+                default: fuelIndex === 0,
+              })
+            ),
+          ],
           prices: data.map((car) => car.pricePerHour),
         });
       });
@@ -103,20 +112,21 @@ const Filters = () => {
   const [price, setPrice] = useState([0, 0]);
 
   useEffect(() => {
-    if (query.get("price")) {
-      const priceRange = query.get("price");
+    setPrice([minPrice, maxPrice]);
+  }, [minPrice, maxPrice]);
 
-      if (priceRange === "low_to_high") {
-        setPrice([minPrice + +Math.round(minPrice / 2).toFixed(0), maxPrice]);
-      }
-
-      if (priceRange === "high_to_low") {
-        setPrice([minPrice, maxPrice - +Math.round(maxPrice / 2).toFixed(0)]);
-      }
-    } else {
-      setPrice([minPrice, maxPrice]);
-    }
-  }, [minPrice, maxPrice, query]);
+  useEffect(() => {
+    onFiltersChange({
+      brand: filters.brand,
+      bodyType: filters.bodyType,
+      fuel: filters.fuel,
+      gearboxType: filters.gearboxType,
+      amountOfBooking: filters.amountOfBooking,
+      rating: rating.onClickValue,
+      minPrice: price[0],
+      maxPrice: price[1],
+    });
+  }, [rating.onClickValue, filters, price]);
 
   const handleChange = (values) => setPrice(values);
 
@@ -138,7 +148,7 @@ const Filters = () => {
     setFilters({
       brand: "any_brand",
       bodyType: "any_type",
-      fuel: "Gasoline",
+      fuel: "any_fuel",
       gearboxType: "Automatic",
       amountOfBooking: "oneToFive",
       isBooked: false,
@@ -148,28 +158,6 @@ const Filters = () => {
       onHoverValue: null,
     });
     setPrice([minPrice, maxPrice]);
-  };
-
-  const handleApplyFilters = () => {
-    const extendedFilters = {
-      ...filters,
-      minPrice: price[0],
-      maxPrice: price[1],
-      rating: rating.onClickValue,
-    };
-
-    const queryParams = Object.keys(extendedFilters)
-      .map((key) => {
-        const value = extendedFilters[key];
-        if (value !== null && value !== undefined && value !== "") {
-          return encodeURIComponent(key) + "=" + encodeURIComponent(value);
-        }
-        return null;
-      })
-      .filter((param) => param !== null)
-      .join("&");
-
-    getCars(queryParams);
   };
 
   const filtersOptionsLength = useMemo(() => {
@@ -415,11 +403,6 @@ const Filters = () => {
               className={styles["filters-item-actions-reset-btn"]}
               onClick={handleResetFilters}
               label="Reset filters"
-            />
-            <BaseButton
-              className={styles["filters-item-actions-apply-btn"]}
-              onClick={handleApplyFilters}
-              label="Apply filters"
             />
           </div>
         </>

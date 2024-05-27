@@ -20,7 +20,7 @@
 
 .cars-page-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(3, 25rem);
   grid-template-rows: 27.4375rem;
   gap: 1.5rem;
 }

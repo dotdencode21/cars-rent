@@ -1,117 +1,23 @@
-import { Op } from "sequelize";
 import { STATUS_CODE } from "../constants/statusCodes.js";
 import { Car } from "../models/index.js";
 
 export class CarController {
   static async getCars(req, res) {
-    const [brands, types] = await Promise.all([
-      Car.findAll({ attributes: ["brand"] }),
-      Car.findAll({ attributes: ["type"] }),
-    ]);
-
-    const amountOfBooking = {
-      oneToFive: [1, 5],
-      fiveToTen: [5, 10],
-      moreThanTen: 10,
-    };
-
-    const isFilters = req.query && Object.keys(req.query).length;
-
-    if (isFilters) {
-      try {
-        const cars = await Car.findAll({
-          where: {
-            brand:
-              req.query.brand !== "any_brand"
-                ? req.query.brand
-                : {
-                    [Op.in]: brands.map((brand) => brand.dataValues.brand),
-                  },
-            type:
-              req.query.bodyType !== "any_type"
-                ? req.query.bodyType
-                : {
-                    [Op.in]: types.map((type) => type.dataValues.type),
-                  },
-            fuel: req.query.fuel,
-            gearboxType: req.query.gearboxType,
-            pricePerHour: {
-              [Op.between]: !!req.query.minPrice &&
-                !!req.query.maxPrice && [
-                  +req.query.minPrice,
-                  +req.query.maxPrice,
-                ],
-            },
-            amountOfBooking: {
-              [req.query.amountOfBooking === "moreThanTen"
-                ? Op.gt
-                : Op.between]: amountOfBooking[req.query.amountOfBooking],
-            },
-          },
-        });
-
-        if (!cars.length) {
-          const carsWithoutFilters = await Car.findAll();
-
-          return res.status(STATUS_CODE.OK).json({
-            cars: carsWithoutFilters
-              .map((car) => ({
-                ...car.dataValues,
-                maxRating: Math.round(
-                  car.rating.reduce((accum, item) => accum + item, 0) /
-                    car.rating.length
-                ),
-              }))
-              .filter((car) => {
-                return req.query.rating
-                  ? car.maxRating <= +(req.query.rating + 0.99) &&
-                      car.maxRating >= +req.query.rating
-                  : car;
-              }),
-          });
-        }
-
-        return res.status(STATUS_CODE.OK).json({
-          cars: cars
-            .map((car) => ({
-              ...car.dataValues,
-              maxRating: Math.round(
-                car.rating.reduce((accum, item) => accum + item, 0) /
-                  car.rating.length
-              ),
-            }))
-            .filter((car) => {
-              return req.query.rating
-                ? car.maxRating <= +(req.query.rating + 0.99) &&
-                    car.maxRating >= +req.query.rating
-                : car;
-            }),
-        });
-      } catch (e) {
-        return res
-          .status(STATUS_CODE.INTERNAL_SERVER_ERROR)
-          .json({ message: "Internal Server Error", error: e });
-      }
-    }
-
     try {
-      const cars = await Car.findAll();
+      const cars = await Car.findAll({
+        attributes: {
+          exclude: ["carId"],
+        },
+      });
 
       return res.status(STATUS_CODE.OK).json({
-        cars: cars
-          .map((car) => ({
-            ...car.dataValues,
-            maxRating: Math.round(
-              car.rating.reduce((accum, item) => accum + item, 0) /
-                car.rating.length
-            ),
-          }))
-          .filter((car) => {
-            return req.query.rating
-              ? car.maxRating <= +(req.query.rating + 0.99) &&
-                  car.maxRating >= +req.query.rating
-              : car;
-          }),
+        cars: cars.map((car) => ({
+          ...car.dataValues,
+          maxRating: Math.round(
+            car.rating.reduce((accum, item) => accum + item, 0) /
+              car.rating.length
+          ),
+        })),
       });
     } catch (e) {
       return res
@@ -131,6 +37,9 @@ export class CarController {
     try {
       const car = await Car.findOne({
         where: { id: carId },
+        attributes: {
+          exclude: ["carId"],
+        },
       });
 
       if (!car) {

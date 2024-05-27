@@ -6,8 +6,8 @@ export const useCarStore = create((set) => ({
   currentCar: null,
   isSuccessful: false,
 
-  getCars: async (params = "") => {
-    const cars = await CarService.getCars(params);
+  getCars: async () => {
+    const cars = await CarService.getCars();
 
     set({ cars: cars.length ? cars : [] });
 

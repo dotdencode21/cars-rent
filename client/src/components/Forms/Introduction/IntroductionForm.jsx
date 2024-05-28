@@ -65,12 +65,16 @@ const IntroductionForm = ({ cars }) => {
         {
           id: uuidv4(),
           name: "brand",
-          options: brand,
+          options: brand.map((option) => {
+            return { ...option, default: preferences.brand === option.value };
+          }),
         },
         {
           id: uuidv4(),
           name: "type",
-          options: type,
+          options: type.map((option) => {
+            return { ...option, default: preferences.type === option.value };
+          }),
         },
         {
           id: uuidv4(),
@@ -90,7 +94,9 @@ const IntroductionForm = ({ cars }) => {
               value: "high_to_low",
               default: false,
             },
-          ],
+          ].map((option) => {
+            return { ...option, default: preferences.price === option.value };
+          }),
         },
       ].map((carOption) => {
         return (

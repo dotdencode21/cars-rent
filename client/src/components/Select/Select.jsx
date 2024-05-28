@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useMemo, useState } from "react";
 
 import styles from "./select.module.css";
 
@@ -32,17 +32,11 @@ export const Select = ({
       .find((option) => option.name === name);
   }, [type]);
 
-  useEffect(() => {
-    if (isChangeLanguageSelect) onClick(lang);
-
-    if (chosenOption && Object.keys(chosenOption).length) {
-      onClick(chosenOption);
-    }
-  }, [chosenOption, lang]);
-
   const handleClick = (option) => {
     if (isChangeLanguageSelect) setLang(option.countryCode);
-    setChosenOption(option);
+    else setChosenOption(option);
+
+    setTimeout(() => onClick(option), 500);
   };
 
   return (

@@ -31,6 +31,7 @@ const RightSide = ({ isSignUpForm }) => {
 
   const [, setAccessToken] = useLocalStorage("access_token");
   const [, setCurrentUserId] = useLocalStorage("currentUserId");
+  const [facebookUser, setFacebookUser] = useState(null);
 
   const { errors, values, handleChange, resetForm } = useFormik({
     initialValues: {
@@ -45,6 +46,8 @@ const RightSide = ({ isSignUpForm }) => {
   useEffect(() => {
     if (query.get("code")) {
       getUserViaFacebook(query.get("code")).then((user) => {
+        setFacebookUser(user);
+
         const data = {
           email: user?.email,
           gender: user?.gender,
@@ -59,7 +62,6 @@ const RightSide = ({ isSignUpForm }) => {
 
           signIn({ email, type: "facebook" }).then((userId) => {
             localStorage.setItem("currentUserId", JSON.stringify(userId));
-            if (userId) navigate("/");
           });
         });
       });
@@ -67,7 +69,14 @@ const RightSide = ({ isSignUpForm }) => {
   }, [query]);
 
   useEffect(() => {
+    if (facebookUser && Object.keys(facebookUser).length) {
+      setIsOpen(true);
+    }
+  }, [facebookUser]);
+
+  useEffect(() => {
     resetForm();
+    setIsOpen(false);
   }, [navigate]);
 
   const [showPassword, setShowPassword] = useState(false);
@@ -171,7 +180,11 @@ const RightSide = ({ isSignUpForm }) => {
           </Link>
         )}
       </div>
-      <UserDetailsModal open={isOpen} onClose={() => setIsOpen(false)} />
+      <UserDetailsModal
+        open={isOpen}
+        onClose={() => setIsOpen(false)}
+        user={facebookUser}
+      />
     </div>
   );
 };

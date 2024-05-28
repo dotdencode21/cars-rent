@@ -1,15 +1,14 @@
-import { useFormik } from "formik";
 import BaseModal from "../BaseModal/BaseModal";
 
 import styles from "./user-details.module.css";
-import { userSchema } from "@/validation/schemas/user.schema";
 import UserDetailsForm from "@/components/Forms/UserDetails/UserDetailsForm";
 import { useCityStore } from "@/store/city.store";
 import { useEffect, useState } from "react";
 import { useUserStore } from "@/store/user.store";
 import { useNavigate } from "react-router-dom";
+import dayjs from "dayjs";
 
-const UserDetailsModal = ({ open, onClose }) => {
+const UserDetailsModal = ({ open, onClose, user = null }) => {
   const [gender, setGender] = useState("male");
 
   const navigate = useNavigate();
@@ -17,15 +16,25 @@ const UserDetailsModal = ({ open, onClose }) => {
   const { cities, getCities } = useCityStore();
   const { updateUserById } = useUserStore();
 
-  const { errors, values, handleChange, resetForm, setFieldValue } = useFormik({
-    initialValues: {
-      firstName: "",
-      lastName: "",
-      age: 18,
-      location: "",
-    },
-    validationSchema: userSchema,
+  const isUser = user && Object.keys(user).length;
+
+  const [values, setValues] = useState({
+    firstName: "",
+    lastName: "",
+    age: 18,
+    location: "",
   });
+
+  useEffect(() => {
+    if (isUser) {
+      setValues({
+        firstName: user?.name.split(" ")[0],
+        lastName: user?.name.split(" ")[1],
+        age: dayjs().year() - Number(user?.birthday.split("/").at(-1)),
+        location: "",
+      });
+    }
+  }, [isUser]);
 
   const disableSubmit = [
     values.firstName,
@@ -36,7 +45,13 @@ const UserDetailsModal = ({ open, onClose }) => {
   useEffect(() => {
     getCities();
 
-    return () => resetForm();
+    return () =>
+      setValues({
+        firstName: "",
+        lastName: "",
+        age: 18,
+        location: "",
+      });
   }, []);
 
   const handleSendData = () => {
@@ -45,15 +60,25 @@ const UserDetailsModal = ({ open, onClose }) => {
         ...values,
         gender,
       }).then(() => {
-        resetForm();
+        setValues({
+          firstName: "",
+          lastName: "",
+          age: 18,
+          location: "",
+        });
         navigate("/");
       });
     }
   };
 
-  const handleCitySelect = (city) => setFieldValue("location", city);
+  const handleCitySelect = (city) =>
+    setValues((prev) => ({ ...prev, location: city }));
 
   const handleGender = ({ value }) => setGender(value);
+
+  const handleChange = ({ target: { name, value } }) => {
+    setValues((prev) => ({ ...prev, [name]: value }));
+  };
 
   return (
     <BaseModal
@@ -69,7 +94,6 @@ const UserDetailsModal = ({ open, onClose }) => {
     >
       <div className={styles["user-details"]}>
         <UserDetailsForm
-          errors={errors}
           values={values}
           handleChange={handleChange}
           onClick={handleGender}

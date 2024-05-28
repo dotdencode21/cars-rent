@@ -7,12 +7,9 @@ import "rc-slider/assets/index.css";
 import { FaStar } from "react-icons/fa6";
 import BaseButton from "../Buttons/BaseButton/BaseButton";
 import { useCarStore } from "@/store/car.store";
-import { useSearchParams } from "react-router-dom";
 
-const Filters = ({ onFiltersChange }) => {
+const Filters = ({ onFiltersChange, query }) => {
   const { getCars, cars } = useCarStore();
-
-  const [query] = useSearchParams();
 
   const [rating, setRating] = useState({
     onClickValue: null,
@@ -52,7 +49,14 @@ const Filters = ({ onFiltersChange }) => {
               value: brand,
               default: false,
             })),
-          ],
+          ].map((option) => {
+            return {
+              ...option,
+              default: query?.get("brand")
+                ? query.get("brand") === option.value
+                : option.value === "any_brand",
+            };
+          }),
           types: [
             {
               id: Date.now() * Math.random(),
@@ -68,7 +72,14 @@ const Filters = ({ onFiltersChange }) => {
               value: type,
               default: false,
             })),
-          ],
+          ].map((option) => {
+            return {
+              ...option,
+              default: query?.get("type")
+                ? query.get("type") === option.value
+                : option.value === "any_type",
+            };
+          }),
           fuels: [
             {
               id: Date.now() * Math.random(),
@@ -97,7 +108,7 @@ const Filters = ({ onFiltersChange }) => {
     }
 
     getCarsData();
-  }, [isRevokeFilters]);
+  }, [isRevokeFilters, query]);
 
   const minPrice = useMemo(
     () =>

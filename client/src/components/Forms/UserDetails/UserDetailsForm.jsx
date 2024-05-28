@@ -26,7 +26,7 @@ const UserDetailsForm = ({
           placeholder="First name"
           inputId="firstName"
           name="firstName"
-          error={errors["firstName"]}
+          error={!values.firstName ? "First name field is required" : ""}
           labelText="First name"
         />
         <BaseInput
@@ -35,7 +35,7 @@ const UserDetailsForm = ({
           placeholder="Last name"
           inputId="lastName"
           name="lastName"
-          error={errors["lastName"]}
+          error={!values.lastName ? "Last name field is required" : ""}
           labelText="Last name"
         />
       </div>
@@ -98,7 +98,7 @@ const UserDetailsForm = ({
           placeholder="Location"
           inputId="location"
           name="location"
-          error={errors["location"]}
+          error={!values.location ? "Location field is required" : ""}
           labelText="Location"
         />
         {!!values.location.length &&

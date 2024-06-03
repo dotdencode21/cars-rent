@@ -122,7 +122,9 @@ const UserDetailsForm = ({
                         styles["user-details-form-location-cities-item"]
                       }
                       key={cityIndex}
-                      onClick={() => onCitySelect(city.name)}
+                      onClick={() =>
+                        onCitySelect({ name: city.name, type: city.type })
+                      }
                     >
                       {city.name}
                     </button>

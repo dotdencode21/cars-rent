@@ -15,11 +15,14 @@ import { useBookStore } from "@/store/book.store";
 import { convertToISO8601UTC } from "@/utils/date";
 import dayjs from "dayjs";
 import { useNavigate } from "react-router-dom";
+import { useRecommendationStore } from "@/store/recommendation.store";
 
 const CarDetailsModal = ({ carId, open, onClose }) => {
   const { isLogged, currentUser } = useUserStore();
   const { getCarById, currentCar } = useCarStore();
   const { bookCarByUserIdAndCarId } = useBookStore();
+  const { createAssociation } = useRecommendationStore();
+
   const navigate = useNavigate();
 
   const [values, setValues] = useState({
@@ -46,8 +49,14 @@ const CarDetailsModal = ({ carId, open, onClose }) => {
       pricePerHour: +currentCar.pricePerHour,
       isBooking: true,
     }).then(() => {
-      navigate("/profile/booked-cars");
-      onClose();
+      createAssociation({
+        location: currentUser?.location,
+        locationType: currentUser?.locationType,
+        type: currentCar?.type,
+      }).then(() => {
+        navigate("/profile/booked-cars");
+        onClose();
+      });
     });
   };
 

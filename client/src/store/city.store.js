@@ -12,6 +12,8 @@ export const useCityStore = create((set) => ({
         .filter(
           (city) =>
             !city.includes("Raion") &&
+            !city.includes("Rayon") &&
+            !city.includes("rayon") &&
             !city.includes("Mis'ka Rada") &&
             !city.includes("Mis’krada") &&
             !city.includes("Mis’ka Rada")
@@ -27,6 +29,7 @@ export const useCityStore = create((set) => ({
               "Donetsk",
               "Lviv",
               "Zaporozhe",
+              "Zaporizhia",
               "Sevastopol",
               "Mariupol",
               "Lugansk",

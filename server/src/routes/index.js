@@ -5,6 +5,7 @@ import { userRouter } from "./user.route.js";
 import { ratingRouter } from "./rating.route.js";
 import { favoriteRouter } from "./favorite.route.js";
 import { oauthRouter } from "./ouath.route.js";
+import { associationRouter } from "./association.route.js";
 
 export {
   authRouter,
@@ -14,4 +15,5 @@ export {
   ratingRouter,
   favoriteRouter,
   oauthRouter,
+  associationRouter
 };

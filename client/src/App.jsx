@@ -44,9 +44,12 @@ function App() {
 
   if (pathname.startsWith("/profile")) {
     return (
-      <ProfileLayout>
-        <Outlet />
-      </ProfileLayout>
+      <>
+        <ProfileLayout>
+          <Outlet />
+        </ProfileLayout>
+        <ScrollToTopButton show={isScrollingStart} />
+      </>
     );
   }
 

@@ -17,13 +17,18 @@ const BookedCarsSection = () => {
 
   const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    if (currentUser?.bookedCar && Object.keys(currentUser?.bookedCar).length)
-      getCarById(currentUser?.bookedCar.carId);
-  }, [currentUser?.bookedCar]);
-
   const isBookedCar =
     currentUser?.bookedCar && Object.keys(currentUser?.bookedCar).length;
+
+  useEffect(() => {
+    getUserById(
+      currentUser?.id || JSON.parse(localStorage.getItem("currentUserId"))
+    );
+  }, []);
+
+  useEffect(() => {
+    if (isBookedCar) getCarById(currentUser?.bookedCar.carId);
+  }, [isBookedCar]);
 
   const handleEndRental = () => {
     bookCarByUserIdAndCarId(

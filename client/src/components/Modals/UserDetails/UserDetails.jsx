@@ -23,6 +23,7 @@ const UserDetailsModal = ({ open, onClose, user = null }) => {
     lastName: "",
     age: 18,
     location: "",
+    locationType: "",
   });
 
   useEffect(() => {
@@ -32,6 +33,7 @@ const UserDetailsModal = ({ open, onClose, user = null }) => {
         lastName: user?.name.split(" ")[1],
         age: dayjs().year() - Number(user?.birthday.split("/").at(-1)),
         location: "",
+        locationType: "",
       });
     }
   }, [isUser]);
@@ -51,6 +53,7 @@ const UserDetailsModal = ({ open, onClose, user = null }) => {
         lastName: "",
         age: 18,
         location: "",
+        locationType: "",
       });
   }, []);
 
@@ -71,8 +74,8 @@ const UserDetailsModal = ({ open, onClose, user = null }) => {
     }
   };
 
-  const handleCitySelect = (city) =>
-    setValues((prev) => ({ ...prev, location: city }));
+  const handleCitySelect = ({ name, type }) =>
+    setValues((prev) => ({ ...prev, location: name, locationType: type }));
 
   const handleGender = ({ value }) => setGender(value);
 

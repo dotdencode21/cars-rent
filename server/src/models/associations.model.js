@@ -1,7 +1,5 @@
 import { DataTypes } from "sequelize";
 import { dbService } from "../services/db.service.js";
-import { User } from "./user.model.js";
-import { Car } from "./car.model.js";
 
 const Associations = dbService.define(
   "Associations",
@@ -12,15 +10,19 @@ const Associations = dbService.define(
       defaultValue: DataTypes.UUIDV4,
       autoIncrement: false,
     },
-    userId: {
-      type: DataTypes.UUID,
+    location: {
+      type: DataTypes.TEXT,
       allowNull: true,
-      field: "user_id",
     },
-    carId: {
-      type: DataTypes.UUID,
+    locationType: {
+      type: DataTypes.STRING(30),
       allowNull: true,
-      field: "car_id",
+      field: "location_type",
+    },
+    type: {
+      type: DataTypes.STRING(30),
+      allowNull: true,
+      field: "car_type",
     },
   },
   { tableName: "associations", updatedAt: false }

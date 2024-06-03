@@ -50,6 +50,11 @@ const User = dbService.define(
       type: DataTypes.STRING(80),
       allowNull: true,
     },
+    locationType: {
+      type: DataTypes.STRING(15),
+      allowNull: true,
+      field: "location_type",
+    },
     age: {
       type: DataTypes.INTEGER({ unsigned: true }),
       allowNull: true,

@@ -11,6 +11,7 @@ import {
   ratingRouter,
   favoriteRouter,
   oauthRouter,
+  associationRouter,
 } from "./src/routes/index.js";
 
 const app = express();
@@ -27,7 +28,8 @@ app
   .use("/api/cars", carRoute)
   .use("/api/book", bookRouter)
   .use("/api/rating", ratingRouter)
-  .use("/api/favorite", favoriteRouter);
+  .use("/api/favorite", favoriteRouter)
+  .use("/api/associations", associationRouter);
 
 const main = () => {
   try {
